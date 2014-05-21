@@ -1,0 +1,231 @@
+label {
+	font-weight:normal;
+	font-size:16px;
+	margin-right:15px;
+}
+
+input[type="text"] {
+	font-size:16px;
+}
+
+input[type="radio"] {
+	margin-right:5px;
+}
+
+input[type="checkbox"] {
+	margin-right:5px;
+}
+
+input[type="date"] {
+	font-size:16px;
+}
+
+textarea {
+	font-size:16px;
+}
+
+select {
+	font-size:16px;
+}
+
+.issueContainer {
+	width:80%;
+	min-height:600px;
+	-webkit-border-bottom-right-radius: 6px;
+	-webkit-border-bottom-left-radius: 6px;
+	-moz-border-radius-bottomright: 6px;
+	-moz-border-radius-bottomleft: 6px;
+	border-bottom-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+	padding: 5px;
+	overflow: auto;
+	padding-top:15px;
+}
+
+.issueContainerColour {
+	background-color:#7E9CBF;
+}
+
+.left {
+	float:left;
+}
+
+.right {
+	float:right;
+}
+
+.issueContainerHeader {
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	background-color:white;
+	border:solid #7D7D7D 1px;
+	width:100%;
+	height:50px;
+	line-height:50px;
+	vertical-align:middle;
+	font-size:18px;
+}
+
+.issueContainerHeaderBackground {
+	-webkit-border-top-left-radius: 15px;
+	-webkit-border-top-right-radius: 15px;
+	-moz-border-radius-topleft: 15px;
+	-moz-border-radius-topright: 15px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	width:80%;
+	height:50px;
+}
+
+.issue {
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	width:90%;
+	border:solid #7D7D7D 1px;
+}
+
+.todoIssue {
+	background-color:#EBC9C9;
+}
+
+.wikIssue {
+	background-color:#F5F5CC;
+}
+
+.doneIssue {
+	background-color:#D0E4D0;
+}
+
+.taskeingabe {
+	width:48.5%;
+	height:34px;
+	line-height: 34px;
+}
+
+.textarea {
+	width:48.5%;
+}
+
+.issueStatistic {
+	margin-bottom:20px;
+	margin-top:20px;
+}
+
+.editIssue {
+	background-color:white;
+	background-image: url(../images/edit.png);
+	background-repeat:no-repeat;
+	float:right;
+	border-width:0px;
+	width: 22px;
+	height: 22px;
+}
+
+.editTask{
+	background-color:white;
+	background-image: url(../images/edit.png);
+	background-repeat:no-repeat;
+	float:right;
+	border-width:0px;
+	width: 22px;
+	height: 22px;
+}
+
+.delete {
+	background-color:white;
+	background-image: url(../images/trash.png);
+	background-repeat:no-repeat;
+	float:right;
+	border-width:0px;
+	width: 22px;
+	height: 22px;
+}
+
+.remove {
+	background-color:white;
+	background-image: url(../images/cross.png);
+	background-repeat:no-repeat;
+	float:right;
+	border-width:0px;
+	width: 22px;
+	height: 22px;
+}
+
+.trigger {
+	
+	background-image: url(../images/plus.png);
+	background-repeat:no-repeat;
+	float:right;
+	border-width:0px;
+	width: 22px;
+	height: 22px;
+}
+
+.deleteTaskButton {
+	border-width:0px;
+	background-color:white;
+	float:right
+}
+
+#statusmessage{
+    position:fixed;
+    bottom:0;
+    padding:5px;
+    line-height:100px;
+    background-color:white;
+    margin-bottom:-150px;
+    margin-right:30px;
+    right:0;
+    height:100px;
+    width:300px;
+    border:solid #7D7D7D 1px;
+    -webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	vertical-align:middle;
+	text-align:center;
+}
+
+.btn-default-delete {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+}
+.btn-default-delete:hover,
+.btn-default-delete:focus,
+.btn-default-delete:active,
+.btn-default-delete.active,
+.open .dropdown-toggle.btn-default-delete {
+  color: #333;
+  background-color: #ebebeb;
+  border-color: #adadad;
+}
+.btn-default-delete:active,
+.btn-default-delete.active,
+.open .dropdown-toggle.btn-default-delete {
+  background-image: none;
+}
+.btn-default-delete.disabled,
+.btn-default-delete[disabled],
+fieldset[disabled] .btn-default-delete,
+.btn-default-delete.disabled:hover,
+.btn-default-delete[disabled]:hover,
+fieldset[disabled] .btn-default-delete:hover,
+.btn-default-delete.disabled:focus,
+.btn-default-delete[disabled]:focus,
+fieldset[disabled] .btn-default-delete:focus,
+.btn-default-delete.disabled:active,
+.btn-default-delete[disabled]:active,
+fieldset[disabled] .btn-default-delete:active,
+.btn-default-delete.disabled.active,
+.btn-default-delete[disabled].active,
+fieldset[disabled] .btn-default-delete.active {
+  background-color: #fff;
+  border-color: #ccc;
+}
+
+.panel-body {
+	text-align:left;
+}

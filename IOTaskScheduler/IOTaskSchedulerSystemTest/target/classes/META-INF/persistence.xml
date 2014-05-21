@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+	version="1.0">
+	
+	<persistence-unit name="H2Connection">
+
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		
+		<class>de.sep.innovativeoperation.taskscheduler.model.data.Event</class>
+		<class>de.sep.innovativeoperation.taskscheduler.model.data.EventTask</class>
+		<class>de.sep.innovativeoperation.taskscheduler.model.data.TimeTask</class>
+		<class>de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft</class>
+		<class>de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity</class>
+
+
+		<properties>
+
+			<property name="hibernate.connection.driver_class" value="org.h2.Driver" />
+			
+			<!-- Set your Database Connection here-->
+			<property name="hibernate.connection.url" value="jdbc:h2:tcp://localhost//sep/database/databases/database1;INIT=CREATE SCHEMA IF NOT EXISTS TASKSCHEDULER" />
+			<property name="hibernate.connection.username" value="h2" />
+			<property name="hibernate.connection.password" value="h2" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
+			<property name="hibernate.default_schema" value="TASKSCHEDULER" />
+			<!-- 
+			Automatic create and update table
+			<property name="hibernate.hbm2ddl.auto" value="update" /> 
+			 -->
+
+		</properties>
+	</persistence-unit>
+
+
+</persistence>

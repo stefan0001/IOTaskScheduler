@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>de.innovativeoperation.taskscheduler</groupId>
+		<artifactId>IOTaskScheduler</artifactId>
+		<version>1.0.1</version>
+	</parent>
+	<artifactId>IOTaskSchedulerSystemTest</artifactId>
+	<packaging>war</packaging>
+	<name>IOTaskSchedulerSystemTest</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+
+		<dependency>
+			<groupId>de.innovativeoperation.taskscheduler</groupId>
+			<artifactId>IOTaskSchedulerServer</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>de.innovativeoperation.taskscheduler</groupId>
+			<artifactId>IOTaskSchedulerWebAppTest</artifactId>
+			<version>1.0.1</version>
+			<type>war</type>
+		</dependency>
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-chrome-driver</artifactId>
+			<version>2.41.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-firefox-driver</artifactId>
+			<version>2.41.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-safari-driver</artifactId>
+			<version>2.41.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-support</artifactId>
+			<version>2.41.0</version>
+		</dependency>
+
+	</dependencies>
+
+
+
+
+	<build>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.0</version>
+				<configuration>
+					<path>/</path>
+				</configuration>
+				<executions>
+					<execution>
+						<id>tomcat-run</id>
+						<goals>
+							<goal>run-war-only</goal>
+						</goals>
+						<phase>pre-integration-test</phase>
+						<configuration>
+							<port>55555</port>
+							<fork>true</fork>
+						</configuration>
+					</execution>
+					<execution>
+						<id>stop-tomcat</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>shutdown</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.12.4</version>
+				<configuration>
+					<includes>
+						<include>**/Firefox*IT.java</include>
+						<!-- <include>**/Chrome*IT.java</include> -->
+						<!-- <include>**/Safari*IT.java</include> -->
+					</includes>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+
+		</plugins>
+
+
+		<finalName>IOTaskSchedulerSystemTest</finalName>
+	</build>
+</project>

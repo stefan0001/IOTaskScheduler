@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<meta charset="utf-8" />
+		<title>Task Scheduler</title>
+		
+		<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+		<link href="bootstrap/css/bootstrap-theme.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+		<link href="css/calendar.css" rel="stylesheet">
+		<link href="css/datetimepicker.css" rel="stylesheet">
+		
+		
+		<script src="jquery/jquery-2.1.0.js"></script>
+		<script src="bootstrap/js/bootstrap.js"></script>
+		
+		<script src="javascript/build/build_editIssue.js"></script>
+		<script src="javascript/build/build_editTask.js"></script>
+		<script src="javascript/build/build_filterIssue.js"></script>
+		<script src="javascript/build/build_showIssue.js"></script>
+		<script src="javascript/build/build_newIssue.js"></script>
+		<script src="javascript/build/build_newTask.js"></script>
+		<script src="javascript/build/build_overview.js"></script>
+		<script src="javascript/build/build_start.js"></script>
+		<script src="javascript/build/calendar.js"></script>
+		<script src="javascript/build/create_components.js"></script>
+		<script src="javascript/build/createInputs.js"></script>
+		<script src="javascript/build/datetimepicker.js"></script>
+		<script src="javascript/build/datetimepicker.de.js"></script>
+		
+		
+		<script src="javascript/server/display.js"></script>
+		<script src="javascript/server/interaction.js"></script>
+		<script src="javascript/server/server.js"></script>
+		
+		
+	</head>
+
+	<body onload="start();">
+		<div class="container">
+			<div class="page-header">
+				<h1>Innovative Operation</h1>
+				<!-- Button trigger modal -->
+				<button class="btn btn-default" data-toggle="modal" data-target="#modalOne" style="margin-right:30px;" onclick="emptyNewTaskModal();" id="newTaskButton">Neuer Task</button>
+				<button class="btn btn-default" data-toggle="modal" data-target="#modalOne" style="margin-right:30px;" onclick="buildTaskOverviewModal();" id="taskOverviewButton">Task Übersicht</button>
+				<button class="btn btn-default" data-toggle="modal" data-target="#modalOne" style="margin-right:30px;" onclick="interaction.getAllEvent(true);" id="eventOverviewButton">Event Übersicht</button>
+				<button class="btn btn-default" data-toggle="modal" data-target="#modalOne" onclick="emptyNewIssueModal();" id="newIssueButton">Issue erstellen</button>
+				<!-- Modal1-->
+				<div class="modal fade" id="modalOne" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h3 class="modal-title" id="myModalOneLabel"></h3>
+						</div>
+						<div class="modal-body" id="modalOneBody"></div>
+						<div class="modal-footer" id="modalOneFooter"></div>
+						</div>
+					</div>
+				</div>
+				<!-- Modal2-->
+				<div class="modal fade" id="modalTwo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h3 class="modal-title" id="myModalTwoLabel"></h3>
+						</div>
+						<div class="modal-body" id="modalTwoBody"></div>
+						<div class="modal-footer" id="modalTwoFooter"></div>
+						</div>
+					</div>
+				</div>
+				<!-- Modal3-->
+				<div class="modal fade" id="modalThree" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h3 class="modal-title" id="myModalThreeLabel"></h3>
+						</div>
+						<div class="modal-body" id="modalThreeBody"></div>
+						<div class="modal-footer" id="modalThreeFooter"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="issueStatistic">
+				New <span class="badge" id="newBadge"></span>
+				WiP <span class="badge" id="wikBadge"></span>
+				Closed <span class="badge" id="closedBadge"></span>
+			</div>
+			<div style="margin-bottom: 20px;">
+				<input type="text" id="filterIssueName" name="filterIssueName" placeholder="Issue Name" style="margin-right:10px;">
+				<select id="filterIssueType" name="filterIssueType" style="margin-right:10px; height:22px; padding:1px;">
+					<option value="ALL">Alle Typen</option>
+					<option value="BUG">Bug</option>
+					<option value="IMPROVEMENT">Improvement</option>
+					<option value="TASK">Task</option>
+				</select>
+				<select id="filterIssueResolution" name="filterIssueResolution" style="margin-right:10px; height:22px; padding:1px;">
+					<option value="ALL">Alle Resolutionen</option>
+					<option value="CANNOT_REPRODUCE">Cannot Reproduce</option>
+					<option value="DONE">Done</option>
+					<option value="DUPLICATE">Duplicate</option>
+					<option value="FIXED">Fixed</option>
+					<option value="WONTFIX">Wont Fix</option>
+					<option value="UNRESOLVED">Unresolved</option>
+				</select>
+				<button class="btn btn-default" onclick="filterIssues();" id="filterIssueView">Suchen</button>
+			</div>
+			<table width="100%" height="100%" style="table-layout:fixed; min-width:850px;">
+				<tr align="center" id="issueTableRow">
+					<td id="columnNew" style="vertical-align: top;">
+						<div name="adjustSize" class="issueContainerHeaderBackground issueContainerColour left">
+							<div class="issueContainerHeader left">
+								New
+							</div>
+						</div>
+						<div name="adjustSize" class="issueContainer left issueContainerColour">
+							<div class="panel-group" id="accordion1"></div>
+						</div>
+					</td>
+					<td id="columnInProgress" style="vertical-align: top;">
+						<div name="adjustSize" id="adjustSizeInProgress1" class="issueContainerHeaderBackground issueContainerColour">
+							<div class="issueContainerHeader" id="adjustSizeInProgress3">
+								In Progress
+							</div>
+						</div>
+						<div name="adjustSize" id="adjustSizeInProgress2" class="issueContainer issueContainerColour">
+							<div class="panel-group" id="accordion2"></div>
+						</div>
+					</td>
+					<td id="columnClosed" style="vertical-align: top;">
+						<div name="adjustSize" class="issueContainerHeaderBackground issueContainerColour right">
+							<div class="issueContainerHeader right">
+								Closed
+							</div>
+						</div>
+						<div name="adjustSize" class="issueContainer right issueContainerColour">
+							<div class="panel-group" id="accordion3"></div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div> <!-- /container -->
+		<div id="statusmessage"></div>
+  </body>
+</html>
