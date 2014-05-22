@@ -22,7 +22,7 @@
 			<property name="hibernate.connection.password" value="h2" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
 			<property name="hibernate.default_schema" value="TASKSCHEDULER" />
-			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<!-- <property name="hibernate.hbm2ddl.auto" value="update" />  -->
 
 		</properties>
 	</persistence-unit>
