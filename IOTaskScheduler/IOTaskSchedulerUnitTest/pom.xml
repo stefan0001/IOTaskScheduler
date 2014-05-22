@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>de.innovativeoperation.taskscheduler</groupId>
 		<artifactId>IOTaskScheduler</artifactId>
-		<version>1.0.1</version>
+		<version>1.0.2</version>
 	</parent>
 	<artifactId>IOTaskSchedulerUnitTest</artifactId>
 	<name>IOTaskSchedulerUnitTest</name>
@@ -16,7 +16,7 @@
 		<dependency>
 			<groupId>de.innovativeoperation.taskscheduler</groupId>
 			<artifactId>IOTaskSchedulerServer</artifactId>
-			<version>1.0.1</version>
+			<version>1.0.2</version>
 		</dependency>
 
 		<!-- test dependencies -->
