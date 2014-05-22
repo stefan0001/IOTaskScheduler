@@ -128,7 +128,12 @@
 			<version>5.1.0.Final</version>
 		</dependency>
 
-
+		<!-- Datasource in ApplicationContext -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
 
 	</dependencies>
 	<modules>

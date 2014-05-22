@@ -11,7 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
 public class Open {
-	private String url = "http://localhost:55555/IOTaskScheduler/static/gui/";
+	private String url = "http://localhost:55555/IOTaskSchedulerWebAppTest/static/gui/";
 	private WebDriver driver;
 
 	 @Test

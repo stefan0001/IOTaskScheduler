@@ -16,6 +16,6 @@
         </dependent-module>
         <property name="component.exclusion.patterns"/>
         <property name="java-output-path" value="/IOTaskSchedulerWebApp/target/classes"/>
-        <property name="context-root" value="IOTaskScheduler"/>
+        <property name="context-root" value="IOTaskSchedulerWebApp"/>
     </wb-module>
 </project-modules>
