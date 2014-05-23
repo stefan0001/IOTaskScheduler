@@ -16,7 +16,7 @@
 		<dependency>
 			<groupId>de.innovativeoperation.taskscheduler</groupId>
 			<artifactId>IOTaskSchedulerServer</artifactId>
-			<version>1.0.2</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 
 		<!-- test dependencies -->
