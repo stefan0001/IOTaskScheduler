@@ -131,45 +131,6 @@ public abstract class WebDriver_createTaskIT implements Selectors, URL {
 	 }
 	
 	 @Test
-	 public void saveTimeTaskValidWithLoop() throws Exception{
-	 // test case 5, 11
-	 // create a new task
-	 driver.findElement(By.id(button_neuerTask)).click();
-	 Thread.sleep(500);
-	 // fill name and description
-	 driver.findElement(By.id(eingabefeld_taskName)).sendKeys("Muster");
-	 // based on time
-	 driver.findElement(By.id(radioButton_zeitbasiertTaskErstellen)).click();
-	 Thread.sleep(500);
-	 // choose a day
-	 driver.findElement(By.id(eingabefeld_datum)).click();
-	 Thread.sleep(200);
-	 driver.findElements(By.className(date)).get(13).click();
-	 // choose a time
-	 driver.findElement(By.id(eingabefeld_uhrzeit)).click();
-	 Thread.sleep(200);
-	 driver.findElement(
-	 By.xpath("/html/body/div[5]/div[2]/table/tbody/tr/td/span[8]"))
-	 .click();
-	 Thread.sleep(200);
-	 driver.findElement(
-	 By.xpath("/html/body/div[5]/div[1]/table/tbody/tr/td/span[3]"))
-	 .click();
-	 //set repeat
-	 driver.findElement(By.xpath("//*[@id=\"TaskInput\"]/p[6]/select/option[2]")).click();
-	
-	 // select a issue
-	 Thread.sleep(500);
-	 driver.findElement(By.id(button_taskErstellenIssueAuswaehlen)).click();
-	 Thread.sleep(500);
-	 driver.findElements(By.name("selectIssuesForTask")).get(0).click();
-	 driver.findElement(By.id(button_speichernTaskIssueAuswaehlen)).click();
-	 Thread.sleep(500);
-	 // save the issue
-	 driver.findElement(By.id(button_speichernTask)).click();
-	 }
-	
-	 @Test
 	 public void saveEventTaskValid() throws Exception{
 	 // test case 7, 13
 	 // create a new task
@@ -267,7 +228,5 @@ public abstract class WebDriver_createTaskIT implements Selectors, URL {
 		 driver.close();
 		 driver.quit();
 	}
-	
-
 
 }

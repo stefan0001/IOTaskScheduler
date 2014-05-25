@@ -23,13 +23,13 @@ public abstract class WebDriver_overviewIT implements Selectors, URL {
 		// test case 18
 		//insert a issue name
 		driver.findElement(By.id(eingabefeld_filterIssueName)).sendKeys("Beispiel");
-		//select a type
+		//select every type
 		Select filterTyp = new Select(driver.findElement(By.id(checkbox_filterIssueTyp))); 
 //		filterTyp.deselectAll();
-		filterTyp.selectByVisibleText("Bug");
-		filterTyp.selectByVisibleText("Improvement");
-		filterTyp.selectByVisibleText("Task");
-		//select a resolution
+		filterTyp.selectByVisibleText(IssueType.Bug.toString());
+		filterTyp.selectByVisibleText(IssueType.Improvement.toString());
+		filterTyp.selectByVisibleText(IssueType.Task.toString());
+		//select every resolution
 		Select filterResolution = new Select(driver.findElement(By.id(checkbox_filterIssueResolution)));
 //		filterResolution.deselectAll();
 		filterResolution.selectByVisibleText("Cannot Reproduce");
