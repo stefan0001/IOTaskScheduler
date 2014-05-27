@@ -12,7 +12,7 @@
 	<artifactId>IOTaskSchedulerWebAppTest</artifactId>
 
 	<packaging>war</packaging>
-	<name>IOTaskSchedulerWebAppTest Maven Webapp</name>
+	<name>IOTaskSchedulerWebAppTest</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>

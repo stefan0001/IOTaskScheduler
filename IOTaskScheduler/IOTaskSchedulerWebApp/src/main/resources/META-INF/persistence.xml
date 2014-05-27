@@ -20,7 +20,7 @@
 			<property name="hibernate.connection.driver_class" value="org.h2.Driver" />
 			
 			<!-- Set your Database Connection here-->
-			<property name="hibernate.connection.url" value="jdbc:h2:tcp://localhost//sep/database/databases/database1;INIT=CREATE SCHEMA IF NOT EXISTS TASKSCHEDULER" />
+			<property name="hibernate.connection.url" value="jdbc:h2:tcp://localhost//sep/database/databases/database1" />
 			<property name="hibernate.connection.username" value="h2" />
 			<property name="hibernate.connection.password" value="h2" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
