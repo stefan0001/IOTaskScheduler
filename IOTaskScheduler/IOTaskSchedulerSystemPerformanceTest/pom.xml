@@ -23,7 +23,9 @@
 							<goal>jmeter</goal>
 						</goals>
 						<configuration>
-
+							<propertiesUser>
+								<hostName>test.de</hostName>
+							</propertiesUser>
 						</configuration>
 					</execution>
 				</executions>
@@ -34,7 +36,7 @@
 				<artifactId>jmeter-analysis-maven-plugin</artifactId>
 				<executions>
 					<execution>
-					
+
 						<goals>
 							<goal>analyze</goal>
 						</goals>
@@ -108,14 +110,8 @@
 								downloaded and stored in 'targetDirectory' with the given filename. Tokens 
 								"_FROM_" and "_TO_" can be used as placeholders. These placeholders will 
 								be replaced by timestamps of execution interval (formatted as ISO8601, e.g. 
-								'20111216T145509+0100'). Default: not set. -->
-							<remoteResources>
-								<property>
-									<name>http://yourhost/path?from=_FROM_&amp;to=_TO_</name>
-									<value>my_resource.txt</value>
-								</property>
-							</remoteResources>
-
+								'20111216T145509+0100'). Default: not set. <remoteResources> <property> <name>http://yourhost/path?from=_FROM_&amp;to=_TO_</name> 
+								<value>my_resource.txt</value> </property> </remoteResources> -->
 							<!-- Specify custom date format for resources not supporting ISO8601. 
 								Default IOS8601 -->
 							<remoteResourcesFromUntilDateFormat>HH:mm_yyyyMMdd</remoteResourcesFromUntilDateFormat>
