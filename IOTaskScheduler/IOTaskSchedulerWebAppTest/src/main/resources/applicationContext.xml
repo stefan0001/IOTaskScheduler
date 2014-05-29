@@ -19,10 +19,7 @@
 	<context:component-scan base-package="de.sep.innovativeoperation.taskscheduler" />
 
 	<mvc:annotation-driven />
-	<!-- 
-	disable taks for tests
 	<task:annotation-driven/>
-	 -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 
 	<!-- EntityManagerFactory -->

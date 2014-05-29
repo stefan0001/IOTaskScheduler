@@ -347,9 +347,9 @@ function buildSelectIssueModal(data, existTask, timeTask) {
 	var th5 = document.createElement("th");
 	th1.setAttribute("width", "6%");
 	th2.setAttribute("width", "20%");
-	th3.setAttribute("width", "53%");
-	th4.setAttribute("width", "13%");
-	th5.setAttribute("width", "8%");
+	th3.setAttribute("width", "46%");
+	th4.setAttribute("width", "12%");
+	th5.setAttribute("width", "16%");
 	th1.appendChild(document.createTextNode("#"));
 	th2.appendChild(document.createTextNode("Name"));
 	th3.appendChild(document.createTextNode("Beschreibung"));
@@ -361,6 +361,14 @@ function buildSelectIssueModal(data, existTask, timeTask) {
 	row.appendChild(th5);
 	row.appendChild(th4);
 	tbody.appendChild(row);
+	if(existTask == true) {
+		var tbodyOfTask = document.getElementById("issuesOfExistingTaskTableBody");
+		var issues = new Array();
+		for(var j = 0; j < tbodyOfTask.childNodes.length; j++) {
+			issues[j] = tbodyOfTask.childNodes[j].firstChild.firstChild.nodeValue;
+		}
+		console.log(issues);
+	}
 	for(var i = 0; i < data.content.length; i++) {
 		var row = document.createElement("tr");
 		var td1 = document.createElement("td");
@@ -374,7 +382,13 @@ function buildSelectIssueModal(data, existTask, timeTask) {
 		td2.appendChild(document.createTextNode(data.content[i].issueName));
 		td3.appendChild(document.createTextNode(data.content[i].issueDescription));
 		td5.appendChild(document.createTextNode(data.content[i].issueType));
-		td4.appendChild(createCheckbox(data.content[i].ID+"selectIssuesForTask", "", "selectIssuesForTask", data.content[i].issueName));
+		var check = createCheckbox(data.content[i].ID+"selectIssuesForTask", "", "selectIssuesForTask", data.content[i].issueName);
+		console.log(issues.indexOf(String(data.content[i].ID)));
+		if(issues.indexOf(String(data.content[i].ID)) != -1) {
+			check.setAttribute("checked", "true");
+			check.setAttribute("disabled", "disabled");
+		}
+		td4.appendChild(check);
 		row.appendChild(td1);
 		row.appendChild(td2);
 		row.appendChild(td3);
@@ -557,7 +571,6 @@ function saveSelectedEventForEventTask() {
 	} else {
 		var id = selected.parentNode.parentNode.childNodes[0].firstChild.nodeValue;
 		var value = selected.value;
-		console.log(selected);
 		var form = document.getElementById("TaskInput");
 		var div = document.createElement("div");
 		div.setAttribute("id", "selectEventForTaskTable");
@@ -796,7 +809,6 @@ function createIssueForTimeTask(data) {
  * @param data the Event Task
  */
 function createIssueForEventTask(data) {
-	console.log(data);
 	var idAt = data.search(/ID/);
 	var slice = data.slice(idAt+4, idAt+6);
 	var id = slice;

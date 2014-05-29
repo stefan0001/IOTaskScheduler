@@ -118,6 +118,19 @@ function editModalIssue(entityId, draftId) {
 	select.appendChild(createOption("Fixed"));
 	select.appendChild(createOption("Wontfix"));
 	select.appendChild(createOption("Unresolved"));
+	if(text4 == "CANNOT_REPRODUCE") {
+		select.childNodes[0].setAttribute("selected", "true");
+	} else if (text4 == "DONE") {
+		select.childNodes[1].setAttribute("selected", "true");
+	} else if (text4 == "DUPLICATE") {
+		select.childNodes[2].setAttribute("selected", "true");
+	} else if (text4 == "FIXED") {
+		select.childNodes[3].setAttribute("selected", "true");
+	} else if (text4 == "WONTFIX") {
+		select.childNodes[4].setAttribute("selected", "true");
+	} else if (text4 == "UNRESOLVED") {
+		select.childNodes[5].setAttribute("selected", "true");
+	}
 	col4.replaceChild(select, col4.firstChild);
 	
 	var radio1 = createRadioButton("editIssueRadioType", "bug", "editIssueRadioTypeBug", "");

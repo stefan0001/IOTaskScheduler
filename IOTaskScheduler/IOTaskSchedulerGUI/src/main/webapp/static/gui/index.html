@@ -42,7 +42,8 @@
 				<h1>Innovative Operation</h1>
 				<!-- Button trigger modal -->
 				<button class="btn btn-default" data-toggle="modal" data-target="#modalOne" style="margin-right:30px;" onclick="emptyNewTaskModal();" id="newTaskButton">Neuer Task</button>
-				<button class="btn btn-default" data-toggle="modal" data-target="#modalOne" style="margin-right:30px;" onclick="buildTaskOverviewModal();" id="taskOverviewButton">Task Übersicht</button>
+				<button class="btn btn-default" data-toggle="modal" data-target="#modalOne" style="margin-right:30px;" onclick="interaction.getAllTimeTask();" id="timeTaskOverviewButton">Zeit Tasks</button>
+				<button class="btn btn-default" data-toggle="modal" data-target="#modalOne" style="margin-right:30px;" onclick="interaction.getAllEventTask();" id="eventTaskOverviewButton">Event Tasks</button>
 				<button class="btn btn-default" data-toggle="modal" data-target="#modalOne" style="margin-right:30px;" onclick="interaction.getAllEvent(true);" id="eventOverviewButton">Event Übersicht</button>
 				<button class="btn btn-default" data-toggle="modal" data-target="#modalOne" onclick="emptyNewIssueModal();" id="newIssueButton">Issue erstellen</button>
 				<!-- Modal1-->
@@ -108,6 +109,7 @@
 					<option value="UNRESOLVED">Unresolved</option>
 				</select>
 				<button class="btn btn-default" onclick="filterIssues();" id="filterIssueView">Suchen</button>
+				<button class="sync" onclick="interaction.displayAllIssueEntities();"></button>
 			</div>
 			<table width="100%" height="100%" style="table-layout:fixed; min-width:850px;">
 				<tr align="center" id="issueTableRow">

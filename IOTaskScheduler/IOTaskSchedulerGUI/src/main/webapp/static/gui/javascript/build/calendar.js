@@ -147,7 +147,7 @@
             }
             day.append(badge);
           }
-          day.find("a").attr("onclick", "showTasksOfDay("+"'"+dayEvents.date+"'"+");");
+          day.find("a").attr("onmouseover", "showTasksOfDay("+"'"+dayEvents.date+"'"+");");
         }
         return day;
       },
