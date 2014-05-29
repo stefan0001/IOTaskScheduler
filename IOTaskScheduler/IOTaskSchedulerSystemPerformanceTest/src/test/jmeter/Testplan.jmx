@@ -15,7 +15,7 @@
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Schleifen-Controller (Loop Controller)" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">30</stringProp>
+          <stringProp name="LoopController.loops">10</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">30</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
@@ -34,13 +34,13 @@
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Benutzer definierte Variablen" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">${HOST.NAME}</stringProp>
-          <stringProp name="HTTPSampler.port">${HOST.PORT}</stringProp>
+          <stringProp name="HTTPSampler.domain">${host.name}</stringProp>
+          <stringProp name="HTTPSampler.port">${host.port}</stringProp>
           <stringProp name="HTTPSampler.connect_timeout">3000</stringProp>
           <stringProp name="HTTPSampler.response_timeout">3000</stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.protocol">${host.protocol}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">${HOST.WEBAPP}/issuedraft</stringProp>
+          <stringProp name="HTTPSampler.path">${host.path}/issuedraft</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -54,13 +54,13 @@
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Benutzer definierte Variablen" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">${HOST.NAME}</stringProp>
-          <stringProp name="HTTPSampler.port">${HOST.PORT}</stringProp>
+          <stringProp name="HTTPSampler.domain">${host.name}</stringProp>
+          <stringProp name="HTTPSampler.port">${host.port}</stringProp>
           <stringProp name="HTTPSampler.connect_timeout">3000</stringProp>
           <stringProp name="HTTPSampler.response_timeout">3000</stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.protocol">${host.protocol}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">${HOST.WEBAPP}/issueentity</stringProp>
+          <stringProp name="HTTPSampler.path">${host.path}/issueentity</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -86,13 +86,13 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">${HOST.NAME}</stringProp>
-          <stringProp name="HTTPSampler.port">${HOST.PORT}</stringProp>
+          <stringProp name="HTTPSampler.domain">${host.name}</stringProp>
+          <stringProp name="HTTPSampler.port">${host.port}</stringProp>
           <stringProp name="HTTPSampler.connect_timeout">3000</stringProp>
           <stringProp name="HTTPSampler.response_timeout">3000</stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.protocol">${host.protocol}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">${HOST.WEBAPP}/issuedraft</stringProp>
+          <stringProp name="HTTPSampler.path">${host.path}/issuedraft</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -113,13 +113,13 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">${HOST.NAME}</stringProp>
-          <stringProp name="HTTPSampler.port">${HOST.PORT}</stringProp>
+          <stringProp name="HTTPSampler.domain">${host.name}</stringProp>
+          <stringProp name="HTTPSampler.port">${host.port}</stringProp>
           <stringProp name="HTTPSampler.connect_timeout">3000</stringProp>
           <stringProp name="HTTPSampler.response_timeout">3000</stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.protocol">${host.protocol}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">${HOST.WEBAPP}/issuedraft/1/issueentity</stringProp>
+          <stringProp name="HTTPSampler.path">${host.path}/issuedraft/1/issueentity</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -207,21 +207,30 @@
         <stringProp name="filename"></stringProp>
       </ResultCollector>
       <hashTree/>
-      <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="User Parameters" enabled="true">
-        <collectionProp name="UserParameters.names">
-          <stringProp name="2053441297">HOST.NAME</stringProp>
-          <stringProp name="-2066842285">HOST.WEBAPP</stringProp>
-          <stringProp name="2053514503">HOST.PORT</stringProp>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Benutzer definierte Variablen" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="host.name" elementType="Argument">
+            <stringProp name="Argument.name">host.name</stringProp>
+            <stringProp name="Argument.value">${__property(host.name)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="host.protocol" elementType="Argument">
+            <stringProp name="Argument.name">host.protocol</stringProp>
+            <stringProp name="Argument.value">${__property(host.protocol)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="host.port" elementType="Argument">
+            <stringProp name="Argument.name">host.port</stringProp>
+            <stringProp name="Argument.value">${__property(host.port)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="host.path" elementType="Argument">
+            <stringProp name="Argument.name">host.path</stringProp>
+            <stringProp name="Argument.value">${__property(host.path)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
         </collectionProp>
-        <collectionProp name="UserParameters.thread_values">
-          <collectionProp name="903948115">
-            <stringProp name="-1204607085">localhost</stringProp>
-            <stringProp name="-738162592">/IOTaskSchedulerWebAppTest</stringProp>
-            <stringProp name="50578165">55555</stringProp>
-          </collectionProp>
-        </collectionProp>
-        <boolProp name="UserParameters.per_iteration">false</boolProp>
-      </UserParameters>
+      </Arguments>
       <hashTree/>
     </hashTree>
   </hashTree>

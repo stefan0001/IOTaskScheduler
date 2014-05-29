@@ -9,6 +9,14 @@
 	<artifactId>IOTaskSchedulerSystemPerformanceTest</artifactId>
 
 
+	<properties>
+		<host.protocol>http</host.protocol>
+		<host.name>localhost</host.name>
+		<host.port>55555</host.port>
+		<host.path>/IOTaskSchedulerWebAppTest</host.path>
+	</properties>
+
+
 	<build>
 		<plugins>
 			<plugin>
@@ -24,7 +32,10 @@
 						</goals>
 						<configuration>
 							<propertiesUser>
-								<hostName>test.de</hostName>
+								<host.protocol>${host.protocol}</host.protocol>
+								<host.name>${host.name}</host.name>
+								<host.port>${host.port}</host.port>
+								<host.path>${host.path}</host.path>
 							</propertiesUser>
 						</configuration>
 					</execution>
