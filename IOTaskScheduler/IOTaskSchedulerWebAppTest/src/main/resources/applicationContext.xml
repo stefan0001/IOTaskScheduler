@@ -20,8 +20,11 @@
 
 	<mvc:annotation-driven />
 	<task:annotation-driven/>
+	<!--  
+	# Disable Tasks for Test
 	<tx:annotation-driven transaction-manager="transactionManager"/>
-
+	-->
+	
 	<!-- EntityManagerFactory -->
    <bean id="myEmf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
       <property name="dataSource" ref="dataSource" />
