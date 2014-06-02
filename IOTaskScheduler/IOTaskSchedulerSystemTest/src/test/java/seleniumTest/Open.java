@@ -10,8 +10,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
-public class Open {
-	private String url = "http://localhost:55555/IOTaskSchedulerWebAppTest/static/gui/";
+import seleniumTest.webDriver.URL;
+
+public class Open implements URL{
 	private WebDriver driver;
 
 	 @Test
