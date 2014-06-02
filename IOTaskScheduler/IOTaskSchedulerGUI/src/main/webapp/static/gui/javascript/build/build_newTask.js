@@ -383,10 +383,11 @@ function buildSelectIssueModal(data, existTask, timeTask) {
 		td3.appendChild(document.createTextNode(data.content[i].issueDescription));
 		td5.appendChild(document.createTextNode(data.content[i].issueType));
 		var check = createCheckbox(data.content[i].ID+"selectIssuesForTask", "", "selectIssuesForTask", data.content[i].issueName);
-		console.log(issues.indexOf(String(data.content[i].ID)));
-		if(issues.indexOf(String(data.content[i].ID)) != -1) {
-			check.setAttribute("checked", "true");
-			check.setAttribute("disabled", "disabled");
+		if(existTask == true) {
+			if(issues.indexOf(String(data.content[i].ID)) != -1) {
+				check.setAttribute("checked", "true");
+				check.setAttribute("disabled", "disabled");
+			}
 		}
 		td4.appendChild(check);
 		row.appendChild(td1);
@@ -749,7 +750,8 @@ function createNewTask() {
 				interaction.createNewEvent(json);
 			}
 		}
-	}	
+	}
+	$('#modalTwo').modal('hide');
 }
 
 /**
@@ -789,7 +791,7 @@ function createIssueForTimeTask(data) {
 				var des = tbody.childNodes[i].childNodes[1].firstChild.nodeValue;
 				var type = tbody.childNodes[i].childNodes[2].firstChild.nodeValue;
 				var json = JSON.stringify({issueName: name, issueDescription: des, issueType: type.toUpperCase()});
-				interaction.postNewIssueDraftForTimeTask(id, json);
+				interaction.postNewIssueDraftForTimeTask(id, json, false);
 			}
 		}
 	} else if(document.getElementById("selectedIssuesForTaskTableBody")) {
@@ -798,7 +800,7 @@ function createIssueForTimeTask(data) {
 			for(var i = 1; i < tbody.childNodes.length; i++) {
 				var issueId = tbody.childNodes[i].childNodes[0].firstChild.nodeValue;
 				var json = JSON.stringify({ID: issueId});
-				interaction.postExistentIssueDraftForTimeTask(id, json);
+				interaction.postExistentIssueDraftForTimeTask(id, json, false);
 			}
 		}
 	}
@@ -824,7 +826,7 @@ function createIssueForEventTask(data) {
 				var des = tbody.childNodes[i].childNodes[1].firstChild.nodeValue;
 				var type = tbody.childNodes[i].childNodes[2].firstChild.nodeValue;
 				var json = JSON.stringify({issueName: name, issueDescription: des, issueType: type.toUpperCase()});
-				interaction.postNewIssueDraftForEventTask(id, json);
+				interaction.postNewIssueDraftForEventTask(id, json, false);
 			}
 		}
 	} else if(document.getElementById("selectedIssuesForTaskTableBody")) {
@@ -833,7 +835,7 @@ function createIssueForEventTask(data) {
 			for(var i = 1; i < tbody.childNodes.length; i++) {
 				var issueId = tbody.childNodes[i].childNodes[0].firstChild.nodeValue;
 				var json = JSON.stringify({ID: issueId});
-				interaction.postExistentIssueDraftForEventTask(id, json);
+				interaction.postExistentIssueDraftForEventTask(id, json, false);
 			}
 		}
 	}
