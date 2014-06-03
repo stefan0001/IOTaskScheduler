@@ -26,8 +26,7 @@
 		<script src="javascript/build/create_components.js"></script>
 		<script src="javascript/build/createInputs.js"></script>
 		<script src="javascript/build/datetimepicker.js"></script>
-		<script src="javascript/build/datetimepicker.de.js"></script>
-		
+		<script src="javascript/build/datetimepicker.de.js"></script>		
 		
 		<script src="javascript/server/display.js"></script>
 		<script src="javascript/server/interaction.js"></script>
@@ -41,7 +40,7 @@
 			<div class="page-header">
 				<h1>Innovative Operation</h1>
 				<!-- Button trigger modal -->
-				<button class="btn btn-default" data-toggle="modal" data-target="#modalOne" style="margin-right:30px;" onclick="emptyNewTaskModal();" id="newTaskButton">Neuer Task</button>
+				<button class="btn btn-default" data-toggle="modal" data-target="#modalOne" style="margin-right:30px;" onclick="emptyNewTaskModal();" id="newTaskButton"></button>
 				<button class="btn btn-default" data-toggle="modal" data-target="#modalOne" style="margin-right:30px;" onclick="interaction.getAllTimeTask();" id="timeTaskOverviewButton">Zeit Tasks</button>
 				<button class="btn btn-default" data-toggle="modal" data-target="#modalOne" style="margin-right:30px;" onclick="interaction.getAllEventTask();" id="eventTaskOverviewButton">Event Tasks</button>
 				<button class="btn btn-default" data-toggle="modal" data-target="#modalOne" style="margin-right:30px;" onclick="interaction.getAllEvent(true);" id="eventOverviewButton">Event Übersicht</button>
@@ -147,5 +146,6 @@
 			</table>
 		</div> <!-- /container -->
 		<div id="statusmessage"></div>
+		<script src="javascript/build/german.js"></script>
   </body>
 </html>

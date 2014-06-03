@@ -165,13 +165,13 @@ select {
 }
 
 .sync {
-	
 	background-image: url(../images/sync.png);
 	background-repeat:no-repeat;
 	float:right;
 	border-width:0px;
 	width: 32px;
 	height: 32px;
+	background-color:transparent;
 }
 
 .deleteTaskButton {

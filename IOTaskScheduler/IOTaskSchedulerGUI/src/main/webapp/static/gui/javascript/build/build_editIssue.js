@@ -112,14 +112,26 @@ function buildEditIssue(data) {
 function saveEditedIssue(entityId, draftId) {
 	var name = document.getElementById("modalEditIssueColumn2").firstChild.value;
 	var des = document.getElementById("modalEditIssueColumn4").firstChild.value;
-	var status = document.editIssueFormular.editIssueRadioStatus.value;
-	var type = document.editIssueFormular.editIssueRadioType.value;
-
-	var json1 = JSON.stringify({issueName: name, issueDescription: des, issueType: type});
+	var status = document.getElementsByName("editIssueRadioStatus");
+	var type = document.getElementsByName("editIssueRadioType");
+	for(var i = 0; i < type.length; i++) {
+		if(type[i].checked == true) {
+			var selectedType = type[i].value;
+			break;
+		}
+	}
+	for(var i = 0; i < status.length; i++) {
+		if(status[i].checked == true) {
+			var selectedStatus = status[i].value;
+			break;
+		}
+	}
+	var json1 = JSON.stringify({issueName: name, issueDescription: des, issueType: selectedType});
 	var res = document.getElementById("modalEditIssueColumn8").firstChild.value;
+	console.log(res);
 	var upperRes = res.toUpperCase();
 	var endRes = upperRes.replace(/\s/, "_");
-	json2 = JSON.stringify({issueStatus: status, issueResolution: endRes});
+	json2 = JSON.stringify({issueStatus: selectedStatus, issueResolution: endRes});
 	
 
 	interaction.updateIssuedraft(draftId, json1);
