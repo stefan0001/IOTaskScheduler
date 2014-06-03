@@ -143,5 +143,6 @@
 		<module>IOTaskSchedulerGUI</module>
 		<module>IOTaskSchedulerWebAppTest</module>
 		<module>IOTaskSchedulerSystemTest</module>
+		<module>IOTaskSchedulerSystemPerformanceTest</module>
 	</modules>
 </project>
