@@ -1,6 +1,6 @@
 package seleniumTest.webDriver;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
@@ -8,110 +8,220 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
 public abstract class WebDriver_editIssueIT implements Selectors, URL {
 	protected WebDriver driver;
-//
-//	@Test
-//	public void editIssue() {
-//		// test case 15
-//		// TODO Issue bearbeiten
-//	}
-//
-//	@Test
-//	public void editIssueStatus() {
-//		// test case 16
-//		Select status = new Select(driver.findElement(By.id(dropdownMenu_status)));
-//		status.selectByVisibleText("Open");
-//		driver.navigate().refresh();
-//		assertTrue(driver.findElement(By.id(dropdownMenu_status)).getText().equals("Open"));
-//	}
-//	
-//	@Test
-//	public void editResolutionOfClosedIssue(){
-//		//test case 17
-//		//change status to closed
-//		Select status = new Select(driver.findElement(By.id(dropdownMenu_status)));
-//		status.selectByVisibleText("Closed");
-//		Select resolution = new Select(driver.findElement(By.id(dropdownMenu_resolution)));
-//		resolution.selectByVisibleText("Fixed");
-//		driver.navigate().refresh();
-//		assertTrue(driver.findElement(By.id(dropdownMenu_resolution)).getText().equals("Fixed"));
-//	}
-//	
-//	@Test
-//	public void editResolutionOfNoClosedIssue(){
-//		//test case 17
-//		Select resolution = new Select(driver.findElement(By.id(dropdownMenu_resolution)));
-//		resolution.selectByVisibleText("Fixed");
-//		//accept alert
-//		driver.switchTo().alert().accept();
-//	}
 
-	public abstract void initializeWebDriver();
-	
+	@Test
+	public void editIssueStatus() throws Exception {
+		// select an issue
+		Thread.sleep(500);
+		driver.findElement(By.xpath("//*[@id=\"accordion1\"]/div[1]/a/div/h6"))
+				.click();
+		// click edit icon
+		Thread.sleep(500);
+		driver.findElements(By.className(className_editIssue)).get(0).click();
+		Thread.sleep(500);
+		driver.findElement(By.xpath("//*[@id=\"editModalIssue\"]")).click();
+		// close the issue
+		Thread.sleep(500);
+		driver.findElement(
+				By.xpath("//*[@id=\"editIssueRadioStatusInProgress\"]"))
+				.click();
+		driver.findElement(By.xpath("//*[@id=\"editIssueRadioStatusClosed\"]"))
+				.click();
+		// save
+		Thread.sleep(500);
+		driver.findElement(By.xpath("//*[@id=\"saveIssueChanges\"]")).click();
+		Thread.sleep(500);
+		driver.findElement(By.xpath("//*[@id=\"saveEditedIssue\"]")).click();
+		Thread.sleep(500);
+		driver.navigate().refresh();
+	}
+
+	@Test
+	public void editResolutionOfClosedIssue() throws Exception {
+		// test case 17
+		// select an issue
+		Thread.sleep(500);
+		driver.findElement(By.xpath("//*[@id=\"accordion1\"]/div[1]/a/div/h6"))
+				.click();
+		// click edit icon
+		Thread.sleep(500);
+		driver.findElements(By.className(className_editIssue)).get(0).click();
+		Thread.sleep(500);
+		driver.findElement(By.xpath("//*[@id=\"editModalIssue\"]")).click();
+		// change the status to "closed"
+		Thread.sleep(500);
+		driver.findElement(By.xpath("//*[@id=\"editIssueRadioStatusClosed\"]"))
+				.click();
+		// change the solution
+		Select resolution = new Select(driver.findElement(By
+				.id(dropdown_resolution)));
+		resolution.selectByVisibleText("Fixed");
+		// save
+		Thread.sleep(500);
+		driver.findElement(By.xpath("//*[@id=\"saveIssueChanges\"]")).click();
+		Thread.sleep(500);
+		driver.findElement(By.xpath("//*[@id=\"saveEditedIssue\"]")).click();
+		Thread.sleep(500);
+		driver.navigate().refresh();		
+	}
+
+	//
+	@Test
+	public void editResolutionOfNoClosedIssue() throws Exception {
+		// test case 17
+		// select an issue
+		Thread.sleep(500);
+		driver.findElement(By.xpath("//*[@id=\"accordion1\"]/div[1]/a/div/h6"))
+				.click();
+		// click edit icon
+		Thread.sleep(500);
+		driver.findElements(By.className(className_editIssue)).get(0).click();
+		Thread.sleep(500);
+		driver.findElement(By.xpath("//*[@id=\"editModalIssue\"]")).click();
+		// change the status to "in progress"
+		Thread.sleep(500);
+		driver.findElement(
+				By.xpath("//*[@id=\"editIssueRadioStatusInProgress\"]"))
+				.click();
+		// change the solution
+		Select resolution = new Select(driver.findElement(By
+				.id(dropdown_resolution)));
+		resolution.selectByVisibleText("Fixed");
+		// save
+		Thread.sleep(500);
+		driver.findElement(By.xpath("//*[@id=\"saveIssueChanges\"]")).click();
+		Thread.sleep(500);
+		driver.findElement(By.xpath("//*[@id=\"saveEditedIssue\"]")).click();
+		Thread.sleep(500);
+		driver.navigate().refresh();
+		// TODO fail (resolution can only be changed by closed issues)
+	}
+
+	protected abstract void initializeWebDriver();
+
 	@Before
-	public void beforeMethod() {
+	public void beforeMethod() throws Exception {
 		initializeWebDriver();
 		driver.get(url);
-		//TODO issue anzeigen
+
+		// create an new issue
+		Thread.sleep(500);
+		driver.findElement(By.id(button_issueErstellen)).click();
+		Thread.sleep(500);
+		driver.findElement(By.id(radioButton_createIssueNewIssue)).click();
+		// fill name and description
+		Thread.sleep(500);
+		driver.findElement(By.id(eingabefeld_createIssueName)).sendKeys(
+				"createAnIssueTest");
+		driver.findElement(By.id(eingabefeld_createIssueDescription)).sendKeys(
+				"RT");
+		Thread.sleep(500);
+		// select every type
+		Select filterTyp = new Select(driver.findElement(By
+				.id(checkbox_filterIssueTyp)));
+		filterTyp.selectByVisibleText("Bug");
+		filterTyp.selectByVisibleText("Improvement");
+		filterTyp.selectByVisibleText("Task");
+		// save the issue
+		driver.findElement(By.id(button_createIssueSaveNewIssue)).click();
 	}
 
 	@After
-	public void afterMethod() {
+	public void afterMethod() throws Exception {
 		driver.close();
 		driver.quit();
 	}
-
-//	@BeforeClass
-//	public void beforeClass() {
-//		beforeMethod();
-//		// create a task based on time
-//				driver.findElement(By.id(button_neuerTask)).click();
-//				// fill name and description
-//				driver.findElement(By.id(eingabefeld_taskName)).sendKeys("Time");
-//				// based on time
-//				driver.findElement(By.id(radioButton_zeitbasiertTaskErstellen)).click();
-////				driver.findElement(By.id(eingabefeld_datum)).sendKeys(eingabe_datum);
-////				driver.findElement(By.id(eingabefeld_uhrzeit))
-////						.sendKeys(eingabe_uhrzeit);
-//				// create a new issue
-//				driver.findElement(By.id(button_issueAuswaehlen)).click();
-//				driver.findElement(By.className(button_neuesIssue)).click();
-//				driver.findElement(By.id(eingabefeld_issueNameFuerTask)).sendKeys(
-//						"Muster Issue1");
-//				driver.findElement(By.id(eingabefeld_issueBeschreibungFuerTask)).sendKeys(
-//						"Ein Issue");
-//				// save the issue
-//				driver.findElement(By.id(button_speichernTask)).click();
+	
+//	@Test
+//	public void deleteNewIssues() throws Exception {
+//	for (int i = 0; i < 2; i++) {
+//		// select an new issue
+//		Thread.sleep(500);
+//		driver.findElement(
+//				By.xpath("//*[@id=\"accordion1\"]/div[1]/a/div/h6"))
+//				.click();
+//		// click edit icon
+//		Thread.sleep(500);
+//		driver.findElements(By.className(className_editIssue)).get(0)
+//				.click();
+//		Thread.sleep(500);
+//		driver.findElement(By.xpath("//*[@id=\"editModalIssue\"]")).click();
+//		// close the issue
+//		Thread.sleep(500);
+//		driver.findElement(
+//				By.xpath("//*[@id=\"editIssueRadioStatusClosed\"]"))
+//				.click();
+//		// save
+//		Thread.sleep(500);
+//		driver.findElement(By.xpath("//*[@id=\"saveIssueChanges\"]"))
+//				.click();
+//		Thread.sleep(500);
+//		driver.findElement(By.xpath("//*[@id=\"saveEditedIssue\"]"))
+//				.click();
+//		Thread.sleep(500);
+//		driver.navigate().refresh();
 //
-//				// create a task based on event
-//				driver.findElement(By.id(button_neuerTask)).click();
-//				// fill name and description
-//				driver.findElement(By.id(eingabefeld_taskName)).sendKeys("Event");
-//				// based on event
-//				driver.findElement(By.id(radioButton_eventbasiertTaskErstellen))
-//						.click();
-//				// select a event
-//				driver.findElement(By.id(button_eventAuswaehlen)).click();
-//				driver.findElements(By.className(radioButton_events)).get(0).click();
-//				driver.findElement(By.id(button_speichernEvent)).click();
-//				// create a new issue
-//				driver.findElement(By.id(button_issueAuswaehlen)).click();
-//				driver.findElement(By.className(button_neuesIssue)).click();
-//				driver.findElement(By.id(eingabefeld_issueNameFuerTask)).sendKeys(
-//						"Muster Issue2");
-//				driver.findElement(By.id(eingabefeld_issueBeschreibungFuerTask)).sendKeys(
-//						"Ein Issue");
-//				//select type of this issue 
-//				Select issueType = new Select(driver.findElement(By.id(dropdownMenu_issueType)));
-//				issueType.selectByVisibleText("Bug");
-//				//select status of this issue
-//				Select status = new Select(driver.findElement(By.id(dropdownMenu_status)));
-//				status.selectByVisibleText("New");
-//				// save the task
-//				driver.findElement(By.id(button_speichernTask)).click();
+//		// delete an issue
+//		// select an issue
+//		Thread.sleep(500);
+//		driver.findElement(
+//				By.xpath("//*[@id=\"accordion3\"]/div[1]/a/div/h6"))
+//				.click();
+//		// click remove icon
+//		Thread.sleep(500);
+//		driver.findElements(By.className(className_removeIssue)).get(0)
+//				.click();
 //	}
+//}
+//
+//@Test
+//public void deleteIssuesInProgress() throws Exception {
+//	int t = 0;
+//	int startIndex = 96;//must be manually wrote
+//	for (int i = 0; i < 12; i++) {
+//		// select an issue in progress
+//		Thread.sleep(500);
+//		driver.findElement(By.xpath("//*[@id=\"accordion2\"]/div[1]/a/div"))
+//				.click();
+//		// click edit icon
+//		Thread.sleep(500);
+//		driver.findElement(By.xpath("//*[@id="+(startIndex+t)+"]/div/button"))
+//				.click();
+//		t++;
+//		Thread.sleep(500);
+//		driver.findElement(By.xpath("//*[@id=\"editModalIssue\"]")).click();
+//		// close the issue
+//		Thread.sleep(500);
+//		driver.findElement(
+//				By.xpath("//*[@id=\"editIssueRadioStatusClosed\"]"))
+//				.click();
+//		// save
+//		Thread.sleep(500);
+//		driver.findElement(By.xpath("//*[@id=\"saveIssueChanges\"]"))
+//				.click();
+//		Thread.sleep(500);
+//		driver.findElement(By.xpath("//*[@id=\"saveEditedIssue\"]"))
+//				.click();
+//		Thread.sleep(500);
+//		driver.navigate().refresh();
+//
+//		// delete an issue
+//		// select an issue
+//		Thread.sleep(500);
+//		driver.findElement(
+//				By.xpath("//*[@id=\"accordion3\"]/div[1]/a/div/h6"))
+//				.click();
+//		// click remove icon
+//		Thread.sleep(500);
+//		driver.findElements(By.className(className_removeIssue)).get(0)
+//				.click();
+//		driver.navigate().refresh();
+//	}
+//}
 
 }

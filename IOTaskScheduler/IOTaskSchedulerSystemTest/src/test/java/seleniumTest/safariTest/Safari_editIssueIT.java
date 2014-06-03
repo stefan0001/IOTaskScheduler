@@ -10,4 +10,6 @@ public class Safari_editIssueIT extends WebDriver_editIssueIT {
 	public void initializeWebDriver() {
 		driver = new SafariDriver();
 	}
+
+
 }
