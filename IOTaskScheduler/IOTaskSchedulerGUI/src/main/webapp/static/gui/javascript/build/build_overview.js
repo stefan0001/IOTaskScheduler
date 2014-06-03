@@ -1,36 +1,21 @@
 /**
- * Build the Modal to view the Tasks
- */
-function buildTaskOverviewModal() {
+	At the Task overview, view the Time Tasks
+**/
+function selectTimeTaskView(data) {
 	var modalBody = document.getElementById("modalOneBody");
-	var button1 = createButton("btn btn-primary", "", "closeTaskOverviewModalButton", "OK", "", "", "", "");
+	var button1 = createButton("btn btn-primary", "", "closeTimeTaskOverviewModalButton", "OK", "", "", "", "");
 	button1.setAttribute("data-dismiss", "modal");
 	buildModalOneFooter(button1);
-	buildModalOneHeader("Task \u00dcbersicht");
+	buildModalOneHeader("Zeit Task \u00dcbersicht");
 	if(modalBody.childNodes.length != 0) {
 		for(var i = modalBody.childNodes.length; i > 0 ; i--) {
 			modalBody.removeChild(modalBody.lastChild);
 		}
 	}
-	var p = document.createElement("p");
-	p.setAttribute("id", "selectTaskOverviewTaskType");
-	var radio1 = createRadioButton("tasktype", "Timetask", "radioTimeTasks", "interaction.getAllTimeTask();");
-	var radio2 = createRadioButton("tasktype", "Eventask", "radioEventTasks", "interaction.getAllEventTask();");
-	var label1 = createLabel("radioTimeTasks", document.createTextNode("Zeitbasiert"));
-	var label2 = createLabel("radioEventTasks", document.createTextNode("Eventbasiert"));
-	p.appendChild(radio1);
-	p.appendChild(label1);
-	p.appendChild(radio2);
-	p.appendChild(label2);
-	modalBody.appendChild(p);
-}
-
-/**
-	At the Task overview, view the Time Tasks
-**/
-function selectTimeTaskView(data) {
+	
 	var div = document.createElement("div");
 	div.setAttribute("class", "responsive-calendar");
+	div.setAttribute("id", "responsiveCalendar");
 	var div2 = document.createElement("div");
 	div2.setAttribute("class", "controls");
 	
@@ -84,27 +69,7 @@ function selectTimeTaskView(data) {
 	div.appendChild(div5);
 	div.appendChild(div7);
 	
-	var div2 = document.getElementById("modalOneBody");
-	
-	// If the Windows was changed before, clear it
-	for(var i = div2.childNodes.length; i > 0; i--) {
-		div2.removeChild(div2.lastChild);
-	}
-	
-	var p = document.createElement("p");
-	p.setAttribute("id", "selectTaskOverviewTaskType");
-	var input1 = createRadioButton("tasktype", "Timetask", "radioTimeTasks", "interaction.getAllTimeTask();");
-	var input2 = createRadioButton("tasktype", "Eventtask", "radioEventTasks", "interaction.getAllEventTask();");
-	var label1 = createLabel("radioTimeTasks", document.createTextNode("Zeitbasiert"));
-	var label2 = createLabel("radioEventTasks", document.createTextNode("Eventbasiert"));
-	input1.setAttribute("checked", "true");
-	p.appendChild(input1);
-	p.appendChild(label1);
-	p.appendChild(input2);
-	p.appendChild(label2);
-	
-	div2.appendChild(p);
-	div2.appendChild(div);
+	modalBody.appendChild(div);
 	
 	var currentDate = new Date();
 	var currentYear = currentDate.getFullYear();
@@ -147,9 +112,15 @@ function selectTimeTaskView(data) {
 	Show the Event Tasks in the Task View
 **/
 function selectEventTaskView(data) {
-	var div = document.getElementById("modalOneBody");
-	for(var i = div.childNodes.length; i > 0; i--) {
-		div.removeChild(div.lastChild);
+	var modalBody = document.getElementById("modalOneBody");
+	var button1 = createButton("btn btn-primary", "", "closeEventTaskOverviewModalButton", "OK", "", "", "", "");
+	button1.setAttribute("data-dismiss", "modal");
+	buildModalOneFooter(button1);
+	buildModalOneHeader("Event Task \u00dcbersicht");
+	if(modalBody.childNodes.length != 0) {
+		for(var i = modalBody.childNodes.length; i > 0 ; i--) {
+			modalBody.removeChild(modalBody.lastChild);
+		}
 	}
 
 	var div1 = document.createElement("div");
@@ -210,35 +181,15 @@ function selectEventTaskView(data) {
 
 	div1.appendChild(table);
 		
-	var p = document.createElement("p");
-	p.setAttribute("id", "selectTaskOverviewTaskType");
-	var input1 = createRadioButton("tasktype", "Timetask", "radioTimeTasks", "interaction.getAllTimeTask();");
-	var input2 = createRadioButton("tasktype", "Eventtask", "radioEventTasks", "selectEventTaskView();");
-	var label1 = createLabel("radioTimeTasks", document.createTextNode("Zeitbasiert"));
-	var label2 = createLabel("radioEventTasks", document.createTextNode("Eventbasiert"));
-	input2.setAttribute("checked", "true");
-	p.appendChild(input1);
-	p.appendChild(label1);
-	p.appendChild(input2);
-	p.appendChild(label2);
-	
-	var p1 = document.createElement("p");
-	p1.appendChild(div1);
-	
-	div.appendChild(p);
-	div.appendChild(p1);
+	modalBody.appendChild(div1);
 }
 
-/**
- * Build the Modal when a Day at the Time Task View was selected
- * @param selectedDay
- */
 function showTasksOfDay(selectedDay) {
+	if(document.getElementById("tasksOfDayDiv")) {
+		var div = document.getElementById("tasksOfDayDiv");
+		document.getElementById("responsiveCalendar").removeChild(div);
+	}
 	var day = selectedDay.split("-");
-	buildModalTwoHeader("Tasks vom "+day[2]+"."+day[1]+"."+day[0]);
-	var button1 = createButton("btn btn-primary", "", "closeModalForTasksOfDayButton", "OK", "", "", "", "");
-	button1.setAttribute("data-dismiss", "modal");
-	buildModalTwoFooter(button1);
 	var data = display.getData();
 	var tasks = new Array();
 	var a = 0;
@@ -258,11 +209,6 @@ function showTasksOfDay(selectedDay) {
 		}
 	}
 	
-	var body = document.getElementById("modalTwoBody");
-	for(var i = body.childNodes.length; i > 0; i--) {
-		body.removeChild(body.lastChild);
-	}
-	
 	var div = document.createElement("div");
 	div.setAttribute("class", "panel panel-default");
 	var table = document.createElement("table");
@@ -278,9 +224,12 @@ function showTasksOfDay(selectedDay) {
 	th1.appendChild(document.createTextNode("#"));
 	th2.appendChild(document.createTextNode("Name"));
 	th3.appendChild(document.createTextNode("bearbeiten"));
-	th3.setAttribute("width", "10%");
+	th1.setAttribute("width", "10%");
+	th3.setAttribute("width", "15%");
 	th4.appendChild(document.createTextNode("l\u00f6schen"));
-	th4.setAttribute("width", "10%");
+	th4.setAttribute("width", "15%");
+	th3.setAttribute("style", "text-align:right");
+	th4.setAttribute("style", "text-align:right");
 	tr1.appendChild(th1);
 	tr1.appendChild(th2);
 	tr1.appendChild(th3);
@@ -306,8 +255,11 @@ function showTasksOfDay(selectedDay) {
 	}
 	table.appendChild(tbody);
 	div.appendChild(table);
-	body.appendChild(div);
-	$('#modalTwo').modal('show');
+	
+	var tableDiv = document.createElement("div");
+	tableDiv.setAttribute("id", "tasksOfDayDiv");
+	tableDiv.appendChild(div);
+	document.getElementById("responsiveCalendar").appendChild(tableDiv);
 }
 
 /**
@@ -324,5 +276,7 @@ function deleteEventTask(id) {
  * @param selectedDay 
  */
 function deleteTimeTask(id, selectedDay) {
+	var div = document.getElementById("tasksOfDayDiv");
+	document.getElementById("responsiveCalendar").removeChild(div);
 	interaction.deleteTimeTask(id, selectedDay);
 }

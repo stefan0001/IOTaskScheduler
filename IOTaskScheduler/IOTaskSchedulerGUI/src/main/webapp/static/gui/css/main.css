@@ -155,12 +155,23 @@ select {
 
 .trigger {
 	
-	background-image: url(../images/plus.png);
+	background-image: url(../images/lightning.png);
+	background-color:white;
 	background-repeat:no-repeat;
 	float:right;
 	border-width:0px;
 	width: 22px;
 	height: 22px;
+}
+
+.sync {
+	
+	background-image: url(../images/sync.png);
+	background-repeat:no-repeat;
+	float:right;
+	border-width:0px;
+	width: 32px;
+	height: 32px;
 }
 
 .deleteTaskButton {

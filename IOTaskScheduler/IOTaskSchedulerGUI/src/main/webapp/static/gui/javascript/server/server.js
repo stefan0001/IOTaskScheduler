@@ -323,7 +323,7 @@ server.createNewEvent = function(json) {
 	})
 }
 
-server.postExistentIssueDraftForEventTask = function(id, json) {
+server.postExistentIssueDraftForEventTask = function(id, json, existTask) {
 	$.ajax({
 		type: "POST",
 		dataType: "application/json",
@@ -331,7 +331,9 @@ server.postExistentIssueDraftForEventTask = function(id, json) {
 		url: this.url + "eventtask/"+id+"/issuedraft",
 		data: json,
 		complete: function(data) {
-			server.getIssuesOfEventTask(id);
+			if(existTask == "false") {
+				server.getIssuesOfEventTask(id);
+			}
 			display.showResponse("Das Issue wurde an den Task geh\u00e4ngt");
 		},
 		error: function() {
@@ -340,7 +342,7 @@ server.postExistentIssueDraftForEventTask = function(id, json) {
 	})
 }
 
-server.postExistentIssueDraftForTimeTask = function(id, json) {
+server.postExistentIssueDraftForTimeTask = function(id, json, existTask) {
 	$.ajax({
 		type: "POST",
 		dataType: "application/json",
@@ -348,7 +350,9 @@ server.postExistentIssueDraftForTimeTask = function(id, json) {
 		url: this.url + "timetask/"+id+"/issuedraft",
 		data: json,
 		complete: function(data) {
-			server.getIssuesOfTimeTask(id);
+			if(existTask == "false") {
+				server.getIssuesOfTimeTask(id);
+			}
 			display.showResponse("Das Issue wurde an den Task geh\u00e4ngt");
 		},
 		error: function() {
