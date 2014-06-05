@@ -121,7 +121,7 @@ public class EventTaskDataServiceTest {
 		assertTrue(updatedEventTask.getName().equals(otherEventTask.getName()));
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test(expected = ResourceNotFoundException.class)
 	public void testUpdateEventTaskWithBadId() {
 		EventTask otherEventTask = new EventTask();
 		otherEventTask.setName("DooBaa");
