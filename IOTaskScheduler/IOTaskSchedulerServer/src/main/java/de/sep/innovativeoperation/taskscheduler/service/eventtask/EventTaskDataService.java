@@ -76,7 +76,7 @@ public class EventTaskDataService extends AbstractGenericDataService<EventTask> 
 		eventTaskValidationService.checkObject(eventTask); 
 
 		// search for object
-		EventTask eventTaskDB = eventTaskDAO.findById(id);
+		EventTask eventTaskDB = this.getById(id);
 		
 		//update object
 		eventTaskDB.setName(eventTask.getName());
