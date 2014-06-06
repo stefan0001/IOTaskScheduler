@@ -26,15 +26,15 @@ function createIssue() {
  * Build the Modal to Create an Issue
  **/
 function emptyNewIssueModal() {
-	var button1 = createButton("btn btn-default", "", "closeNewIssueentityButton", "Abbrechen", "", "", "", "");
+	var button1 = createButton("btn btn-default", "", "closeNewIssueentityButton", language.cancel, "", "", "", "");
 	button1.setAttribute("data-dismiss", "modal");
-	var button2 = createButton("btn btn-primary", "", "saveNewIssueentityButton", "Speichern", "", "createIssue();", "", "");
+	var button2 = createButton("btn btn-primary", "", "saveNewIssueentityButton", language.save, "", "createIssue();", "", "");
 	buildModalOneFooter(button1, button2);
-	buildModalOneHeader("Neues Issue");
+	buildModalOneHeader(language.newIssue);
 	var radio1 = createRadioButton("newIssueSelect", "newIssue", "newIssueSelectCreateNewIssue", "newIssueSelectCreateNewIssue();")
 	var radio2 = createRadioButton("newIssueSelect", "selectIssue", "newIssueSelectSelectIssue", "interaction.getAllIssueDraft(false);")
-	var label1 = createLabel("newIssueSelectCreateNewIssue", document.createTextNode("Neues Issue"));
-	var label2 = createLabel("newIssueSelectSelectIssue", document.createTextNode("Issue w\u00e4hlen"));
+	var label1 = createLabel("newIssueSelectCreateNewIssue", document.createTextNode(language.newIssue));
+	var label2 = createLabel("newIssueSelectSelectIssue", document.createTextNode(language.selectIssue));
 	var body = document.getElementById("modalOneBody");
 	for(var i = body.childNodes.length; i > 0; i--) {
 		body.removeChild(body.lastChild);
@@ -58,8 +58,8 @@ function newIssueSelectCreateNewIssue() {
 	var p2 = document.createElement("p");
 	var p3 = document.createElement("p");
 	
-	var input1 = createTextField("issueName", "", "Name", "newIssueName", "");
-	var input2 = createTextarea("newIssueIssueDescription", "Beschreibung", "issueDescription", "textarea", "4");
+	var input1 = createTextField("issueName", "", language.name, "newIssueName", "");
+	var input2 = createTextarea("newIssueIssueDescription", language.description, "issueDescription", "textarea", "4");
 	var input3 = createSelect("1", "issueType");
 	input3.setAttribute("class", "taskeingabe");
 	input3.setAttribute("id", "newIssueTyp");

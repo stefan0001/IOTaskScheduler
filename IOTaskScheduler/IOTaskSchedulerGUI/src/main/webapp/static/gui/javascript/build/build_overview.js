@@ -2,11 +2,12 @@
 	At the Task overview, view the Time Tasks
 **/
 function selectTimeTaskView(data) {
+	createCalendar();
 	var modalBody = document.getElementById("modalOneBody");
 	var button1 = createButton("btn btn-primary", "", "closeTimeTaskOverviewModalButton", "OK", "", "", "", "");
 	button1.setAttribute("data-dismiss", "modal");
 	buildModalOneFooter(button1);
-	buildModalOneHeader("Zeit Task \u00dcbersicht");
+	buildModalOneHeader(language.timeTaskView);
 	if(modalBody.childNodes.length != 0) {
 		for(var i = modalBody.childNodes.length; i > 0 ; i--) {
 			modalBody.removeChild(modalBody.lastChild);
@@ -24,7 +25,7 @@ function selectTimeTaskView(data) {
 	a1.setAttribute("data-go", "prev");
 	var div3 = document.createElement("div");
 	div3.setAttribute("class", "btn btn-primary");
-	div3.appendChild(document.createTextNode("Fr\u00fcher"));
+	div3.appendChild(document.createTextNode(language.prev));
 	a1.appendChild(div3);
 	
 	var h4 = document.createElement("h4");
@@ -41,7 +42,7 @@ function selectTimeTaskView(data) {
 	a2.setAttribute("data-go", "next");
 	var div4 = document.createElement("div");
 	div4.setAttribute("class", "btn btn-primary");
-	div4.appendChild(document.createTextNode("N\u00e4chster"));
+	div4.appendChild(document.createTextNode(language.next));
 	a2.appendChild(div4);
 	
 	div2.appendChild(a1);
@@ -53,11 +54,10 @@ function selectTimeTaskView(data) {
 	var div5 = document.createElement("div");
 	div5.setAttribute("class", "day-headers");
 	
-	var days = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
-	for(var i in days) {
+	for(var i in language.days) {
 		var div6 = document.createElement("div");
 		div6.setAttribute("class", "day header");
-		div6.appendChild(document.createTextNode(days[i]));
+		div6.appendChild(document.createTextNode(language.days[i]));
 		div5.appendChild(div6);
 	}
 	var div7 = document.createElement("div");
@@ -116,7 +116,7 @@ function selectEventTaskView(data) {
 	var button1 = createButton("btn btn-primary", "", "closeEventTaskOverviewModalButton", "OK", "", "", "", "");
 	button1.setAttribute("data-dismiss", "modal");
 	buildModalOneFooter(button1);
-	buildModalOneHeader("Event Task \u00dcbersicht");
+	buildModalOneHeader(language.eventTaskView);
 	if(modalBody.childNodes.length != 0) {
 		for(var i = modalBody.childNodes.length; i > 0 ; i--) {
 			modalBody.removeChild(modalBody.lastChild);
@@ -142,10 +142,10 @@ function selectEventTaskView(data) {
 	column5.setAttribute("width", "10%");
 	
 	column1.appendChild(document.createTextNode("#"));
-	column2.appendChild(document.createTextNode("Name"));
+	column2.appendChild(document.createTextNode(language.name));
 	column3.appendChild(document.createTextNode("Event"));
-	column4.appendChild(document.createTextNode("bearbeiten"));
-	column5.appendChild(document.createTextNode("l\u00f6schen"));
+	column4.appendChild(document.createTextNode(language.edit));
+	column5.appendChild(document.createTextNode(language.deleteString));
 	
 	row1.appendChild(column1);
 	row1.appendChild(column2);
@@ -223,10 +223,10 @@ function showTasksOfDay(selectedDay) {
 	var th4 = document.createElement("th");
 	th1.appendChild(document.createTextNode("#"));
 	th2.appendChild(document.createTextNode("Name"));
-	th3.appendChild(document.createTextNode("bearbeiten"));
+	th3.appendChild(document.createTextNode(language.edit));
 	th1.setAttribute("width", "10%");
 	th3.setAttribute("width", "15%");
-	th4.appendChild(document.createTextNode("l\u00f6schen"));
+	th4.appendChild(document.createTextNode(language.deleteString));
 	th4.setAttribute("width", "15%");
 	th3.setAttribute("style", "text-align:right");
 	th4.setAttribute("style", "text-align:right");

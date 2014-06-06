@@ -31,17 +31,15 @@
 		<script src="javascript/server/display.js"></script>
 		<script src="javascript/server/interaction.js"></script>
 		<script src="javascript/server/server.js"></script>
-		
-		
 	</head>
-
 	<body onload="start();">
 		<div class="container">
 			<div class="page-header">
+				<button class="germanflag" onclick="language = german; changelanguage();"></button><button class="ukflag" onclick="language = english; changelanguage();"></button>
 				<h1>Innovative Operation</h1>
 				<!-- Button trigger modal -->
 				<button class="btn btn-default" data-toggle="modal" data-target="#modalOne" style="margin-right:30px;" onclick="emptyNewTaskModal();" id="newTaskButton"></button>
-				<button class="btn btn-default" data-toggle="modal" data-target="#modalOne" style="margin-right:30px;" onclick="interaction.getAllTimeTask();" id="timeTaskOverviewButton">Zeit Tasks</button>
+				<button class="btn btn-default" data-toggle="modal" data-target="#modalOne" style="margin-right:30px;" onclick="interaction.getAllTimeTask();" id="timeTaskOverviewButton"></button>
 				<button class="btn btn-default" data-toggle="modal" data-target="#modalOne" style="margin-right:30px;" onclick="interaction.getAllEventTask();" id="eventTaskOverviewButton">Event Tasks</button>
 				<button class="btn btn-default" data-toggle="modal" data-target="#modalOne" style="margin-right:30px;" onclick="interaction.getAllEvent(true);" id="eventOverviewButton">Event Übersicht</button>
 				<button class="btn btn-default" data-toggle="modal" data-target="#modalOne" onclick="emptyNewIssueModal();" id="newIssueButton">Issue erstellen</button>
@@ -92,14 +90,12 @@
 			</div>
 			<div style="margin-bottom: 20px;">
 				<input type="text" id="filterIssueName" name="filterIssueName" placeholder="Issue Name" style="margin-right:10px;">
-				<select id="filterIssueType" name="filterIssueType" style="margin-right:10px; height:22px; padding:1px;">
-					<option value="ALL">Alle Typen</option>
+				<select id="filterIssueType" name="filterIssueType" style="margin-right:10px; height:22px; padding:1px;"><option value="ALL">Alle Typen</option>
 					<option value="BUG">Bug</option>
 					<option value="IMPROVEMENT">Improvement</option>
 					<option value="TASK">Task</option>
 				</select>
-				<select id="filterIssueResolution" name="filterIssueResolution" style="margin-right:10px; height:22px; padding:1px;">
-					<option value="ALL">Alle Resolutionen</option>
+				<select id="filterIssueResolution" name="filterIssueResolution" style="margin-right:10px; height:22px; padding:1px;"><option value="ALL">Alle Resolutionen</option>
 					<option value="CANNOT_REPRODUCE">Cannot Reproduce</option>
 					<option value="DONE">Done</option>
 					<option value="DUPLICATE">Duplicate</option>
@@ -146,6 +142,6 @@
 			</table>
 		</div> <!-- /container -->
 		<div id="statusmessage"></div>
-		<script src="javascript/build/german.js"></script>
-  </body>
+		<script src="javascript/build/language.js" value="german" id="languageScript"></script>
+	</body>
 </html>

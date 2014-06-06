@@ -174,6 +174,27 @@ select {
 	background-color:transparent;
 }
 
+.germanflag {
+	background-image: url(../images/germany_flag.png);
+	background-repeat:no-repeat;
+	float:right;
+	border-width:0px;
+	width: 16px;
+	height: 16px;
+	background-color:transparent;
+}
+
+.ukflag {
+	background-image: url(../images/united_kingdom_flag.png);
+	background-repeat:no-repeat;
+	float:right;
+	border-width:0px;
+	width: 16px;
+	height: 16px;
+	background-color:transparent;
+	margin-right:10px;
+}
+
 .deleteTaskButton {
 	border-width:0px;
 	background-color:white;
