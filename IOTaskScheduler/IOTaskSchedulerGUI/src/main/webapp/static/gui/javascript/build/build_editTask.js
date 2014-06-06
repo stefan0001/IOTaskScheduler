@@ -245,11 +245,23 @@ function showIssuesOfTimeTask(data, id) {
 function saveNewIssueForExistingTimeTask() {
 	var name = document.newIssueForTaskFormular.issueName.value;
 	var des = document.newIssueForTaskFormular.issueDescription.value;
-	var type = document.newIssueForTaskFormular.issueType.value;
-	var json = JSON.stringify({issueName: name, issueDescription: des, issueType: type.toUpperCase()});
-	var id = document.getElementById("selectNewIssue").value;
-	interaction.postNewIssueDraftForTimeTask(id, json, true);
-	$('#modalThree').modal('hide');
+	if(name == "") {
+		document.newIssueForTaskFormular.issueName.setAttribute("style", "border:solid red 1px;");
+	} else {
+		document.newIssueForTaskFormular.issueName.setAttribute("style", "border:solid red 1px;");
+	}
+	if(des == "") {
+		document.newIssueForTaskFormular.issueDescription.setAttribute("style", "border:solid red 1px;");
+	} else {
+		document.newIssueForTaskFormular.issueDescription.setAttribute("style", "border:solid red 1px;");
+	}
+	if(name != "" && des != "") {
+		var type = document.newIssueForTaskFormular.issueType.value;
+		var json = JSON.stringify({issueName: name, issueDescription: des, issueType: type.toUpperCase()});
+		var id = document.getElementById("selectNewIssue").value;
+		interaction.postNewIssueDraftForTimeTask(id, json, true);
+		$('#modalThree').modal('hide');
+	}
 }
 
 function saveSelectedIssuesForExistingTimeTask() {
@@ -319,11 +331,23 @@ function showIssuesOfEventTask(data, id) {
 function saveNewIssueForExistingEventTask() {
 	var name = document.newIssueForTaskFormular.issueName.value;
 	var des = document.newIssueForTaskFormular.issueDescription.value;
-	var type = document.newIssueForTaskFormular.issueType.value;
-	var json = JSON.stringify({issueName: name, issueDescription: des, issueType: type.toUpperCase()});
-	var id = document.getElementById("selectNewIssue").value;
-	interaction.postNewIssueDraftForEventTask(id, json, true);
-	$('#modalThree').modal('hide');
+	if(name == "") {
+		document.newIssueForTaskFormular.issueName.setAttribute("style", "border:solid red 1px;");
+	} else {
+		document.newIssueForTaskFormular.issueName.setAttribute("style", "border:solid red 1px;");
+	}
+	if(des == "") {
+		document.newIssueForTaskFormular.issueDescription.setAttribute("style", "border:solid red 1px;");
+	} else {
+		document.newIssueForTaskFormular.issueDescription.setAttribute("style", "border:solid red 1px;");
+	}
+	if(name != "" && des != "") {
+		var type = document.newIssueForTaskFormular.issueType.value;
+		var json = JSON.stringify({issueName: name, issueDescription: des, issueType: type.toUpperCase()});
+		var id = document.getElementById("selectNewIssue").value;
+		interaction.postNewIssueDraftForEventTask(id, json, true);
+		$('#modalThree').modal('hide');
+	}
 }
 
 function saveSelectedIssuesForExistingEventTask() {

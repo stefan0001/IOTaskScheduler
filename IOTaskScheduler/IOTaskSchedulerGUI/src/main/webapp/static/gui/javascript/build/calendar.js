@@ -328,7 +328,6 @@ function createCalendar() {
 	        return null;
 	      });
 	    };
-	    console.log()
 	    $.fn.responsiveCalendar.defaults = {
 	      translateMonths: language.month,
 	      events: {},
