@@ -18,7 +18,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
@@ -27,11 +26,32 @@
 
 
 
+			<!-- skip unit test -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.17</version>
+				<configuration>
+					<skipTests combine.self="override">true</skipTests>
+				</configuration>
+			</plugin>
+
+			<!-- skip system test -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.17</version>
+				<configuration>
+					<skipTests combine.self="override">true</skipTests>
+				</configuration>
+			</plugin>
 
 
 		</plugins>
+
 	</build>
 	<properties>
+		<project.spring.version>4.0.0.RELEASE</project.spring.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -48,31 +68,31 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>4.0.0.RELEASE</version>
+			<version>${project.spring.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
-			<version>4.0.0.RELEASE</version>
+			<version>${project.spring.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>4.0.0.RELEASE</version>
+			<version>${project.spring.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>4.0.0.RELEASE</version>
+			<version>${project.spring.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
-			<version>4.0.0.RELEASE</version>
+			<version>${project.spring.version}</version>
 		</dependency>
 
 
@@ -145,4 +165,110 @@
 		<module>IOTaskSchedulerSystemTest</module>
 		<module>IOTaskSchedulerSystemPerformanceTest</module>
 	</modules>
+
+	<profiles>
+		<!-- EXTERNER SERVER -->
+		<profile>
+			<id>externserver</id>
+
+		</profile>
+
+
+		<!-- INTERNER SERVER -->
+		<profile>
+			<id>internserver</id>
+			<build>
+				<plugins>
+
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>generate-resources</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<tasks>
+										<echo>OMG</echo>
+									</tasks>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+				</plugins>
+			</build>
+			<activation>
+
+			
+				<property>
+					<name>systemttest unittest</name>
+				</property>
+
+
+
+			</activation>
+
+
+		</profile>
+
+		<!-- UNIT TEST -->
+		<profile>
+			<id>unittest</id>
+			<build>
+				<plugins>
+
+
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>generate-resources</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<tasks>
+										<echo>HALLO</echo>
+									</tasks>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+
+				</plugins>
+			</build>
+		</profile>
+
+
+		<!-- SYSTEM TEST -->
+		<profile>
+			<id>systemtest</id>
+
+			<activation>
+
+				<property>
+					<name>systemtest</name>
+				</property>
+			</activation>
+		</profile>
+
+
+		<!-- PERFORMANCE TEST -->
+		<profile>
+			<id>performancetest</id>
+
+
+
+			<activation>
+
+				<property>
+					<name>performancetest</name>
+				</property>
+			</activation>
+		</profile>
+
+	</profiles>
 </project>

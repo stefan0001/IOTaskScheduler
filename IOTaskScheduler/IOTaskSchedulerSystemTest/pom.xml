@@ -46,70 +46,89 @@
 
 	<build>
 
-		<plugins>
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.0</version>
-				<configuration>
-					<path>/</path>
-					<webapps>
-						<webapp>
-							<groupId>de.innovativeoperation.taskscheduler</groupId>
-							<artifactId>IOTaskSchedulerWebAppTest</artifactId>
-							<version>${project.parent.version}</version>
-							<type>war</type>
-							<asWebapp>true</asWebapp>
-						</webapp>
-					</webapps>
-				</configuration>
-				<executions>
-					<execution>
-						<id>tomcat-run</id>
-						<goals>
-							<goal>run</goal>
-						</goals>
-						<phase>pre-integration-test</phase>
-						<configuration>
-							<port>55555</port>
-							<fork>true</fork>
-						</configuration>
-					</execution>
-					<execution>
-						<id>stop-tomcat</id>
-						<phase>post-integration-test</phase>
-						<goals>
-							<goal>shutdown</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-failsafe-plugin</artifactId>
-				<version>2.12.4</version>
-				<configuration>
-					<includes>
-						<include>**/Firefox*IT.java</include>
-						<!-- <include>**/Chrome*IT.java</include> -->
-						<!-- <include>**/Safari*IT.java</include> -->
-					</includes>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>integration-test</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
-
-		</plugins>
-
 
 		<finalName>IOTaskSchedulerSystemTest</finalName>
 	</build>
+
+	<profiles>
+		<!-- SYSTEM TEST -->
+		<profile>
+			<id>systemtest</id>
+			<build>
+				<plugins>
+					<plugin>
+						<!-- execute system tests -->
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<skipTests>false</skipTests>
+						</configuration>
+					</plugin>
+
+					<plugin>
+						<groupId>org.apache.tomcat.maven</groupId>
+						<artifactId>tomcat7-maven-plugin</artifactId>
+						<version>2.0</version>
+						<configuration>
+							<path>/</path>
+							<webapps>
+								<webapp>
+									<groupId>de.innovativeoperation.taskscheduler</groupId>
+									<artifactId>IOTaskSchedulerWebAppTest</artifactId>
+									<version>${project.parent.version}</version>
+									<type>war</type>
+									<asWebapp>true</asWebapp>
+								</webapp>
+							</webapps>
+						</configuration>
+						<executions>
+							<execution>
+								<id>tomcat-run</id>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<phase>pre-integration-test</phase>
+								<configuration>
+									<port>55555</port>
+									<fork>true</fork>
+								</configuration>
+							</execution>
+							<execution>
+								<id>stop-tomcat</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>shutdown</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-failsafe-plugin</artifactId>
+						<configuration>
+							<includes>
+								<include>**/Firefox*IT.java</include>
+								<!-- <include>**/Chrome*IT.java</include> -->
+								<!-- <include>**/Safari*IT.java</include> -->
+							</includes>
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<goal>integration-test</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+
+				</plugins>
+
+			</build>
+		</profile>
+	</profiles>
+
+
 </project>
