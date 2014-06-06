@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
@@ -15,7 +16,7 @@ import de.sep.innovativeoperation.taskscheduler.service.assembler.issueentity.Is
 
 
 @Service
-@Transactional
+@Transactional(propagation=Propagation.REQUIRED)
 public class IssueEntityResourceService extends AbstractGenericResourceService<IssueEntity,IssueEntityResource, IssueEntitiesResource>{
 	//SERVICES
 	@Autowired 

@@ -15,6 +15,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
@@ -46,16 +49,19 @@ public class IssueDraft extends AbstractDataModel {
 
 	/*Child of the IssueEntity <--> IssueDraft relationship */
 	@OneToMany(mappedBy = "issueDraft", cascade = {CascadeType.ALL})
+	@LazyCollection(LazyCollectionOption.EXTRA)
 	private Set<IssueEntity> issueEntities;
 	
 
 	/*Child  of the TimeTask <--> IssueDraft relationship */
 	@ManyToMany(mappedBy = "issueDrafts", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@LazyCollection(LazyCollectionOption.EXTRA)
 	private Set<TimeTask> timeTasks;
 	
 
 	/*Child  of the EventTask <--> IssueDraft relationship */
 	@ManyToMany(mappedBy = "issueDrafts", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@LazyCollection(LazyCollectionOption.EXTRA)
 	private Set<EventTask> eventTasks;
 	
 	

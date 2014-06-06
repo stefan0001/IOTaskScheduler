@@ -5,7 +5,9 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
 import de.sep.innovativeoperation.taskscheduler.model.data.EventTask;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
@@ -15,7 +17,7 @@ import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityD
 
 
 @Service
-@Transactional
+@Transactional(propagation=Propagation.REQUIRED)
 public class EventTaskTrigger {
 	
 	@Autowired 

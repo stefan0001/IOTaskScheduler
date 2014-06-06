@@ -45,15 +45,19 @@
 		<property name="username" value="h2" />
 		<property name="password" value="h2" />
 	</bean>
-
+	
 	<!-- An dieser Stelle werden externe SQL-Skripte referenziert, die beim 
 		Starten des Containers die frisch erzeugte (und somit leere) Datenbank-Instanz 
 		befüllen. -->
+	<!--  
 	<jdbc:initialize-database data-source="dataSource"  ignore-failures="ALL">
+	
+
 		<jdbc:script location="classpath:00_IOTASKSCHEDULER_CLEAN.sql" />
 		<jdbc:script location="classpath:01_IOTASKSCHEDULER_SETUP.sql" />
-	</jdbc:initialize-database>
 
+	</jdbc:initialize-database>
+	-->
 
 	<!-- Transaction Manager für die Datenbankverbindung -->
 	<!-- Damit wird getTransaction().begin() und getTransaction().commit() automatische 

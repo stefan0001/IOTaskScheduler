@@ -3,6 +3,7 @@ package de.sep.innovativeoperation.taskscheduler.service.event;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import de.sep.innovativeoperation.taskscheduler.model.data.Event;
@@ -12,7 +13,7 @@ import de.sep.innovativeoperation.taskscheduler.service.AbstractGenericResourceS
 import de.sep.innovativeoperation.taskscheduler.service.assembler.event.EventResourceAssembler;
 
 @Service
-@Transactional
+@Transactional(propagation=Propagation.REQUIRED)
 public class EventResourceService extends AbstractGenericResourceService<Event, EventResource, EventsResource>{
 
 	//DATA SERVICE

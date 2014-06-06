@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import de.sep.innovativeoperation.taskscheduler.model.data.EventTask;
@@ -20,7 +21,7 @@ import de.sep.innovativeoperation.taskscheduler.service.assembler.issuedraft.Iss
 import de.sep.innovativeoperation.taskscheduler.service.assembler.issuedraft.IssueDraftsResourceAssembler;
 
 @Service
-@Transactional
+@Transactional(propagation=Propagation.REQUIRED)
 public class EventTaskResourceService extends AbstractGenericResourceService<EventTask, EventTaskResource, EventTasksResource>{
 	//DATA SERVICE
 	@Autowired

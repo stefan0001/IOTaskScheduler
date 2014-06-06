@@ -6,8 +6,10 @@ import java.util.Set;
 
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import de.sep.innovativeoperation.taskscheduler.dao.EventTaskDAO;
@@ -21,7 +23,7 @@ import de.sep.innovativeoperation.taskscheduler.service.issuedraft.IssueDraftDat
 import de.sep.innovativeoperation.taskscheduler.service.validation.EventTaskValidationService;
 
 @Service
-@Transactional
+@Transactional(propagation=Propagation.REQUIRED)
 public class EventTaskDataService extends AbstractGenericDataService<EventTask> {
 
 	

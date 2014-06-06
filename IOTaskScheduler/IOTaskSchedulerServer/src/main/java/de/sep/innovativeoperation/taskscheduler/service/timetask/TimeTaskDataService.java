@@ -7,6 +7,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import de.sep.innovativeoperation.taskscheduler.dao.TimeTaskDAO;
@@ -19,7 +20,7 @@ import de.sep.innovativeoperation.taskscheduler.service.timetask.monitor.TimeTas
 import de.sep.innovativeoperation.taskscheduler.service.validation.TimeTaskValidationService;
 
 @Service
-@Transactional
+@Transactional(propagation=Propagation.REQUIRED)
 public class TimeTaskDataService extends AbstractGenericDataService<TimeTask> {
 	//DAO
 	@Autowired
