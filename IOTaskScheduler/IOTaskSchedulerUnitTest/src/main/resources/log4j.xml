@@ -13,33 +13,34 @@
 
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
-		<level value="warn" />
+		<level value="fatal" />
 	</logger>
 
 	<logger name="org.springframework.beans">
-		<level value="warn" />
+		<level value="fatal" />
 	</logger>
 
 	<logger name="org.springframework.context">
-		<level value="warn" />
+		<level value="fatal" />
 	</logger>
 
 	<logger name="org.springframework.web">
-		<level value="warn" />
+		<level value="fatal" />
 	</logger>
-	org.springframework.test
+
 
 	<logger name="org.hibernate">
 		<level value="fatal" />
 	</logger>
 
 	<logger name="org.springframework.test">
-		<level value="warn" />
+		<level value="fatal" />
 	</logger>
 
 	<logger name="org.mockito">
-		<level value="warn" />
+		<level value="fatal" />
 	</logger>
+
 
 
 	<!-- Root Logger -->
