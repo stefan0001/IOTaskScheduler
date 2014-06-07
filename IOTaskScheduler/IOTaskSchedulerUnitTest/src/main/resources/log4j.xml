@@ -30,7 +30,7 @@
 	org.springframework.test
 
 	<logger name="org.hibernate">
-		<level value="error" />
+		<level value="fatal" />
 	</logger>
 
 	<logger name="org.springframework.test">
@@ -41,8 +41,6 @@
 		<level value="warn" />
 	</logger>
 
-
-	org.springframework.tes
 
 	<!-- Root Logger -->
 	<root>
