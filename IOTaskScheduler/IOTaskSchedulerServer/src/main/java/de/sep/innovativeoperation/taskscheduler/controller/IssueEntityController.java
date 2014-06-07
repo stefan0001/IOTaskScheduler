@@ -46,7 +46,7 @@ public class IssueEntityController {
 	public @ResponseBody IssueEntitiesResource getIssueEntities(@RequestParam(value = "filter" , required=false) IssueEntityResource issueEntityResource) {
 		if(issueEntityResource == null){ 
 			//find all
-			issueEntityResource = new IssueEntityResource();
+			return issueEntityResourceService.getAll();
 		}
 		
 		//return filtered issueentities
