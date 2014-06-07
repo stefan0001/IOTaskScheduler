@@ -133,18 +133,24 @@ public class IssueEntityDataService extends
 		entity.getIssueDraft().getIssueEntities().remove(entity);
 	}
 	
-	
-	public void archiveById(int id){
+	@Override
+	public void deleteById(int id){
+		//archive issue entity
 		this.getById(id).setArchived(true);
+
 	}
 	
+	/**
+	 * Override get to only find non archived issueentities
+	 */
 	@Override
 	public IssueEntity getById(int id){
-		IssueEntity result = this.getById(id);
+		IssueEntity result = dao.findById(id);
 		//check if it is archived
-		if(!result.isArchived()){
+		if(result != null && !result.isArchived()){
 			return result;
 		}
+		
 		throw new ResourceNotFoundException();
 	}
 
