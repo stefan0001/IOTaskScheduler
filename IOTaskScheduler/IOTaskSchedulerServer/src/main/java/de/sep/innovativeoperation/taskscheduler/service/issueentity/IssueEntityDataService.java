@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import de.sep.innovativeoperation.taskscheduler.dao.IssueEntityDAO;
+import de.sep.innovativeoperation.taskscheduler.exception.http.ResourceNotFoundException;
 import de.sep.innovativeoperation.taskscheduler.exception.validation.ValueIsNullException;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
@@ -135,6 +136,16 @@ public class IssueEntityDataService extends
 	
 	public void archiveById(int id){
 		this.getById(id).setArchived(true);
+	}
+	
+	@Override
+	public IssueEntity getById(int id){
+		IssueEntity result = this.getById(id);
+		//check if it is archived
+		if(!result.isArchived()){
+			return result;
+		}
+		throw new ResourceNotFoundException();
 	}
 
 }
