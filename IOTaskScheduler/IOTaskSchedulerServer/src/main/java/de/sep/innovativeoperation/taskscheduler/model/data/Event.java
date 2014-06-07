@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @SuppressWarnings("serial")
@@ -28,6 +31,7 @@ public class Event extends AbstractDataModel{
 	private String name;
 
 	@OneToMany( mappedBy = "event", cascade = {CascadeType.ALL})
+	@LazyCollection(LazyCollectionOption.EXTRA)
 	private Set<EventTask> eventTasks = new HashSet<EventTask>();
 	
 	/**

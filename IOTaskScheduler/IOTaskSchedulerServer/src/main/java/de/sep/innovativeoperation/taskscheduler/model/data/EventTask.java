@@ -14,6 +14,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @SuppressWarnings("serial")
@@ -31,6 +34,7 @@ public class EventTask extends AbstractDataModel {
 	
 	/*Owner of the EventTask <--> IssueDraft relationship*/
 	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@LazyCollection(LazyCollectionOption.EXTRA)
 	private Set<IssueDraft> issueDrafts = new HashSet<IssueDraft>();
 	
 	/*Owner of the EventTask <--> Event relationship*/

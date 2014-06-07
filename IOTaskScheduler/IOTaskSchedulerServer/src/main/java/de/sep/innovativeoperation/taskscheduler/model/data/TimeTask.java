@@ -16,6 +16,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -35,6 +38,7 @@ public class TimeTask extends AbstractDataModel{
 	
 	/*Owner of the TimeTask <--> IssueDraft relationship*/
 	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@LazyCollection(LazyCollectionOption.EXTRA)
 	private Set<IssueDraft> issueDrafts = new HashSet<IssueDraft>();
 	
 	/* Stores Date and Time. */
