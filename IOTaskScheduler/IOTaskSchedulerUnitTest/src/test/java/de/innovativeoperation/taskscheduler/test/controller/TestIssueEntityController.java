@@ -186,7 +186,7 @@ public class TestIssueEntityController {
 		mockMvc.perform(delete(url + "/0").accept(appJSON)).andExpect(
 				status().isOk());
 
-		verify(issueEntityResourceService,times(1)).archiveById(0);
+		verify(issueEntityResourceService,times(1)).deleteById(0);
 	}
 
 	@Test
