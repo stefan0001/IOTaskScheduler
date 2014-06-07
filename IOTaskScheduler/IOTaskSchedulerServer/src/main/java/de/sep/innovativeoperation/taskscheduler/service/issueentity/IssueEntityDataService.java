@@ -153,5 +153,10 @@ public class IssueEntityDataService extends
 		
 		throw new ResourceNotFoundException();
 	}
+	
+	@Override
+	public List<IssueEntity> getAll(){
+		return issueEntityDAO.filterIssueEntity(null,null,null,null,null);
+	}
 
 }
