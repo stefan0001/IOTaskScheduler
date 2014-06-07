@@ -115,27 +115,27 @@ public class TestIssueEntityController {
 	public void testGetAllIssueEntitiesWithNull200() throws Exception {
 
 		String thisIsNull = null;
-		when(issueEntityResourceService.filterIssueEntities(issueEntityResource)).thenReturn(
+		when(issueEntityResourceService.getAll()).thenReturn(
 				issueEntitiesResource);
 
 		mockMvc.perform(
 				get(url).contentType(appJSON).accept(appJSON).param("filter", thisIsNull))
 				.andExpect(status().isOk());
 
-		verify(issueEntityResourceService, times(1)).filterIssueEntities(issueEntityResource);
+		verify(issueEntityResourceService, times(1)).getAll();
 	}
 	@Test
 	public void testGetAllIssueEntitiesWithoutParam200() throws Exception {
 
 		
-		when(issueEntityResourceService.filterIssueEntities(issueEntityResource)).thenReturn(
+		when(issueEntityResourceService.getAll()).thenReturn(
 				issueEntitiesResource);
 
 		mockMvc.perform(
 				get(url).contentType(appJSON).accept(appJSON))
 				.andExpect(status().isOk());
 
-		verify(issueEntityResourceService, times(1)).filterIssueEntities(issueEntityResource);
+		verify(issueEntityResourceService, times(1)).getAll();
 	}
 
 	@Test
@@ -215,10 +215,10 @@ public class TestIssueEntityController {
 	public void testFilterIssueEntitiesWithNull() throws Exception {
 		IssueEntitiesResource issueEntitiesResource = new IssueEntitiesResource();
 		String thisIsNull = null;
-		when(issueEntityResourceService.filterIssueEntities(issueEntityResource)).thenReturn(issueEntitiesResource);
+		when(issueEntityResourceService.getAll()).thenReturn(issueEntitiesResource);
 		mockMvc.perform(get(url).contentType(appJSON).accept(appJSON).param("filter", thisIsNull)).andExpect(status().isOk());
 		
-		verify(issueEntityResourceService, times(1)).filterIssueEntities(issueEntityResource);
+		verify(issueEntityResourceService, times(1)).getAll();
 
 
 	}
