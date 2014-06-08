@@ -15,16 +15,25 @@
 	<dependencies>
 
 
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-chrome-driver</artifactId>
+			<version>2.41.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-firefox-driver</artifactId>
+			<version>2.41.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-safari-driver</artifactId>
+			<version>2.41.0</version>
+		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-support</artifactId>
-			<version>2.41.0</version>
-		</dependency>
-
-
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
 			<version>2.41.0</version>
 		</dependency>
 
@@ -45,50 +54,99 @@
 		<profile>
 			<id>systemtest</id>
 			<build>
+
+				<pluginManagement>
+					<plugins>
+						<!--This plugin's configuration is used to store Eclipse m2e settings 
+							only. It has no influence on the Maven build itself. -->
+						<plugin>
+							<groupId>org.eclipse.m2e</groupId>
+							<artifactId>lifecycle-mapping</artifactId>
+							<version>1.0.0</version>
+							<configuration>
+								<lifecycleMappingMetadata>
+									<pluginExecutions>
+										<pluginExecution>
+											<pluginExecutionFilter>
+												<groupId>
+													org.apache.maven.plugins
+												</groupId>
+												<artifactId>
+													maven-dependency-plugin
+												</artifactId>
+												<versionRange>
+													[2.0,)
+												</versionRange>
+												<goals>
+													<goal>unpack</goal>
+												</goals>
+											</pluginExecutionFilter>
+											<action>
+												<ignore></ignore>
+											</action>
+										</pluginExecution>
+									</pluginExecutions>
+								</lifecycleMappingMetadata>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+
+
 				<plugins>
 					<plugin>
-						<!-- execute system tests -->
 						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<configuration>
-							<skipTests>false</skipTests>
-						</configuration>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<version>2.4</version>
+						<executions>
+							<execution>
+								<id>unzip-webapp</id>
+								<phase>compile</phase>
+								<goals>
+									<goal>unpack</goal>
+								</goals>
+								<configuration>
+									<artifactItems>
+										<artifactItem>
+											<groupId>${project.groupId}</groupId>
+											<artifactId>IOTaskSchedulerWebAppTest</artifactId>
+											<version>${project.version}</version>
+											<type>war</type>
+										</artifactItem>
+									</artifactItems>
+									<outputDirectory>${project.build.directory}/webapp</outputDirectory>
+									<overWriteSnapshots>true</overWriteSnapshots>
+								</configuration>
+							</execution>
+						</executions>
 					</plugin>
+
 
 					<plugin>
 						<groupId>org.apache.tomcat.maven</groupId>
 						<artifactId>tomcat7-maven-plugin</artifactId>
-						<version>2.0</version>
-						<configuration>
-							<path>/</path>
-							<webapps>
-								<webapp>
-									<groupId>de.innovativeoperation.taskscheduler</groupId>
-									<artifactId>IOTaskSchedulerWebAppTest</artifactId>
-									<version>${project.parent.version}</version>
-									<type>war</type>
-									<asWebapp>true</asWebapp>
-								</webapp>
-							</webapps>
-						</configuration>
 						<executions>
 							<execution>
 								<id>tomcat-run</id>
 								<goals>
-									<goal>run</goal>
+									<goal>run-war-only</goal>
 								</goals>
 								<phase>pre-integration-test</phase>
 								<configuration>
+									<path>/IOTaskSchedulerWebAppTest</path>
 									<port>55555</port>
+									<uriEncoding>UTF-8</uriEncoding>
+									<warDirectory>${project.build.directory}/webapp/</warDirectory>
 									<fork>true</fork>
+									<ignorePackaging>true</ignorePackaging>
 								</configuration>
 							</execution>
 							<execution>
-								<id>stop-tomcat</id>
-								<phase>post-integration-test</phase>
+								<id>tomcat-shutdown</id>
 								<goals>
 									<goal>shutdown</goal>
 								</goals>
+								<phase>post-integration-test</phase>
 							</execution>
 						</executions>
 					</plugin>
@@ -96,15 +154,28 @@
 
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>test-compile</phase>
+								<goals>
+									<goal>testCompile</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-failsafe-plugin</artifactId>
+						<version>2.12.4</version>
 						<configuration>
+							<skipTests combine.self="override">false</skipTests>
 							<includes>
-								<include>**/Firefox*IT.java</include>
+								<include>**/Firefox*createIssueIT.java</include>
 								<!-- <include>**/Chrome*IT.java</include> -->
 								<!-- <include>**/Safari*IT.java</include> -->
 							</includes>
-
-							<skipTests>false</skipTests>
 						</configuration>
 						<executions>
 							<execution>
