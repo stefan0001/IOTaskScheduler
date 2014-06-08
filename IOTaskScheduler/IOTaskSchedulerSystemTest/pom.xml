@@ -172,7 +172,7 @@
 						<configuration>
 							<skipTests combine.self="override">false</skipTests>
 							<includes>
-								<include>**/Firefox*createIssueIT.java</include>
+								<include>**/Firefox*IT.java</include>
 								<!-- <include>**/Chrome*IT.java</include> -->
 								<!-- <include>**/Safari*IT.java</include> -->
 							</includes>
