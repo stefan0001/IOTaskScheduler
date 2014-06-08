@@ -27,11 +27,23 @@
 			<version>${project.parent.version}</version>
 			<type>war</type>
 		</dependency>
+
+		<!-- Logging -->
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${project.slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${project.slf4j.version}</version>
+		</dependency>
 	</dependencies>
+
 	<build>
 		<finalName>IOTaskSchedulerWebAppTest</finalName>
-
-
 
 	</build>
 

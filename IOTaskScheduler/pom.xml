@@ -53,7 +53,7 @@
 	</build>
 	<properties>
 		<project.spring.version>4.0.0.RELEASE</project.spring.version>
-		<project.slf4j.version>1.7.0</project.slf4j.version>
+		<project.slf4j.version>1.7.2</project.slf4j.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -165,50 +165,6 @@
 		</dependency>
 
 
-		<!-- Logging -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${project.slf4j.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>${project.slf4j.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${project.slf4j.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.15</version>
-			<exclusions>
-				<exclusion>
-					<groupId>javax.mail</groupId>
-					<artifactId>mail</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>javax.jms</groupId>
-					<artifactId>jms</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.sun.jdmk</groupId>
-					<artifactId>jmxtools</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.sun.jmx</groupId>
-					<artifactId>jmxri</artifactId>
-				</exclusion>
-			</exclusions>
-			<scope>runtime</scope>
-		</dependency>
-
-
 	</dependencies>
 	<modules>
 		<module>IOTaskSchedulerServer</module>
@@ -232,36 +188,15 @@
 		<profile>
 			<id>internserver</id>
 			<build>
-				<plugins>
 
-					<plugin>
-						<artifactId>maven-antrun-plugin</artifactId>
-						<executions>
-							<execution>
-								<phase>generate-resources</phase>
-								<goals>
-									<goal>run</goal>
-								</goals>
-								<configuration>
-									<tasks>
-										<echo>OMG</echo>
-									</tasks>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-
-				</plugins>
 			</build>
+			
 			<activation>
-
 
 				<property>
 					<name>systemttest unittest</name>
 				</property>
-
-
-
+				
 			</activation>
 
 
@@ -271,28 +206,6 @@
 		<profile>
 			<id>unittest</id>
 			<build>
-				<plugins>
-
-
-					<plugin>
-						<artifactId>maven-antrun-plugin</artifactId>
-						<executions>
-							<execution>
-								<phase>generate-resources</phase>
-								<goals>
-									<goal>run</goal>
-								</goals>
-								<configuration>
-									<tasks>
-										<echo>HALLO</echo>
-									</tasks>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-
-
-				</plugins>
 			</build>
 		</profile>
 
