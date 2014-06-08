@@ -1,5 +1,5 @@
 package seleniumTest.webDriver;
 
-public interface URL {
-	String url = "http://localhost:55555/IOTaskSchedulerWebAppTest/static/gui/index.html";
+public class URL {
+	public static final String url = "http://localhost:55555/IOTaskSchedulerWebAppTest/static/gui/index.html";
 }

@@ -15,28 +15,18 @@
 	<dependencies>
 
 
-
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-chrome-driver</artifactId>
-			<version>2.41.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-firefox-driver</artifactId>
-			<version>2.41.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-safari-driver</artifactId>
-			<version>2.41.0</version>
-		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-support</artifactId>
 			<version>2.41.0</version>
 		</dependency>
 
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>2.41.0</version>
+		</dependency>
 
 
 	</dependencies>
@@ -113,6 +103,8 @@
 								<!-- <include>**/Chrome*IT.java</include> -->
 								<!-- <include>**/Safari*IT.java</include> -->
 							</includes>
+
+							<skipTests>false</skipTests>
 						</configuration>
 						<executions>
 							<execution>

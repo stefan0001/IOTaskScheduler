@@ -80,11 +80,6 @@
 				</plugins>
 			</build>
 
-			<activation>
-				<property>
-					<name>unittest</name>
-				</property>
-			</activation>
 
 		</profile>
 
