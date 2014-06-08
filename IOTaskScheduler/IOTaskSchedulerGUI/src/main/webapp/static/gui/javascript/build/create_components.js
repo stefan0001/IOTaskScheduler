@@ -94,3 +94,10 @@ function buildModalThreeHeader(header) {
 	}
 	h3.appendChild(document.createTextNode(header));
 }
+
+function deleteChildnodes(parentNode) {
+	var length = parentNode.childNodes.length;
+	for(var i = 0; i < length; i++) {
+		parentNode.removeChild(parentNode.firstChild);
+	}
+}

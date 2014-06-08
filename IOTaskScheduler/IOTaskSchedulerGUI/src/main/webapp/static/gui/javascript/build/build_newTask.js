@@ -107,11 +107,11 @@ function createTimeTask(radio) {
     });
 	
 	var input2 = createSelect("1", "taskIntervall");
-	var option1 = createOption("Jede Stunde");
-	var option2 = createOption("Jeden Tag");
+	var option1 = createOption(language.everyHour);
+	var option2 = createOption(language.everyDay);
 	option2.setAttribute("checked", "true");
-	var option3 = createOption("Jede Woche");
-	var option4 = createOption("Zwei Wochen");
+	var option3 = createOption(language.everyWeek);
+	var option4 = createOption(language.everyTwoWeeks);
 
 	input2.appendChild(option1);
 	input2.appendChild(option2);
@@ -136,8 +136,8 @@ function createEventTask(radio) {
 	}
 	
 	if(taskForm.childNodes.length == 4) {
-		var input1 = createButton("btn btn-default", "newEvent", "newTaskNewEventButton", "neues Event", "margin-right:6%; width:21%;", "newTaskNewEvent();", "", "")
-		var input2 = createButton("btn btn-default", "selectEvent", "newTaskSelectEventButton", "Event auswählen", "width:21%;", "interaction.getAllEvent();", "modal", "#modalTwo")
+		var input1 = createButton("btn btn-default", "newEvent", "newTaskNewEventButton", language.newEvent, "margin-right:6%; width:21%;", "newTaskNewEvent();", "", "")
+		var input2 = createButton("btn btn-default", "selectEvent", "newTaskSelectEventButton", language.selectEvent, "width:21%;", "interaction.getAllEvent();", "modal", "#modalTwo")
 		
 		var p1 = document.createElement("p");
 		p1.appendChild(input1);
@@ -151,15 +151,15 @@ function createEventTask(radio) {
 	Create a new Issue when create a Task
 **/
 function createNewIssue(showIssue, exist) {
-	var button1 = createButton("btn btn-default", "", "stopNewIssueForNewTaskButton", "Abbrechen", "", "", "", "");
+	var button1 = createButton("btn btn-default", "", "stopNewIssueForNewTaskButton", language.cancel, "", "", "", "");
 	button1.setAttribute("data-dismiss", "modal");
-	var button2 = createButton("btn btn-primary", "", "saveNewIssueForNewTaskButton", "Speichern", "", showIssue, "", "");
+	var button2 = createButton("btn btn-primary", "", "saveNewIssueForNewTaskButton", language.save, "", showIssue, "", "");
 	if(exist == true) {
-		buildModalThreeHeader("Neues Issue");
+		buildModalThreeHeader(language.newIssue);
 		buildModalThreeFooter(button1, button2);
 		var body = document.getElementById("modalThreeBody");
 	} else {
-		buildModalTwoHeader("Neues Issue");
+		buildModalTwoHeader(language.newIssue);
 		buildModalTwoFooter(button1, button2);
 		var body = document.getElementById("modalTwoBody");
 	}
@@ -168,8 +168,8 @@ function createNewIssue(showIssue, exist) {
 	}
 	var form = document.createElement("form");
 	form.setAttribute("name", "newIssueForTaskFormular");
-	var textfield = createTextField("issueName", "", "Name", "newIssueNameForTask", "");
-	var input2 = createTextarea("IssueDescription", "Beschreibung", "issueDescription", "textarea", "4");
+	var textfield = createTextField("issueName", "", language.name, "newIssueNameForTask", "");
+	var input2 = createTextarea("IssueDescription", language.description, "issueDescription", "textarea", "4");
 	var select = createSelect("1", "issueType");
 	select.setAttribute("id", "newIssueTypForTask");
 	select.setAttribute("class", "taskeingabe");
@@ -276,7 +276,7 @@ function newTaskNewEvent() {
 		}
 	}
 	if(issueForm.childNodes.length == 5) {	
-		var textfield = createTextField("newEventName", "", "Name", "", "");
+		var textfield = createTextField("newEventName", "", language.name, "", "");
 		var p1 = document.createElement("p");
 		p1.setAttribute("id", "newEventNameParagraph");
 		p1.appendChild(textfield);
@@ -300,26 +300,26 @@ function selectIssueInModal() {
  * build Modal to select Issues for new task
  */
 function buildSelectIssueModal(data, existTask, timeTask) {
-	var button1 = createButton("btn btn-default", "", "stopSelectIssueForTask", "Abbrechen", "", "", "", "");
+	var button1 = createButton("btn btn-default", "", "stopSelectIssueForTask", language.cancel, "", "", "", "");
 	button1.setAttribute("data-dismiss", "modal");
 	if(existTask == true) {
 		if(timeTask == true)
-			var button2 = createButton("btn btn-primary", "", "stopSelectedIssueForExistTaskButton", "Speichern", "", "saveSelectedIssuesForExistingTimeTask();", "", "");
+			var button2 = createButton("btn btn-primary", "", "stopSelectedIssueForExistTaskButton", language.save, "", "saveSelectedIssuesForExistingTimeTask();", "", "");
 		else 
-			var button2 = createButton("btn btn-primary", "", "saveSelectedIssueForExistTaskButton", "Speichern", "", "saveSelectedIssuesForExistingEventTask();", "", "");
+			var button2 = createButton("btn btn-primary", "", "saveSelectedIssueForExistTaskButton", language.save, "", "saveSelectedIssuesForExistingEventTask();", "", "");
 	} else if(existTask == false) {
-		var button2 = createButton("btn btn-primary", "", "stopSelectIssueForNewTaskButton", "Speichern", "", "createSelectedIssues();", "", "");
+		var button2 = createButton("btn btn-primary", "", "stopSelectIssueForNewTaskButton", language.save, "", "createSelectedIssues();", "", "");
 	} else {
-		var button2 = createButton("btn btn-primary", "", "saveSelectIssueForNewTaskButton", "Speichern", "", "saveSelectedIssues();", "", "");
+		var button2 = createButton("btn btn-primary", "", "saveSelectIssueForNewTaskButton", language.save, "", "saveSelectedIssues();", "", "");
 	}
 	if(existTask == true) {
 		var body = document.getElementById("modalThreeBody");
-		buildModalThreeHeader("Issue ausw\u00e4hlen");
+		buildModalThreeHeader(language.selectIssue);
 		buildModalThreeFooter(button1, button2);
 		$("#modalThree").modal("show");
 	} else {
 		var body = document.getElementById("modalTwoBody");
-		buildModalTwoHeader("Issue ausw\u00e4hlen");
+		buildModalTwoHeader(language.selectIssue);
 		buildModalTwoFooter(button1, button2);
 		$("#modalTwo").modal("show");
 	}
@@ -328,8 +328,8 @@ function buildSelectIssueModal(data, existTask, timeTask) {
 	}
 	var div = document.createElement("div");
 	div.setAttribute("style", "margin-bottom:20px;");
-	var filterInput = createTextField("filterIssueDraftForTask", "margin-right:10px;", "Issue Name", "filterIssueDraftForTask", "");
-	var submitButton = createButton("btn btn-default", "filterIssueDraftForTask", "", "Suchen", "", "filterIssueDrafts("+existTask+");", "", "");
+	var filterInput = createTextField("filterIssueDraftForTask", "margin-right:10px;", "Issue "+language.name, "filterIssueDraftForTask", "");
+	var submitButton = createButton("btn btn-default", "filterIssueDraftForTask", "", language.search, "", "filterIssueDrafts("+existTask+");", "", "");
 	div.appendChild(filterInput);
 	div.appendChild(submitButton);
 	body.appendChild(div);
@@ -351,10 +351,10 @@ function buildSelectIssueModal(data, existTask, timeTask) {
 	th4.setAttribute("width", "12%");
 	th5.setAttribute("width", "16%");
 	th1.appendChild(document.createTextNode("#"));
-	th2.appendChild(document.createTextNode("Name"));
-	th3.appendChild(document.createTextNode("Beschreibung"));
-	th5.appendChild(document.createTextNode("Typ"));
-	th4.appendChild(document.createTextNode("ausw\u00e4hlen"));
+	th2.appendChild(document.createTextNode(language.name));
+	th3.appendChild(document.createTextNode(language.description));
+	th5.appendChild(document.createTextNode(language.type));
+	th4.appendChild(document.createTextNode(language.select));
 	row.appendChild(th1);
 	row.appendChild(th2);
 	row.appendChild(th3);
@@ -414,15 +414,15 @@ function selectEventInModal(data, overview) {
 		button1.setAttribute("data-dismiss", "modal");
 		buildModalOneFooter(button1);
 		var body = document.getElementById("modalOneBody");
-		buildModalOneHeader("Event \u00dcbersicht");
+		buildModalOneHeader(language.eventOverview);
 		$("#modalOne").modal("show");
 	} else {
-		var button1 = createButton("btn btn-default", "", "stopSelectEventForNewTaskButton", "Abbrechen", "", "", "", "");
+		var button1 = createButton("btn btn-default", "", "stopSelectEventForNewTaskButton", language.cancel, "", "", "", "");
 		button1.setAttribute("data-dismiss", "modal");
-		var button2 = createButton("btn btn-primary", "", "saveSelectEventForNewTaskButton", "Speichern", "", "saveSelectedEventForEventTask();", "", "");
+		var button2 = createButton("btn btn-primary", "", "saveSelectEventForNewTaskButton", language.save, "", "saveSelectedEventForEventTask();", "", "");
 		buildModalTwoFooter(button1, button2);
 		var body = document.getElementById("modalTwoBody");
-		buildModalTwoHeader("Event ausw\u00e4hlen");
+		buildModalTwoHeader(language.selectEvent);
 		$("#modalTwo").modal("show");
 	}
 	for(var i = body.childNodes.length; i > 0; i--) {
@@ -442,16 +442,16 @@ function selectEventInModal(data, overview) {
 		th1.setAttribute("width", "60%");
 		th2.setAttribute("width", "30%");
 		th3.setAttribute("width", "10%");
-		th1.appendChild(document.createTextNode("Name"));
+		th1.appendChild(document.createTextNode(language.name));
 		th2.appendChild(document.createTextNode("URL"));
-		th3.appendChild(document.createTextNode("ausl\u00f6sen"));
+		th3.appendChild(document.createTextNode(language.trigger));
 	} else {
 		th1.setAttribute("width", "15%");
 		th2.setAttribute("width", "75%");
 		th3.setAttribute("width", "10%");
 		th1.appendChild(document.createTextNode("#"));
-		th2.appendChild(document.createTextNode("Name"));
-		th3.appendChild(document.createTextNode("ausw\u00e4hlen"));
+		th2.appendChild(document.createTextNode(language.name));
+		th3.appendChild(document.createTextNode(language.select));
 	}
 	row.appendChild(th1);
 	row.appendChild(th2);
@@ -489,10 +489,10 @@ function selectEventInModal(data, overview) {
  */
 function emptyNewTaskModal() {
 	var body = document.getElementById("modalOneBody");
-	buildModalOneHeader("Neuer Task");
-	var button1 = createButton("btn btn-default", "", "stopNewTaskButton", "Abbrechen", "", "", "", "");
+	buildModalOneHeader(language.newTask);
+	var button1 = createButton("btn btn-default", "", "stopNewTaskButton", language.cancel, "", "", "", "");
 	button1.setAttribute("data-dismiss", "modal");
-	var button2 = createButton("btn btn-primary", "", "saveNewTaskButton", "Speichern", "", "createNewTask();", "", "");
+	var button2 = createButton("btn btn-primary", "", "saveNewTaskButton", language.save, "", "createNewTask();", "", "");
 	buildModalOneFooter(button1, button2);
 	for(var i = body.childNodes.length; i > 0; i--) {
 		body.removeChild(body.lastChild);
@@ -522,8 +522,8 @@ function emptyNewTaskModal() {
 	p1.appendChild(input1);
 	var button1 = createRadioButton("tasktype", "Timetask", "radioNewTimeTask", "createTimeTask(this);");
 	var button2 = createRadioButton("tasktype", "Eventask", "radioNewEventTask", "createEventTask(this);");
-	var label1 = createLabel("radioNewTimeTask", document.createTextNode("Zeitbasiert"));
-	var label2 = createLabel("radioNewEventTask", document.createTextNode("Eventbasiert"));
+	var label1 = createLabel("radioNewTimeTask", document.createTextNode(language.timebased));
+	var label2 = createLabel("radioNewEventTask", document.createTextNode(language.eventbased));
 	p3.appendChild(button1);
 	p3.appendChild(label1);
 	p3.appendChild(button2);
@@ -541,8 +541,8 @@ function emptyNewTaskModal() {
 	h2.appendChild(document.createTextNode("Issue"));
 	h2.setAttribute("style", "margin-top: 10px;");
 	
-	var button3 = createButton("btn btn-default", "newIssue", "selectNewIssue", "Neues Issue", "margin-right:6%; width:21%;", "createNewIssue('saveNewIssueForTask()');", "modal", "#modalTwo");
-	var button4 =createButton("btn btn-default", "selectIssue", "selectSelectIssue", "Issue ausw\u00e4hlen", "width:21%;", "interaction.getAllIssueDraft();", "modal", "#modalTwo");
+	var button3 = createButton("btn btn-default", "newIssue", "selectNewIssue", language.newIssue, "margin-right:6%; width:21%;", "createNewIssue('saveNewIssueForTask()');", "modal", "#modalTwo");
+	var button4 =createButton("btn btn-default", "selectIssue", "selectSelectIssue", language.selectIssue, "width:21%;", "interaction.getAllIssueDraft();", "modal", "#modalTwo");
 	
 	p4.appendChild(button3);
 	p4.appendChild(button4);
@@ -704,13 +704,13 @@ function createNewTask() {
 		var firstDate = new Date(year, month-1, day, hour, min, 0);
 		var firstDateInMilliSeconds = firstDate.getTime();
 		var intervall = document.TaskInput.taskIntervall.value;
-		if(intervall == "Jede Stunde") {
+		if(intervall == "Jede Stunde" || intervall == "hourly") {
 			var stdIntervall = 3600;
-		} else if(intervall == "Jeden Tag") {
+		} else if(intervall == "Jeden Tag" || intervall == "daily") {
 			var stdIntervall = 86400;
-		} else if(intervall == "Jede Woche") {
+		} else if(intervall == "Jede Woche" || intervall == "weekly") {
 			var stdIntervall = 604800;
-		} else if(intervall == "Zwei Wochen") {
+		} else if(intervall == "Zwei Wochen" || intervall == "every two weeks") {
 			var stdIntervall = 1209600;
 		}
 		if(name != "" && time != "" && date != "") {
