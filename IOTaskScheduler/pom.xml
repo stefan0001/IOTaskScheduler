@@ -77,6 +77,11 @@
 					<groupId>commons-logging</groupId>
 					<artifactId>commons-logging</artifactId>
 				</exclusion>
+
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 
@@ -165,6 +170,15 @@
 		</dependency>
 
 
+
+		<!-- FOR JUNIT TESTS A SERVLET CONTEXT IS NEEDED -->
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 	<modules>
 		<module>IOTaskSchedulerServer</module>
@@ -190,13 +204,13 @@
 			<build>
 
 			</build>
-			
+
 			<activation>
 
 				<property>
 					<name>systemttest unittest</name>
 				</property>
-				
+
 			</activation>
 
 
