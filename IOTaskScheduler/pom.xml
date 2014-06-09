@@ -165,6 +165,16 @@
 		</dependency>
 
 
+
+		<!-- PROVIDED -->
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+
 	</dependencies>
 	<modules>
 		<module>IOTaskSchedulerServer</module>
@@ -190,13 +200,13 @@
 			<build>
 
 			</build>
-			
+
 			<activation>
 
 				<property>
 					<name>systemttest unittest</name>
 				</property>
-				
+
 			</activation>
 
 
