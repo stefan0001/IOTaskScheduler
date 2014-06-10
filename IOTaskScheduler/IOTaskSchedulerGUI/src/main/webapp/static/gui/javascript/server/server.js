@@ -27,12 +27,12 @@ server.postNewTimeTask = function(json) {
 		url: this.url + "timetask",
 		data: json,
 		complete: function(data) {
-			createIssueForTimeTask(data.responseText);
-			display.showResponse("Der Time Task wurde erstellt");
-		},
-		error: function() {
-			display.showResponse("Der Time Task wurde NICHT erstellt");
-		}	
+			if(data.status == 200) {
+				createIssueForTimeTask(data.responseText);
+			} else {
+				display.showResponse("Der Time Task konnte nicht erstellt werden", false);
+			}
+		}
 	})
 }
 
@@ -42,6 +42,7 @@ server.postNewTimeTask = function(json) {
  */
 server.getAllTimeTask = function() {
 	$.ajax({
+		type: "GET",
 		dataType: "json",
 		url: this.url + "timetask",
 		data: "",
@@ -57,6 +58,7 @@ server.getAllTimeTask = function() {
  */
 server.getTimeTaskById = function(id) {
 	$.ajax({
+		type: "GET",
 		dataType: "json",
 		url: this.url + "timetask/"+id,
 		data: "",
@@ -77,11 +79,9 @@ server.updateTimeTask = function(id, json) {
 		url: this.url + "timetask/"+id,
 		data: json,
 		complete: function(data) {
-			display.showResponse("Der Time Task wurde bearbeitet");
-		},
-		error: function() {
-			display.showResponse("Der Time Task wurde NICHT bearbeitet");
-		}	
+			if(data.status == 200) display.showResponse("Der Time Task wurde bearbeitet", true);
+			else display.showResponse("Der Time Task konnte nicht bearbeitet werden", false);
+		}
 	})
 }
 
@@ -96,13 +96,12 @@ server.deleteTimeTask = function(id, selectedDay) {
 		url: this.url + "timetask/"+id,
 		data: "",
 		complete: function(data) {
-			server.getAllTimeTask();
-			$('#showTasksByDate').modal('hide');
-			display.showResponse("Der Task wurde gel\u00f6scht");
-		},
-		error: function() {
-			display.showResponse("Der Task wurde NICHT gel\u00f6scht");
-		}	
+			if(data.status == 200) {
+				server.getAllTimeTask();
+				$('#showTasksByDate').modal('hide');
+				display.showResponse("Der Task wurde gel\u00f6scht");
+			} else display.showResponse("Der Task konnte NICHT gel\u00f6scht werden", false);
+		}
 	})
 }
 
@@ -111,6 +110,7 @@ server.deleteTimeTask = function(id, selectedDay) {
  */
 server.getIssuesOfTimeTask = function(id) {
 	$.ajax({
+		type: "GET",
 		dataType: "json",
 		url: this.url + "timetask/"+id+"/issuedraft",
 		data: "",
@@ -131,12 +131,11 @@ server.removeTimeTaskIssueConnection = function(issueId, taskId) {
 		url: this.url + "timetask/"+taskId+"/issuedraft/"+issueId,
 		data: "",
 		complete: function(data) {
-			server.getIssuesOfTimeTask(taskId);
-			display.showResponse("Die Verbindung wurde gel\u00f6scht");
-		},
-		error: function() {
-			display.showResponse("Die Verbindung wurde NICHT gel\u00f6scht");
-		}	
+			if(data.status == 200) {
+				server.getIssuesOfTimeTask(taskId);
+				display.showResponse("Die Verbindung wurde gel\u00f6scht", true);
+			} else display.showResponse("Die Verbindung konnte nicht gel\u00f6scht werden", false);
+		}
 	})
 }
 
@@ -152,12 +151,10 @@ server.postNewEventTask = function(eventId, json) {
 		url: this.url + "event/"+eventId+"/eventtask",
 		data: json,
 		complete: function(data) {
-			createIssueForEventTask(data.responseText);
-			display.showResponse("Der Event Task wurde erstellt");
-		},
-		error: function() {
-			display.showResponse("Der Event Task wurde NICHT erstellt");
-		}	
+			if(data.status == 200) {
+				createIssueForEventTask(data.responseText);
+			} else display.showResponse("Der Event Task konnte nicht erstellt werden", false);
+		}
 	})
 }
 
@@ -166,6 +163,7 @@ server.postNewEventTask = function(eventId, json) {
  */
 server.getAllEventTask = function(showTask) {
 	$.ajax({
+		type: "GET",
 		dataType: "json",
 		url: this.url + "eventtask",
 		data: "",
@@ -180,6 +178,7 @@ server.getAllEventTask = function(showTask) {
  */
 server.getEventTaskById = function(id) {
 	$.ajax({
+		type: "GET",
 		dataType: "json",
 		url: this.url + "eventtask/"+id,
 		data: "",
@@ -200,11 +199,9 @@ server.updateEventTask = function(id, json) {
 		url: this.url + "eventtask/"+id,
 		data: json,
 		complete: function(data) {
-			display.showResponse("Der Event Task wurde bearbeitet");
-		},
-		error: function() {
-			display.showResponse("Der Event Task wurde NICHT bearbeitet");
-		}	
+			if(data.status == 200) display.showResponse("Der Event Task wurde bearbeitet", true);
+			else display.showResponse("Der Event Task kontne nicht bearbeitet werden", false);
+		}
 	})
 }
 
@@ -219,12 +216,11 @@ server.deleteEventTask = function(id) {
 		url: this.url + "eventtask/"+id,
 		data: "",
 		complete: function(data) {
-			interaction.getAllEventTask();
-			display.showResponse("Der Task wurde gel\u00f6scht");
-		},
-		error: function() {
-			display.showResponse("Der Task wurde NICHT gel\u00f6scht");
-		}	
+			if(data.status == 200) {
+				interaction.getAllEventTask();
+				display.showResponse("Der Task wurde gel\u00f6scht", true);
+			} else display.showResponse("Der Task konnte nicht gel\u00f6scht werden", false);
+		}
 	})
 }
 
@@ -233,6 +229,7 @@ server.deleteEventTask = function(id) {
  */
 server.getIssuesOfEventTask = function(id) {
 	$.ajax({
+		type: "GET",
 		dataType: "json",
 		url: this.url + "eventtask/"+id+"/issuedraft",
 		data: "",
@@ -253,12 +250,11 @@ server.removeEventTaskIssueConnection = function(issueId, taskId) {
 		url: this.url + "eventtask/"+taskId+"/issuedraft/"+issueId,
 		data: "",
 		complete: function(data) {
-			server.getIssuesOfEventTask(taskId);
-			display.showResponse("Die Verbindung wurde gel\u00f6scht");
-		},
-		error: function() {
-			display.showResponse("Die Verbindung wurde NICHT gel\u00f6scht");
-		}	
+			if(data.status == 200) {
+				server.getIssuesOfEventTask(taskId);
+				display.showResponse("Die Verbindung wurde gel\u00f6scht");
+			} else display.showResponse("Die Verbindung konnte nicht gel\u00f6scht werden");
+		}
 	})
 }
 
@@ -276,10 +272,11 @@ server.removeEventTaskIssueConnection = function(issueId, taskId) {
  */
 server.fetchAllIssueEntities = function( showData ){
 	$.ajax({
-	  dataType: "json",
-	  url: this.url + "issueentity",
-	  data: "",
-	  success: showData
+		type: "GET",
+		dataType: "json",
+		url: this.url + "issueentity",
+		data: "",
+	 	success: showData
 	});
 };
 
@@ -295,12 +292,11 @@ server.createIssueEntityFor = function(id) {
 		url: this.url + "issuedraft/"+id+"/issueentity",
 		data: json,
 		complete: function(data) {
-			cleanContainerForGetIssueEntity();
-			server.fetchAllIssueEntities(display.showData);
-			display.showResponse("Das Issue wurde erstellt");
-		},
-		error: function() {
-			display.showResponse("Das Issue wurde NICHT erstellt");
+			if(data.status == 200) {
+				cleanContainerForGetIssueEntity();
+				server.fetchAllIssueEntities(display.showData);
+				display.showResponse("Das Issue wurde erstellt");
+			} else display.showResponse("Das Issue konnte nicht erstellt werden");
 		}
 	})
 }
@@ -315,13 +311,12 @@ server.updateIssueentity = function(id, json) {
 		contentType: "application/json",
 		url: this.url + "issueentity/"+id,
 		data: json,
-		complete: function() {
-			interaction.displayAllIssueEntities();
-			display.showResponse("Das Issue wurde bearbeitet");
-		},
-		error: function() {
-			display.showResponse("Das Issue wurde NICHT bearbeitet");
-		}	
+		complete: function(data) {
+			if(data.status == 200) {
+				interaction.displayAllIssueEntities();
+				display.showResponse("Das Issue wurde bearbeitet", true);
+			} else display.showResponse("Das Issue konnte nicht bearbeitet werden", false);
+		}
 	});
 }
 
@@ -330,6 +325,7 @@ server.updateIssueentity = function(id, json) {
  */
 server.getIssueEntityById = function(id, buildEditIssue) {
 	$.ajax({
+		type: "GET",
 		dataType: "json",
 		url: this.url + "issueentity/"+id,
 		data: "",
@@ -342,11 +338,12 @@ server.getIssueEntityById = function(id, buildEditIssue) {
  */
 server.filterIssueEntitys = function(json, showData) {
 	$.ajax({
-		  dataType: "json",
-		  url: this.url + "issueentity?filter="+json,
-		  data: "",
-		  success: showData
-		});
+		type: "GET",
+		dataType: "json",
+		url: this.url + "issueentity?filter="+json,
+		data: "",
+		success: showData
+	});
 }
 
 /**
@@ -360,12 +357,11 @@ server.deleteIssueEntity = function(id) {
 		url: this.url + "issueentity/"+id,
 		data: "",
 		complete: function(data) {
-			server.fetchAllIssueEntities(display.showData);
-			display.showResponse("Das Issue wurde gel\u00f6scht");
-		},
-		error: function() {
-			display.showResponse("Das Issue wurde NICHT gel\u00f6scht");
-		}	
+			if(data.status == 200) {
+				server.fetchAllIssueEntities(display.showData);
+				display.showResponse("Das Issue wurde gel\u00f6scht", true);
+			} else display.showResponse("Das Issue konnte nicht gel\u00f6scht werden", false);
+		}
 	})
 }
 
@@ -384,12 +380,13 @@ server.deleteIssueEntity = function(id) {
  */
 server.fetchAllIssueDrafts = function(  ){
 	$.ajax({
-	  dataType: "json",
-	  url: this.url + "issuedraft",
-	  data: "",
-	  success: function(data) {
-		  return data;
-	  }
+		type: "GET",
+		dataType: "json",
+		url: this.url + "issuedraft",
+		data: "",
+		success: function(data) {
+			return data;
+		}
 	});
 };
 
@@ -404,8 +401,10 @@ server.postNewIssueDraft = function(json) {
 		url: this.url + "issuedraft",
 		data: json,
 		complete: function(data) {
-			var json = jQuery.parseJSON(data.responseText);
-			interaction.createIssueEntity(json.ID);
+			if(data.status == 200) {
+				var json = jQuery.parseJSON(data.responseText);
+				interaction.createIssueEntity(json.ID);
+			} else display.showResponse("Das Issue konnte nicht erstellt werden", false);
 		}
 	})
 }
@@ -421,13 +420,12 @@ server.updateIssuedraft = function(id, json) {
 		url: this.url + "issuedraft/"+id,
 		data: json,
 		complete: function(data) {
-			cleanContainerForGetIssueEntity();
-			server.fetchAllIssueEntities(display.showData);
-			display.showResponse("Das Issue wurde bearbeitet");
-		},
-		error: function() {
-			display.showResponse("Das Issue wurde NICHT bearbeitet");
-		}		
+			if(data.status == 200) {
+				cleanContainerForGetIssueEntity();
+				server.fetchAllIssueEntities(display.showData);
+				display.showResponse("Das Issue wurde bearbeitet", true);
+			} else display.showResponse("Das Issue konnte nicht bearbeitet werden", false);
+		}	
 	});
 }
 
@@ -443,7 +441,8 @@ server.putNewIssueDraftForTimeTask = function(taskId, json, existTask) {
 		url: this.url + "issuedraft",
 		data: json,
 		complete: function(data) {
-			var responseJson = jQuery.parseJSON(data);
+			console.log(data);
+			var responseJson = jQuery.parseJSON(data.responseText);
 			var post = JSON.stringify({ID: responseJson.ID});
 			$.ajax({
 				type: "POST",
@@ -453,7 +452,13 @@ server.putNewIssueDraftForTimeTask = function(taskId, json, existTask) {
 				data: post,
 				complete: function(data) {
 					if(existTask == true) {
-						server.getIssuesOfTimeTask(taskId);
+						if(data.status == 200) {
+							server.getIssuesOfTimeTask(taskId);
+							display.showResponse("Das Issue wurde an den Time Task angehängt", true);
+						} else display.showResponse("Das Issue konnte nicht an den Time Task angehängt werden", true);
+					} else {
+						if(data.status == 200) display.showResponse("Der Time Task wurde erstellt", true);
+						else display.showResponse("Der Time Task konnte nicht erstellt werden", false);
 					}
 				}
 			})
@@ -473,7 +478,8 @@ server.putNewIssueDraftForEventTask = function(taskId, json, existTask) {
 		url: this.url + "issuedraft",
 		data: json,
 		complete: function(data) {
-			var responseJson = jQuery.parseJSON(data);
+			console.log(data);
+			var responseJson = jQuery.parseJSON(data.responseText);
 			var post = JSON.stringify({ID: responseJson.ID});
 			$.ajax({
 				type: "POST",
@@ -483,7 +489,13 @@ server.putNewIssueDraftForEventTask = function(taskId, json, existTask) {
 				data: post,
 				complete: function(data) {
 					if(existTask == true) {
-						server.getIssuesOfEventTask(taskId);
+						if(data.status == 200) {
+							server.getIssuesOfEventTask(taskId);
+							display.showResponse("Das Issue wurde an den Event Task angehängt", true);
+						} else display.showResponse("Das Issue konnte nicht an den Event Task angehängt werden", true);
+					} else {
+						if(data.status == 200) display.showResponse("Der Event Task wurde erstellt", true);
+						else display.showResponse("Der Event Task konnte nicht erstellt werden", false);
 					}
 				}
 			})
@@ -496,6 +508,7 @@ server.putNewIssueDraftForEventTask = function(taskId, json, existTask) {
  */
 server.getAllIssueDraft = function(existTask, timeTask) {
 	$.ajax({
+		type: "GET",
 		dataType: "json",
 		url: this.url + "issuedraft",
 		data: "",
@@ -517,12 +530,14 @@ server.postExistentIssueDraftForEventTask = function(id, json, existTask) {
 		data: json,
 		complete: function(data) {
 			if(existTask == "false") {
-				server.getIssuesOfEventTask(id);
+				if(data.status == 200) {
+					display.showResponse("Das Issue wurde an den Event Task geh\u00e4ngt", true);
+					server.getIssuesOfEventTask(id);
+				} else display.showResponse("Das Issue konnte nicht an den Event Task geh\u00e4ngt werden", false);
+			} else {
+				if(data.status == 200) display.showResponse("Der Event Task wurde erstellt", true);
+				else display.showResponse("Der Event Task konnte nicht erstellt werden", false);
 			}
-			display.showResponse("Das Issue wurde an den Task geh\u00e4ngt");
-		},
-		error: function() {
-			display.showResponse("Das Issue wurde NICHT an den Task geh\u00e4ngt");
 		}	
 	})
 }
@@ -539,13 +554,15 @@ server.postExistentIssueDraftForTimeTask = function(id, json, existTask) {
 		data: json,
 		complete: function(data) {
 			if(existTask == "false") {
-				server.getIssuesOfTimeTask(id);
+				if(data.status == 200) {
+					display.showResponse("Das Issue wurde an den Time Task geh\u00e4ngt", true);
+					server.getIssuesOfTimeTask(id);
+				} else display.showResponse("Das Issue konnte nicht an den Time Task geh\u00e4ngt werden", false);
+			} else {
+				if(data.status == 200) display.showResponse("Der Time Task wurde erstellt", true);
+				else display.showResponse("Der Time Task konnte nicht erstellt werden", false);
 			}
-			display.showResponse("Das Issue wurde an den Task geh\u00e4ngt");
-		},
-		error: function() {
-			display.showResponse("Das Issue wurde NICHT an den Task geh\u00e4ngt");
-		}	
+		}
 	})
 }
 
@@ -554,6 +571,7 @@ server.postExistentIssueDraftForTimeTask = function(id, json, existTask) {
  */
 server.filterIssueDrafts = function(json, existTask) {
 	$.ajax({
+		type: "GET",
 		dataType: "json",
 		url: this.url + "issuedraft?filter="+json,
 		data: "",
@@ -583,12 +601,10 @@ server.createNewEvent = function(json) {
 		url: this.url + "event",
 		data: json,
 		complete: function(data) {
-			createTaskForEvent(data.responseText);
-			display.showResponse("Das Event wurde erstellt");
-		},
-		error: function() {
-			display.showResponse("Das Event wurde NICHT erstellt");
-		}	
+			if(data.status == 200) {
+				createTaskForEvent(data.responseText);
+			} else display.showResponse("Das Event konnte nicht erstellt werden");
+		}
 	})
 }
 
@@ -597,6 +613,7 @@ server.createNewEvent = function(json) {
  */
 server.getAllEvent = function(overview) {
 	$.ajax({
+		type: "GET",
 		dataType: "json",
 		url: this.url + "event",
 		data: "",
@@ -616,13 +633,13 @@ server.triggerEvent = function(id) {
 		contentType: "application/json",
 		url: this.url + "event/"+id+"/trigger",
 		data: "",
-		complete: function() {
-			server.fetchAllIssueEntities(display.showData);
-			display.showResponse("Das Event wurde ausgel\u00f6st");
-		},
-		error: function() {
-			display.showResponse("Das Event wurde NICHT ausgel\u00f6st");
-		}	
+		complete: function(data) {
+			if(data.status == 200) {
+				server.fetchAllIssueEntities(display.showData);
+				display.showResponse("Das Event wurde ausgel\u00f6st", true);
+			} else display.showResponse("Das Event konnte nicht ausgel\u00f6st werden", false);
+			
+		}
 	})
 }
 
