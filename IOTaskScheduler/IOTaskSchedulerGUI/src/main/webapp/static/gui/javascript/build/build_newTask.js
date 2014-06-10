@@ -759,15 +759,10 @@ function createNewTask() {
  * @param data the Event
  */
 function createTaskForEvent(data) {
-	var idAt = data.search(/ID/);
-	var id = data.slice(idAt+4, idAt+6);
-	var idFinal = id;
-	if(id.charAt(1) == ",") {
-		idFinal = id.slice(0, 1);
-	}
+	var responseJson = jQuery.parseJSON(data);
 	var name = document.TaskInput.TaskName.value;
 	var json = JSON.stringify({name: name});
-	interaction.createNewEventTask(idFinal, json);
+	interaction.createNewEventTask(responseJson.ID, json);
 }
 
 /**
@@ -775,12 +770,7 @@ function createTaskForEvent(data) {
  * @param data the Time Task
  */
 function createIssueForTimeTask(data) {
-	var idAt = data.search(/ID/);
-	var slice = data.slice(idAt+4, idAt+6);
-	var id = slice;
-	if(slice.charAt(1) == ",") {
-		id = slice.slice(0, 1);
-	}
+	var responseJson = jQuery.parseJSON(data);
 	var form = document.getElementById("IssueInput");
 	var tbody = document.getElementById("newIssuesForTaskTableBody");
 	if(document.getElementById("newIssuesForTaskTableBody")) {
@@ -791,7 +781,7 @@ function createIssueForTimeTask(data) {
 				var des = tbody.childNodes[i].childNodes[1].firstChild.nodeValue;
 				var type = tbody.childNodes[i].childNodes[2].firstChild.nodeValue;
 				var json = JSON.stringify({issueName: name, issueDescription: des, issueType: type.toUpperCase()});
-				interaction.postNewIssueDraftForTimeTask(id, json, false);
+				interaction.postNewIssueDraftForTimeTask(responseJson.ID, json, false);
 			}
 		}
 	} else if(document.getElementById("selectedIssuesForTaskTableBody")) {
@@ -800,7 +790,7 @@ function createIssueForTimeTask(data) {
 			for(var i = 1; i < tbody.childNodes.length; i++) {
 				var issueId = tbody.childNodes[i].childNodes[0].firstChild.nodeValue;
 				var json = JSON.stringify({ID: issueId});
-				interaction.postExistentIssueDraftForTimeTask(id, json, false);
+				interaction.postExistentIssueDraftForTimeTask(responseJson.ID, json, false);
 			}
 		}
 	}
@@ -811,12 +801,7 @@ function createIssueForTimeTask(data) {
  * @param data the Event Task
  */
 function createIssueForEventTask(data) {
-	var idAt = data.search(/ID/);
-	var slice = data.slice(idAt+4, idAt+6);
-	var id = slice;
-	if(slice.charAt(1) == ",") {
-		id = slice.slice(0, 1);
-	}
+	var responseJson = jQuery.parseJSON(data);
 	var form = document.getElementById("IssueInput");
 	if(document.getElementById("newIssuesForTaskTableBody")) {
 		var tbody = document.getElementById("newIssuesForTaskTableBody");
@@ -826,7 +811,7 @@ function createIssueForEventTask(data) {
 				var des = tbody.childNodes[i].childNodes[1].firstChild.nodeValue;
 				var type = tbody.childNodes[i].childNodes[2].firstChild.nodeValue;
 				var json = JSON.stringify({issueName: name, issueDescription: des, issueType: type.toUpperCase()});
-				interaction.postNewIssueDraftForEventTask(id, json, false);
+				interaction.postNewIssueDraftForEventTask(responseJson.ID, json, false);
 			}
 		}
 	} else if(document.getElementById("selectedIssuesForTaskTableBody")) {
@@ -835,7 +820,7 @@ function createIssueForEventTask(data) {
 			for(var i = 1; i < tbody.childNodes.length; i++) {
 				var issueId = tbody.childNodes[i].childNodes[0].firstChild.nodeValue;
 				var json = JSON.stringify({ID: issueId});
-				interaction.postExistentIssueDraftForEventTask(id, json, false);
+				interaction.postExistentIssueDraftForEventTask(responseJson.ID, json, false);
 			}
 		}
 	}
