@@ -1,9 +1,8 @@
 package seleniumTest.webDriver;
 
 public class Selectors {
-	public static final String date = "/html/body/div[4]/div[3]/table/tbody/tr[2]/td[5]";//change manually
-	public static final String day = "//*[@id=\"responsiveCalendar\"]/div[3]/div[13]/a";//change manually
-
+	public static final String date = "/html/body/div[4]/div[3]/table/tbody/tr[2]/td[5]";
+	public static final String day = "//*[@id=\"responsiveCalendar\"]/div[3]/div[12]/a";
 	//overview
 	public static final String button_editTimeTask = "timeTaskOverviewButton";
 	public static final String button_editEventTask = "eventTaskOverviewButton";

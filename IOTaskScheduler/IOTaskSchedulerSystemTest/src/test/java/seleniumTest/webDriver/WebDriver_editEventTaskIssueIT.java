@@ -26,6 +26,7 @@ abstract public class WebDriver_editEventTaskIssueIT extends AbstractRequest {
 	public void beforeMethod() throws Exception {
 
 		// create a task based on event
+		Thread.sleep(1000);
 		driver.findElement(By.id(button_neuerTask)).click();
 		// fill name and description
 		Thread.sleep(1000);
@@ -88,18 +89,14 @@ abstract public class WebDriver_editEventTaskIssueIT extends AbstractRequest {
 		// compare
 		driver.navigate().refresh();
 		// open a time task
+		//open event task list
 		Thread.sleep(1000);
-		driver.findElement(By.id(button_editTimeTask)).click();
-		// select a day
-		Thread.sleep(1000);
-		driver.findElement(By.xpath(day)).click();
-		// select task to edit
+		driver.findElement(By.id(button_editEventTask)).click();
+		//select a task
 		Thread.sleep(1000);
 		driver.findElements(By.className("editIssue")).get(0).click();
 		Thread.sleep(1000);
-		// edit issue
-		driver.findElement(By.xpath("//*[@id=\"modalOneBody\"]/button"))
-				.click();
+		driver.findElement(By.xpath("//*[@id=\"modalOneBody\"]/button")).click();
 		// show issue list
 		Thread.sleep(1000);
 		driver.findElement(By.id("selectSelectIssue")).click();
