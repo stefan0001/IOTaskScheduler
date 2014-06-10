@@ -34,9 +34,9 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="org.h2.Driver" />
-		<property name="url" value="jdbc:h2:~/IOTaskScheduler" />
-		<property name="username" value="h2" />
-		<property name="password" value="h2" />
+		<property name="url" value="${server.run.database.connection}" />
+		<property name="username" value="${server.run.database.user}" />
+		<property name="password" value="${server.run.database.password}" />
 	</bean>
 
 	<!-- An dieser Stelle werden externe SQL-Skripte referenziert, die beim 

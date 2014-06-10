@@ -55,6 +55,22 @@
 		<project.spring.version>4.0.0.RELEASE</project.spring.version>
 		<project.slf4j.version>1.7.2</project.slf4j.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
+		
+		<systemtest.browser>firefox</systemtest.browser>
+
+
+		<server.test.database.connection>jdbc:h2:~/IOTaskSchedulerWebAppTest</server.test.database.connection>
+		<server.test.database.user>h2</server.test.database.user>
+		<server.test.database.password>h2</server.test.database.password>
+		
+		
+		
+		<server.run.database.connection>jdbc:h2:~/IOTaskSchedulerWebApp</server.run.database.connection>
+		<server.run.database.user>h2</server.run.database.user>
+		<server.run.database.password>h2</server.run.database.password>
+		
+		
 	</properties>
 
 	<dependencies>
@@ -197,13 +213,6 @@
 
 			</build>
 
-			<activation>
-
-				<property>
-					<name>systemttest unittest</name>
-				</property>
-
-			</activation>
 
 
 		</profile>
@@ -213,6 +222,13 @@
 			<id>unittest</id>
 			<build>
 			</build>
+			
+			<activation>
+
+				<property>
+					<name>unittest</name>
+				</property>
+			</activation>
 		</profile>
 
 
@@ -242,6 +258,8 @@
 				</property>
 			</activation>
 		</profile>
+
+
 
 	</profiles>
 </project>

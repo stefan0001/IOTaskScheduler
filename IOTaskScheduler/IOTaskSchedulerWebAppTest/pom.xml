@@ -27,14 +27,14 @@
 			<version>${project.parent.version}</version>
 			<type>war</type>
 		</dependency>
-		
-		
+
+
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
 			<version>1.9.5</version>
 		</dependency>
-		
+
 		<!-- Logging -->
 
 		<dependency>
@@ -51,8 +51,14 @@
 
 	<build>
 		<finalName>IOTaskSchedulerWebAppTest</finalName>
-
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 	</build>
+
 
 
 

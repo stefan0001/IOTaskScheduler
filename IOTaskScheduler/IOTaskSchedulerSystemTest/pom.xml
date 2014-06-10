@@ -186,9 +186,7 @@
 						<configuration>
 							<skipTests combine.self="override">false</skipTests>
 							<includes>
-								<include>**/Firefox*IT.java</include>
-								<!-- <include>**/Chrome*IT.java</include> -->
-								<!-- <include>**/Safari*IT.java</include> -->
+								<include>**/${systemtest.browser}*IT.java</include>
 							</includes>
 						</configuration>
 						<executions>

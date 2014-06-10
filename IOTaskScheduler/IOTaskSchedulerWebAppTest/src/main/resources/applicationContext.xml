@@ -13,12 +13,15 @@
             http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
             http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 
+	<!--  mocking time -->
 	<bean id="currentTimeGenerator" class="de.sep.innovativeoperation.taskscheduler.service.timetask.monitor.MockCurrentTimeGenerator" />
 	<context:component-scan base-package="de.sep.innovativeoperation.taskscheduler" />
 
 	<mvc:annotation-driven />
 
-	<!-- # Disable Tasks for Test <task:annotation-driven/> -->
+	<!-- # Disable Tasks for Test 
+	<task:annotation-driven/>
+	 -->
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
@@ -36,17 +39,16 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="org.h2.Driver" />
-		<property name="url" value="jdbc:h2:~/IOTaskScheduler" />
-		<property name="username" value="h2" />
-		<property name="password" value="h2" />
+		<property name="url" value="${server.test.database.connection}" />
+		<property name="username" value="${server.test.database.user}" />
+		<property name="password" value="${server.test.database.password}" />
 	</bean>
 
 	<!-- An dieser Stelle werden externe SQL-Skripte referenziert, die beim 
 		Starten des Containers die frisch erzeugte (und somit leere) Datenbank-Instanz 
 		befüllen. -->
 
-	<jdbc:initialize-database data-source="dataSource"
-		ignore-failures="ALL">
+	<jdbc:initialize-database data-source="dataSource" ignore-failures="ALL">
 
 
 		<jdbc:script location="classpath:00_IOTASKSCHEDULER_CLEAN.sql" />
