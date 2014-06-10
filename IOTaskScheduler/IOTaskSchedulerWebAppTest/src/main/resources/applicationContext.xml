@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:context="http://www.springframework.org/schema/context" 
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
-	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xmlns:task="http://www.springframework.org/schema/task"
 	xsi:schemaLocation="
        		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
@@ -16,19 +13,17 @@
             http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
             http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 
+	<bean id="currentTimeGenerator" class="de.sep.innovativeoperation.taskscheduler.service.timetask.monitor.MockCurrentTimeGenerator" />
 	<context:component-scan base-package="de.sep.innovativeoperation.taskscheduler" />
 
 	<mvc:annotation-driven />
 
-	<!--  
-	# Disable Tasks for Test
-	<task:annotation-driven/>
-	--> 
+	<!-- # Disable Tasks for Test <task:annotation-driven/> -->
 
-	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<tx:annotation-driven transaction-manager="transactionManager" />
 
 
-	
+
 	<!-- EntityManagerFactory -->
 	<bean id="myEmf"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -45,13 +40,14 @@
 		<property name="username" value="h2" />
 		<property name="password" value="h2" />
 	</bean>
-	
+
 	<!-- An dieser Stelle werden externe SQL-Skripte referenziert, die beim 
 		Starten des Containers die frisch erzeugte (und somit leere) Datenbank-Instanz 
 		befüllen. -->
 
-	<jdbc:initialize-database data-source="dataSource"  ignore-failures="ALL">
-	
+	<jdbc:initialize-database data-source="dataSource"
+		ignore-failures="ALL">
+
 
 		<jdbc:script location="classpath:00_IOTASKSCHEDULER_CLEAN.sql" />
 		<jdbc:script location="classpath:01_IOTASKSCHEDULER_SETUP.sql" />

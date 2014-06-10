@@ -3,7 +3,6 @@ package de.sep.innovativeoperation.taskscheduler.service.timetask.monitor;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -18,7 +17,8 @@ import de.sep.innovativeoperation.taskscheduler.service.trigger.TimeTaskTrigger;
 @Service
 @Transactional
 public class TimeTaskMonitor {
-	
+	@Autowired
+	CurrentTimeGenerator currentTimeGenerator;
 	
 	@Autowired
 	private TimeTaskTrigger trigger;
@@ -26,10 +26,9 @@ public class TimeTaskMonitor {
 	//Can't use generic cause of specific method
 	@Autowired
 	TimeTaskDAO timeTaskDAO;
+
 	
-	private Locale locale = Locale.UK;
-	private Calendar currentTime = Calendar.getInstance(locale);
-	
+
 	/**
 	 * Calculates new next fire time
 	 * @param firstFireTime of time task
@@ -37,6 +36,7 @@ public class TimeTaskMonitor {
 	 * @return next fire time
 	 */
 	public Calendar generateNextFireTime(Calendar firstFireTime, int intervall){
+		Calendar currentTime = currentTimeGenerator.getInstance();
 		Calendar fireTime = (Calendar) firstFireTime.clone();
 		
 		while(currentTime.compareTo(fireTime) >= 0 && intervall > 0){
@@ -51,7 +51,7 @@ public class TimeTaskMonitor {
 	@Scheduled(fixedDelay = 6000)
 	public void monitorTimTasks(){
 		
-		currentTime = Calendar.getInstance(locale);
+		Calendar currentTime = currentTimeGenerator.getInstance();
 		
 		/* get all time tasks which shall fire issues*/
 		List<TimeTask> timeTasks = timeTaskDAO.getTimeTaskWithNextFireTimeOlderThan(currentTime);

@@ -34,7 +34,7 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="org.h2.Driver" />
-		<property name="url" value="jdbc:h2:tcp://localhost//sep/database/databases/database1" />
+		<property name="url" value="jdbc:h2:~/IOTaskScheduler" />
 		<property name="username" value="h2" />
 		<property name="password" value="h2" />
 	</bean>
