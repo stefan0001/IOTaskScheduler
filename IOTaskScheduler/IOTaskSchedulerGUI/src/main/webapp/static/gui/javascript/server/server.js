@@ -443,13 +443,8 @@ server.putNewIssueDraftForTimeTask = function(taskId, json, existTask) {
 		url: this.url + "issuedraft",
 		data: json,
 		complete: function(data) {
-			var idAt = data.responseText.search(/ID/);
-			var slice = data.responseText.slice(idAt+4, idAt+6);
-			var id = slice;
-			if(slice.charAt(1) == ",") {
-				id = slice.slice(0, 1);
-			}
-			var post = JSON.stringify({ID: id});
+			var responseJson = jQuery.parseJSON(data);
+			var post = JSON.stringify({ID: responseJson.ID});
 			$.ajax({
 				type: "POST",
 				dataType: "application/json",
@@ -478,13 +473,8 @@ server.putNewIssueDraftForEventTask = function(taskId, json, existTask) {
 		url: this.url + "issuedraft",
 		data: json,
 		complete: function(data) {
-			var idAt = data.responseText.search(/ID/);
-			var slice = data.responseText.slice(idAt+4, idAt+6);
-			var id = slice;
-			if(slice.charAt(1) == ",") {
-				id = slice.slice(0, 1);
-			}
-			var post = JSON.stringify({ID: id});
+			var responseJson = jQuery.parseJSON(data);
+			var post = JSON.stringify({ID: responseJson.ID});
 			$.ajax({
 				type: "POST",
 				dataType: "application/json",
