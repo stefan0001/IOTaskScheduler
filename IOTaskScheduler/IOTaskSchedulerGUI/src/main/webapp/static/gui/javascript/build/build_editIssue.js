@@ -41,64 +41,40 @@ function buildEditIssue(data) {
 	issueDesTextField.appendChild(document.createTextNode(data.embedded.issueDraft.issueDescription));
 	table.firstChild.childNodes[1].childNodes[1].appendChild(issueDesTextField);
 	table.firstChild.childNodes[2].childNodes[0].appendChild(document.createTextNode("Status:"));
-	var radio1 = createRadioButton("editIssueRadioStatus", "NEW", "editIssueRadioStatusNew", "");
-	var radio2 = createRadioButton("editIssueRadioStatus", "IN_PROGRESS", "editIssueRadioStatusInProgress", "");
-	var radio3 = createRadioButton("editIssueRadioStatus", "CLOSED", "editIssueRadioStatusClosed", "");
-	var label1 = createLabel("editIssueRadioStatusNew", document.createTextNode("New"));
-	var label2 = createLabel("editIssueRadioStatusInProgress", document.createTextNode("In Progress"));
-	var label3 = createLabel("editIssueRadioStatusClosed", document.createTextNode("Closed"));
-	if(data.issueStatus == "NEW") radio1.setAttribute("checked", "true");
-	else if(data.issueStatus == "IN_PROGRESS") radio2.setAttribute("checked", "true");
-	else if(data.issueStatus == "CLOSED") radio3.setAttribute("checked", "true");
-	table.firstChild.childNodes[2].childNodes[1].appendChild(radio1);
-	table.firstChild.childNodes[2].childNodes[1].appendChild(label1);
-	table.firstChild.childNodes[2].childNodes[1].appendChild(radio2);
-	table.firstChild.childNodes[2].childNodes[1].appendChild(label2);
-	table.firstChild.childNodes[2].childNodes[1].appendChild(radio3);
-	table.firstChild.childNodes[2].childNodes[1].appendChild(label3);
+	var actualStatus = data.issueStatus;
+	statussArray.forEach(
+		function(value, index) {
+			var radio = createRadioButton("editIssueRadioStatus", statussArrayToUpper[index], "editIssueRadioStatus"+value, "");
+			if(actualStatus == statussArrayToUpper[index]) radio.setAttribute("checked", "true");
+			var label = createLabel("editIssueRadioStatus"+value, document.createTextNode(value));
+			table.firstChild.childNodes[2].childNodes[1].appendChild(radio);
+			table.firstChild.childNodes[2].childNodes[1].appendChild(label);
+		}
+	);
+	
 	table.firstChild.childNodes[3].childNodes[0].appendChild(document.createTextNode("Resolution:"));
 	var select = createSelect("1", "editTaskStatusResolution");
 	select.setAttribute("id", "editTaskStatusResolution");
-	select.appendChild(createOption("Cannot Reproduce"));
-	select.appendChild(createOption("Done"));
-	select.appendChild(createOption("Duplicate"));
-	select.appendChild(createOption("Fixed"));
-	select.appendChild(createOption("Wontfix"));
-	select.appendChild(createOption("Unresolved"));
-	if(data.issueResolution == "CANNOT_REPRODUCE") {
-		select.childNodes[0].setAttribute("selected", "true");
-	} else if (data.issueResolution == "DONE") {
-		select.childNodes[1].setAttribute("selected", "true");
-	} else if (data.issueResolution == "DUPLICATE") {
-		select.childNodes[2].setAttribute("selected", "true");
-	} else if (data.issueResolution == "FIXED") {
-		select.childNodes[3].setAttribute("selected", "true");
-	} else if (data.issueResolution == "WONTFIX") {
-		select.childNodes[4].setAttribute("selected", "true");
-	} else if (data.issueResolution == "UNRESOLVED") {
-		select.childNodes[5].setAttribute("selected", "true");
-	}
+	var actualResolution = data.issueResolution;
+	resolutionsArray.forEach(
+		function(value, index) {
+			var option = createOption(value);
+			if(actualResolution == resolutionsArrayToUpper[index]) option.setAttribute("selected", "true");
+			select.appendChild(option);
+		}
+	);
 	table.firstChild.childNodes[3].childNodes[1].appendChild(select);
 	table.firstChild.childNodes[4].childNodes[0].appendChild(document.createTextNode("Typ:"));
-	var radio1 = createRadioButton("editIssueRadioType", "BUG", "editIssueRadioTypeBug", "");
-	var radio2 = createRadioButton("editIssueRadioType", "IMPROVEMENT", "editIssueRadioTypeImprovement", "");
-	var radio3 = createRadioButton("editIssueRadioType", "TASK", "editIssueRadioTypeTask", "");
-	var label1 = createLabel("editIssueRadioTypeBug", document.createTextNode("Bug"));
-	var label2 = createLabel("editIssueRadioTypeImprovement", document.createTextNode("Improvement"));
-	var label3 = createLabel("editIssueRadioTypeTask", document.createTextNode("Task"));
-	if(data.embedded.issueDraft.issueType == "BUG") {
-		radio1.setAttribute("checked", "true");
-	} else if(data.embedded.issueDraft.issueType == "IMPROVEMENT") {
-		radio2.setAttribute("checked", "true");
-	} else if(data.embedded.issueDraft.issueType == "TASK") {
-		radio3.setAttribute("checked", "true");
-	}
-	table.firstChild.childNodes[4].childNodes[1].appendChild(radio1);
-	table.firstChild.childNodes[4].childNodes[1].appendChild(label1);
-	table.firstChild.childNodes[4].childNodes[1].appendChild(radio2);
-	table.firstChild.childNodes[4].childNodes[1].appendChild(label2);
-	table.firstChild.childNodes[4].childNodes[1].appendChild(radio3);
-	table.firstChild.childNodes[4].childNodes[1].appendChild(label3);
+	var actualType = data.embedded.issueDraft.issueType;
+	typesArray.forEach(
+		function(value, index) {
+			var radio = createRadioButton("editIssueRadioType", value.toUpperCase(), "editIssueRadioType"+value, "");
+			if(actualType == value.toUpperCase()) radio.setAttribute("checked", "true");
+			var label = createLabel("editIssueRadioType"+value, document.createTextNode(value));
+			table.firstChild.childNodes[4].childNodes[1].appendChild(radio);
+			table.firstChild.childNodes[4].childNodes[1].appendChild(label);
+		}
+	);
 	var form = document.createElement("form");
 	form.setAttribute("name", "editIssueFormular");
 	form.appendChild(table);
@@ -114,9 +90,11 @@ function saveEditedIssue(entityId, draftId) {
 	var des = document.getElementById("modalEditIssueColumn4").firstChild.value;
 	var status = document.getElementsByName("editIssueRadioStatus");
 	var type = document.getElementsByName("editIssueRadioType");
+	console.log(type);
 	for(var i = 0; i < type.length; i++) {
 		if(type[i].checked == true) {
 			var selectedType = type[i].value;
+			console.log(selectedType);
 			break;
 		}
 	}
@@ -128,10 +106,8 @@ function saveEditedIssue(entityId, draftId) {
 	}
 	var json1 = JSON.stringify({issueName: name, issueDescription: des, issueType: selectedType});
 	var res = document.getElementById("modalEditIssueColumn8").firstChild.value;
-	console.log(res);
-	var upperRes = res.toUpperCase();
-	var endRes = upperRes.replace(/\s/, "_");
-	json2 = JSON.stringify({issueStatus: selectedStatus, issueResolution: endRes});
+	var resInArray = resolutionsArray.indexOf(res);
+	json2 = JSON.stringify({issueStatus: selectedStatus, issueResolution: resolutionsArrayToUpper[resInArray]});
 	
 
 	interaction.updateIssuedraft(draftId, json1);

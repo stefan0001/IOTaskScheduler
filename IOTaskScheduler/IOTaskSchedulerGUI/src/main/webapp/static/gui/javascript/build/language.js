@@ -15,6 +15,8 @@ german.newEvent = "Neues Event";
 german.selectEvent = "Event auswählen";
 german.timeTaskView = "Zeit Task Übersicht";
 german.eventTaskView = "Event Task Übersicht";
+german.editTask = "Task bearbeiten";
+german.issuesOfTask = "Issues des Task";
 
 german.save = "Speichern";
 german.cancel = "Abbrechen";
@@ -28,6 +30,7 @@ german.select = "auswählen";
 german.trigger = "auslösen";
 german.edit = "bearbeiten";
 german.deleteString = "löschen";
+german.remove = "entfernen";
 
 german.selectIssue = "Issue auswählen";
 german.timebased = "zeitbasiert";
@@ -43,6 +46,8 @@ german.everyTwoWeeks = "Alle zwei Wochen";
 
 german.days = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
 german.month = ["Januar", "Februar", "M\u00e4rz", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
+
+german.intervall = ["Jede Stunde", "Jeden Tag", "Jede Woche", "Alle zwei Wochen"];
 
 /*************************************
  * English language
@@ -61,6 +66,8 @@ english.newEvent = "New Event";
 english.selectEvent = "Select Event";
 english.timeTaskView = "Time Task Overview";
 english.eventTaskView = "Event Task Overview";
+english.editTask = "edit Task";
+english.issuesOfTask = "Issues of Task";
 
 english.save = "Save";
 english.cancel = "Cancel";
@@ -74,6 +81,7 @@ english.select = "select";
 english.trigger = "trigger";
 english.edit = "edit";
 english.deleteString = "delete";
+english.remove = "remove";
 
 english.selectIssue = "Select Issue";
 english.timebased = "time-based";
@@ -90,6 +98,7 @@ english.everyTwoWeeks = "every two weeks";
 english.days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 english.month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+english.intervall = ["hourly", "daily", "weekly", "every two weeks"];
 
 // Current language
 var language = german;

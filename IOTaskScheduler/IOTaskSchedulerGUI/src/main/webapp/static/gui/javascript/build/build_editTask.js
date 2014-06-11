@@ -4,7 +4,7 @@
 function buildEditTask(data) {
 	$("#modalTwo").modal('hide');
 	// edit Modal Footer and Header
-	buildModalOneHeader("Task bearbeiten");
+	buildModalOneHeader(language.editTask);
 	
 	// edit Modal Body
 	var body = document.getElementById("modalOneBody");
@@ -24,9 +24,9 @@ function buildEditTask(data) {
 }
 
 function buildEditTimeTask(data) {
-	var button1 = createButton("btn btn-default", "", "", "Abbrechen", "", "", "", "");
+	var button1 = createButton("btn btn-default", "", "", language.cancel, "", "", "", "");
 	button1.setAttribute("data-dismiss", "modal");
-	var button2 = createButton("btn btn-primary", "", "saveEditedTimeTaskButton", "Speichern", "", "saveEditedTimeTask("+data.ID+")", "", "");
+	var button2 = createButton("btn btn-primary", "", "saveEditedTimeTaskButton", language.save, "", "saveEditedTimeTask("+data.ID+")", "", "");
 	buildModalOneFooter(button1, button2);
 	var body = document.getElementById("modalOneBody");
 	var p = document.createElement("p");
@@ -112,18 +112,16 @@ function buildEditTimeTask(data) {
 	table.childNodes[0].childNodes[1].childNodes[0].appendChild(document.createTextNode("Intervall:"));
 	var select = createSelect("1", "editTaskIntervall");
 	select.setAttribute("id", "editTaskIntervall");
-	var op1 = createOption("Jede Stunde");
-	var op2 = createOption("Jeden Tag");
-	var op3 = createOption("Jede Woche");
-	var op4 = createOption("Zwei Wochen");
-	if(data.intervall == 3600) {op1.setAttribute("selected", "true")}
-	else if(data.intervall == 86400) {op2.setAttribute("selected", "true")}
-	else if(data.intervall == 604800) {op3.setAttribute("selected", "true")}
-	else if(data.intervall == 1209600) {op4.setAttribute("selected", "true")}
-	select.appendChild(op1);
-	select.appendChild(op2);
-	select.appendChild(op3);
-	select.appendChild(op4);
+	language.intervall.forEach(
+		function(value, index) {
+			var option = createOption(language.intervall[index]);
+			select.appendChild(option);
+		}
+	);
+	if(data.intervall == intervallToSeconds[0]) {select.childNodes[0].setAttribute("selected", "true")}
+	else if(data.intervall == intervallToSeconds[1]) {select.childNodes[1].setAttribute("selected", "true")}
+	else if(data.intervall == intervallToSeconds[2]) {select.childNodes[2].setAttribute("selected", "true")}
+	else if(data.intervall == intervallToSeconds[3]) {select.childNodes[3].setAttribute("selected", "true")}
 	table.childNodes[0].childNodes[1].childNodes[1].appendChild(select);
 	table.childNodes[0].childNodes[1].childNodes[1].setAttribute("id", "editTaskTableCellIntervall");
 	table.childNodes[0].childNodes[2].childNodes[0].appendChild(document.createTextNode("N\u00e4chstes Fire:"));
@@ -137,9 +135,9 @@ function buildEditTimeTask(data) {
 }
 
 function buildEditEventTask(data) {
-	var button1 = createButton("btn btn-default", "", "", "Abbrechen", "", "", "", "");
+	var button1 = createButton("btn btn-default", "", "", language.cancel, "", "", "", "");
 	button1.setAttribute("data-dismiss", "modal");
-	var button2 = createButton("btn btn-primary", "", "saveEditedEventTaskButton", "Speichern", "", "saveEditedEventTask("+data.ID+")", "", "");
+	var button2 = createButton("btn btn-primary", "", "saveEditedEventTaskButton", language.save, "", "saveEditedEventTask("+data.ID+")", "", "");
 	buildModalOneFooter(button1, button2);
 	var body = document.getElementById("modalOneBody");
 	//Task is an Event Task
@@ -173,11 +171,9 @@ function saveEditedTimeTask(id) {
 	var name = document.getElementById("editTaskTableCell2").firstChild.value;
 	var activated = document.getElementById("editTaskTableCell3").firstChild.checked;
 	var intervallText = document.getElementById("editTaskTableCellIntervall").firstChild.value;
-	var intervall = 3600;
 	var firstFire = document.getElementById("editTaskTableCellFirstFire").getAttribute("value");
-	if(intervallText == "Jeden Tag") var intervall = 86400;
-	else if(intervallText == "Jede Woche") var intervall = 604800;
-	else if(intervallText == "Zwei Wochen") var intervall = 1209600;
+	var intervallIndex = language.intervall.indexOf(intervallText);
+	var intervall = intervallToSeconds[intervallIndex];
 	var json = JSON.stringify({name: name, activated: activated, intervall: intervall, firstFireTime: firstFire});
 	interaction.updateTimeTask(id, json);
 	$('#modalOne').modal('hide');
@@ -197,7 +193,7 @@ function saveEditedEventTask(id) {
  * Build the Modal to show the Issues of a Time Task
  **/
 function showIssuesOfTimeTask(data, id) {
-	buildModalTwoHeader("Issues des Task");
+	buildModalTwoHeader(language.issuesOfTask);
 	var body = document.getElementById("modalTwoBody");
 	var button1 = createButton("btn btn-primary", "", "", "OK", "", "", "", "");
 	button1.setAttribute("data-dismiss", "modal");
@@ -210,16 +206,21 @@ function showIssuesOfTimeTask(data, id) {
 	var table = createTableWithTableHeaders(1, 4);
 	table.childNodes[1].setAttribute("id", "issuesOfExistingTaskTableBody");
 	table.childNodes[0].childNodes[0].childNodes[0].appendChild(document.createTextNode("#"));
-	table.childNodes[0].childNodes[0].childNodes[1].appendChild(document.createTextNode("Name"));
-	table.childNodes[0].childNodes[0].childNodes[2].appendChild(document.createTextNode("Beschreibung"));
-	table.childNodes[0].childNodes[0].childNodes[3].appendChild(document.createTextNode("Verbindung entfernen"));
-	table.childNodes[0].childNodes[0].childNodes[3].setAttribute("width", "22%");
+	table.childNodes[0].childNodes[0].childNodes[1].appendChild(document.createTextNode(language.name));
+	table.childNodes[0].childNodes[0].childNodes[2].appendChild(document.createTextNode(language.description));
+	table.childNodes[0].childNodes[0].childNodes[3].appendChild(document.createTextNode(language.remove));
+	table.childNodes[0].childNodes[0].childNodes[0].setAttribute("width", "6%");
+	table.childNodes[0].childNodes[0].childNodes[1].setAttribute("width", "20%");
+	table.childNodes[0].childNodes[0].childNodes[2].setAttribute("width", "62%");
+	table.childNodes[0].childNodes[0].childNodes[3].setAttribute("width", "12%");
+	table.childNodes[0].childNodes[0].childNodes[3].setAttribute("class", "textright");
 	for(var i = 0; i < data.content.length; i++) {
 		var tr = document.createElement("tr");
 		var td1 = document.createElement("td");
 		var td2 = document.createElement("td");
 		var td3 = document.createElement("td");
 		var td4 = document.createElement("td");
+		td4.setAttribute("class", "textright");
 		td1.appendChild(document.createTextNode(data.content[i].ID));
 		td2.appendChild(document.createTextNode(data.content[i].issueName));
 		td3.appendChild(document.createTextNode(data.content[i].issueDescription));
@@ -234,9 +235,9 @@ function showIssuesOfTimeTask(data, id) {
 	div.appendChild(table);
 	body.appendChild(div);
 	
-	var button3 = createButton("btn btn-default", "newIssue", "selectNewIssue", "Neues Issue", "margin-right:6%; width:21%;", "createNewIssue('saveNewIssueForExistingTimeTask()', true);", "modal", "#modalThree");
+	var button3 = createButton("btn btn-default", "newIssue", "selectNewIssue", language.newIssue, "margin-right:6%; width:21%;", "createNewIssue('saveNewIssueForExistingTimeTask()', true);", "modal", "#modalThree");
 	button3.setAttribute("value", id);
-	var button4 = createButton("btn btn-default", "selectIssue", "selectSelectIssue", "Issue ausw\u00e4hlen", "width:21%;", "interaction.getAllIssueDraft(true, true);", "modal", "#modalThree");
+	var button4 = createButton("btn btn-default", "selectIssue", "selectSelectIssue", language.selectIssue, "width:21%;", "interaction.getAllIssueDraft(true, true);", "modal", "#modalThree");
 	body.appendChild(button3);
 	body.appendChild(button4);
 	$('#modalTwo').modal('show');

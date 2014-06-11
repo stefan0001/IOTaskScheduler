@@ -101,3 +101,10 @@ function deleteChildnodes(parentNode) {
 		parentNode.removeChild(parentNode.firstChild);
 	}
 }
+
+var intervallToSeconds = [3600, 86400, 604800, 1209600];
+var resolutionsArray = ["Cannot Reproduce", "Done", "Duplicate", "Fixed", "Wont Fix", "Unresolved"];
+var resolutionsArrayToUpper = ["CANNOT_REPRODUCE", "DONE", "DUPLICATE", "FIXED", "WONTFIX", "UNRESOLVED"];
+var typesArray = ["Bug", "Improvement", "Task"];
+var statussArray = ["New", "In Progress", "Closed"];
+var statussArrayToUpper = ["NEW", "IN_PROGRESS", "CLOSED"];

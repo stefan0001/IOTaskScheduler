@@ -24,16 +24,10 @@ display.showData = function(data) {
 	display.displayAllIssueEntities(data);
 }
 
-display.showCreateStatus = function() {
-	var text = "Das Issue wurde ";
-	$('#statusmessage').text(text+'nicht erstellt').animate({'margin-bottom':30},200);
-	setTimeout( function(){
-        $('#statusmessage').animate({'margin-bottom':-150},200);
-    }, 3*1000);
-}
-
-display.showResponse = function(text) {
+display.showResponse = function(text, success) {
 	$('#statusmessage').text(text).animate({'margin-bottom':30},200);
+	if(success == true) $('#statusmessage').css({'background-color': 'green'});
+	else $('#statusmessage').css({'background-color': 'red'});
 	setTimeout( function(){
         $('#statusmessage').animate({'margin-bottom':-150},200);
     }, 3*1000);
