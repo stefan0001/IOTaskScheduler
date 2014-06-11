@@ -64,7 +64,11 @@
 
 		<systemtest.browser>Firefox</systemtest.browser>
 
-		<server.test.url>http://141.19.145.160:8090</server.test.url>
+		<server.test.url>${server.test.protocol}://${server.test.host}:${server.test.port}</server.test.url>
+		<server.test.host>141.19.145.160</server.test.host>
+		<server.test.protocol>http</server.test.protocol>
+		<server.test.port>8090</server.test.port>
+		
 		<server.test.app>IOTaskSchedulerWebAppTest</server.test.app>
 		<server.test.user>root</server.test.user>
 		<server.test.password>root</server.test.password>
