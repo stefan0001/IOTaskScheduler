@@ -58,8 +58,8 @@
 		<project.spring.version>4.0.0.RELEASE</project.spring.version>
 		<project.slf4j.version>1.7.2</project.slf4j.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	
-	
+
+
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<systemtest.browser>Firefox</systemtest.browser>
@@ -68,10 +68,10 @@
 		<server.test.host>141.19.145.160</server.test.host>
 		<server.test.protocol>http</server.test.protocol>
 		<server.test.port>8090</server.test.port>
-		
-		<server.test.app>IOTaskSchedulerWebAppTest</server.test.app>
 		<server.test.user>root</server.test.user>
 		<server.test.password>root</server.test.password>
+		<server.test.app>IOTaskSchedulerWebAppTest</server.test.app>
+
 
 		<server.test.database.connection>jdbc:h2:~/IOTaskSchedulerWebAppTest</server.test.database.connection>
 		<server.test.database.user>h2</server.test.database.user>
@@ -234,7 +234,7 @@
 
 		</profile>
 
-
-
 	</profiles>
+
+
 </project>
