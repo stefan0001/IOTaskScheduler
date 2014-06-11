@@ -12,7 +12,6 @@ public class MockCurrentTimeGenerator implements CurrentTimeGenerator{
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTimeInMillis(1388534400000L);
 		
-		System.out.println(calendar.getTime());
 		return calendar;
 	}
 }
