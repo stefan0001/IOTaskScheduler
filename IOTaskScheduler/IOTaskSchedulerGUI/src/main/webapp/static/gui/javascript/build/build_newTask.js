@@ -107,16 +107,13 @@ function createTimeTask(radio) {
     });
 	
 	var input2 = createSelect("1", "taskIntervall");
-	var option1 = createOption(language.everyHour);
-	var option2 = createOption(language.everyDay);
-	option2.setAttribute("checked", "true");
-	var option3 = createOption(language.everyWeek);
-	var option4 = createOption(language.everyTwoWeeks);
-
-	input2.appendChild(option1);
-	input2.appendChild(option2);
-	input2.appendChild(option3);
-	input2.appendChild(option4);
+	language.intervall.forEach(
+		function(value, index) {
+			var option = createOption(language.intervall[index]);
+			input2.appendChild(option);
+		}
+	);
+	
 	input2.setAttribute("class", "taskeingabe");
 	var p2 = document.createElement("p");
 	p2.appendChild(input2);
@@ -173,12 +170,12 @@ function createNewIssue(showIssue, exist) {
 	var select = createSelect("1", "issueType");
 	select.setAttribute("id", "newIssueTypForTask");
 	select.setAttribute("class", "taskeingabe");
-	var option1 = createOption("Bug");
-	var option2 = createOption("Improvement");
-	var option3 = createOption("Task");
-	select.appendChild(option1);
-	select.appendChild(option2);
-	select.appendChild(option3);
+	typesArray.forEach(
+			function(value, index) {
+				var option = createOption(value);
+				select.appendChild(option);
+			}
+	);
 	var p1 = document.createElement("p");
 	var p2 = document.createElement("p");
 	var p3 = document.createElement("p");
@@ -355,6 +352,7 @@ function buildSelectIssueModal(data, existTask, timeTask) {
 	th3.appendChild(document.createTextNode(language.description));
 	th5.appendChild(document.createTextNode(language.type));
 	th4.appendChild(document.createTextNode(language.select));
+	th4.setAttribute("class", "textright");
 	row.appendChild(th1);
 	row.appendChild(th2);
 	row.appendChild(th3);
@@ -389,6 +387,7 @@ function buildSelectIssueModal(data, existTask, timeTask) {
 				check.setAttribute("disabled", "disabled");
 			}
 		}
+		td4.setAttribute("class", "textright");
 		td4.appendChild(check);
 		row.appendChild(td1);
 		row.appendChild(td2);
@@ -439,19 +438,21 @@ function selectEventInModal(data, overview) {
 	var th2 = document.createElement("th");
 	var th3 = document.createElement("th");
 	if(overview == true) {
-		th1.setAttribute("width", "60%");
-		th2.setAttribute("width", "30%");
-		th3.setAttribute("width", "10%");
+		th1.setAttribute("width", "63%");
+		th2.setAttribute("width", "25%");
+		th3.setAttribute("width", "12%");
 		th1.appendChild(document.createTextNode(language.name));
 		th2.appendChild(document.createTextNode("URL"));
 		th3.appendChild(document.createTextNode(language.trigger));
+		th3.setAttribute("class", "textright");
 	} else {
-		th1.setAttribute("width", "15%");
-		th2.setAttribute("width", "75%");
-		th3.setAttribute("width", "10%");
+		th1.setAttribute("width", "6%");
+		th2.setAttribute("width", "82%");
+		th3.setAttribute("width", "12%");
 		th1.appendChild(document.createTextNode("#"));
 		th2.appendChild(document.createTextNode(language.name));
 		th3.appendChild(document.createTextNode(language.select));
+		th3.setAttribute("class", "textright");
 	}
 	row.appendChild(th1);
 	row.appendChild(th2);
@@ -462,6 +463,7 @@ function selectEventInModal(data, overview) {
 		var td1 = document.createElement("td");
 		var td2 = document.createElement("td");
 		var td3 = document.createElement("td");
+		td3.setAttribute("class", "textright");
 		td2.setAttribute("style", "overflow: hidden; text-overflow: ellipsis; white-space: nowrap;");
 		if(overview == true) {
 			td1.appendChild(document.createTextNode(data.content[i].name));

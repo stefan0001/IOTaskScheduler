@@ -220,44 +220,6 @@ select {
 	text-align:center;
 }
 
-.btn-default-delete {
-  color: #333;
-  background-color: #fff;
-  border-color: #ccc;
-}
-.btn-default-delete:hover,
-.btn-default-delete:focus,
-.btn-default-delete:active,
-.btn-default-delete.active,
-.open .dropdown-toggle.btn-default-delete {
-  color: #333;
-  background-color: #ebebeb;
-  border-color: #adadad;
-}
-.btn-default-delete:active,
-.btn-default-delete.active,
-.open .dropdown-toggle.btn-default-delete {
-  background-image: none;
-}
-.btn-default-delete.disabled,
-.btn-default-delete[disabled],
-fieldset[disabled] .btn-default-delete,
-.btn-default-delete.disabled:hover,
-.btn-default-delete[disabled]:hover,
-fieldset[disabled] .btn-default-delete:hover,
-.btn-default-delete.disabled:focus,
-.btn-default-delete[disabled]:focus,
-fieldset[disabled] .btn-default-delete:focus,
-.btn-default-delete.disabled:active,
-.btn-default-delete[disabled]:active,
-fieldset[disabled] .btn-default-delete:active,
-.btn-default-delete.disabled.active,
-.btn-default-delete[disabled].active,
-fieldset[disabled] .btn-default-delete.active {
-  background-color: #fff;
-  border-color: #ccc;
-}
-
-.panel-body {
-	text-align:left;
+.textright {
+	text-align: right;
 }

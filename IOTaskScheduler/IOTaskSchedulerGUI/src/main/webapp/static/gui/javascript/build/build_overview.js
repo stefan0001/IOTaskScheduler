@@ -135,12 +135,13 @@ function selectEventTaskView(data) {
 	div1.setAttribute("class", "panel panel-default");
 	table.setAttribute("class", "table");
 	table.setAttribute("style", "table-layout: fixed;");
-	column1.setAttribute("width", "10%");
-	column2.setAttribute("width", "50%");
-	column3.setAttribute("width", "20%");
-	column4.setAttribute("width", "10%");
-	column5.setAttribute("width", "10%");
-	
+	column1.setAttribute("width", "6%");
+	column2.setAttribute("width", "45%");
+	column3.setAttribute("width", "25%");
+	column4.setAttribute("width", "12%");
+	column4.setAttribute("class", "textright");
+	column5.setAttribute("width", "12%");
+	column5.setAttribute("class", "textright");
 	column1.appendChild(document.createTextNode("#"));
 	column2.appendChild(document.createTextNode(language.name));
 	column3.appendChild(document.createTextNode("Event"));
@@ -162,6 +163,8 @@ function selectEventTaskView(data) {
 		var td3 = document.createElement("td");
 		var td4 = document.createElement("td");
 		var td5 = document.createElement("td");
+		td4.setAttribute("class", "textright");
+		td5.setAttribute("class", "textright");
 		td2.setAttribute("style", "overflow: hidden; text-overflow: ellipsis; white-space: nowrap;");
 		td3.setAttribute("style", "overflow: hidden; text-overflow: ellipsis; white-space: nowrap;");
 		td1.appendChild(document.createTextNode(data.content[i].ID));
@@ -222,12 +225,13 @@ function showTasksOfDay(selectedDay) {
 	var th3 = document.createElement("th");
 	var th4 = document.createElement("th");
 	th1.appendChild(document.createTextNode("#"));
-	th2.appendChild(document.createTextNode("Name"));
+	th2.appendChild(document.createTextNode(language.name));
 	th3.appendChild(document.createTextNode(language.edit));
-	th1.setAttribute("width", "10%");
-	th3.setAttribute("width", "15%");
+	th1.setAttribute("width", "6%");
+	th2.setAttribute("width", "70%");
+	th3.setAttribute("width", "12%");
 	th4.appendChild(document.createTextNode(language.deleteString));
-	th4.setAttribute("width", "15%");
+	th4.setAttribute("width", "12%");
 	th3.setAttribute("style", "text-align:right");
 	th4.setAttribute("style", "text-align:right");
 	tr1.appendChild(th1);
@@ -241,7 +245,9 @@ function showTasksOfDay(selectedDay) {
 		var td1 = document.createElement("td");
 		var td2 = document.createElement("td");
 		var td3 = document.createElement("td");
+		td3.setAttribute("class", "textright");
 		var td4 = document.createElement("td");
+		td4.setAttribute("class", "textright");
 		td1.appendChild(document.createTextNode(tasks[i].ID));
 		td2.appendChild(document.createTextNode(tasks[i].name));
 		td2.setAttribute("style", "overflow: hidden; text-overflow: ellipsis; white-space: nowrap;");

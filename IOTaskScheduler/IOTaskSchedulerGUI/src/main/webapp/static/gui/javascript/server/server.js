@@ -99,7 +99,7 @@ server.deleteTimeTask = function(id, selectedDay) {
 			if(data.status == 200) {
 				server.getAllTimeTask();
 				$('#showTasksByDate').modal('hide');
-				display.showResponse("Der Task wurde gel\u00f6scht");
+				display.showResponse("Der Task wurde gel\u00f6scht", true);
 			} else display.showResponse("Der Task konnte NICHT gel\u00f6scht werden", false);
 		}
 	})
@@ -252,8 +252,8 @@ server.removeEventTaskIssueConnection = function(issueId, taskId) {
 		complete: function(data) {
 			if(data.status == 200) {
 				server.getIssuesOfEventTask(taskId);
-				display.showResponse("Die Verbindung wurde gel\u00f6scht");
-			} else display.showResponse("Die Verbindung konnte nicht gel\u00f6scht werden");
+				display.showResponse("Die Verbindung wurde entfernt", true);
+			} else display.showResponse("Die Verbindung konnte nicht entfernt werden", false);
 		}
 	})
 }
@@ -295,8 +295,8 @@ server.createIssueEntityFor = function(id) {
 			if(data.status == 200) {
 				cleanContainerForGetIssueEntity();
 				server.fetchAllIssueEntities(display.showData);
-				display.showResponse("Das Issue wurde erstellt");
-			} else display.showResponse("Das Issue konnte nicht erstellt werden");
+				display.showResponse("Das Issue wurde erstellt", true);
+			} else display.showResponse("Das Issue konnte nicht erstellt werden", false);
 		}
 	})
 }
@@ -455,7 +455,7 @@ server.putNewIssueDraftForTimeTask = function(taskId, json, existTask) {
 						if(data.status == 200) {
 							server.getIssuesOfTimeTask(taskId);
 							display.showResponse("Das Issue wurde an den Time Task angehängt", true);
-						} else display.showResponse("Das Issue konnte nicht an den Time Task angehängt werden", true);
+						} else display.showResponse("Das Issue konnte nicht an den Time Task angehängt werden", false);
 					} else {
 						if(data.status == 200) display.showResponse("Der Time Task wurde erstellt", true);
 						else display.showResponse("Der Time Task konnte nicht erstellt werden", false);
@@ -603,7 +603,7 @@ server.createNewEvent = function(json) {
 		complete: function(data) {
 			if(data.status == 200) {
 				createTaskForEvent(data.responseText);
-			} else display.showResponse("Das Event konnte nicht erstellt werden");
+			} else display.showResponse("Das Event konnte nicht erstellt werden", false);
 		}
 	})
 }

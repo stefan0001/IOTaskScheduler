@@ -2,23 +2,25 @@
  * Write the Issue in the Database
  **/
 function createIssue() {
-	var name = document.newIssueFormular.issueName.value;
-	var des = document.newIssueFormular.issueDescription.value;
-	var type = document.newIssueFormular.issueType.value.toUpperCase();
-	if(name == "") {
-		document.newIssueFormular.issueName.setAttribute("style", "border-color:red");
-	} else {
-		document.newIssueFormular.issueName.setAttribute("style", "border-color:black");
-	}
-	if(des == "") {
-		document.newIssueFormular.issueDescription.setAttribute("style", "border-color:red");
-	} else {
-		document.newIssueFormular.issueDescription.setAttribute("style", "border-color:black");
-	}
-	if(name != "" && des != "") {
-		var json = JSON.stringify({issueName: name, issueDescription: des, issueType: type});
-		$('#modalOne').modal('hide');
-		interaction.postNewIssueDraft(json);
+	if(document.newIssueFormular) {
+		var name = document.newIssueFormular.issueName.value;
+		var des = document.newIssueFormular.issueDescription.value;
+		var type = document.newIssueFormular.issueType.value.toUpperCase();
+		if(name == "") {
+			document.newIssueFormular.issueName.setAttribute("style", "border-color:red");
+		} else {
+			document.newIssueFormular.issueName.setAttribute("style", "border-color:black");
+		}
+		if(des == "") {
+			document.newIssueFormular.issueDescription.setAttribute("style", "border-color:red");
+		} else {
+			document.newIssueFormular.issueDescription.setAttribute("style", "border-color:black");
+		}
+		if(name != "" && des != "") {
+			var json = JSON.stringify({issueName: name, issueDescription: des, issueType: type});
+			$('#modalOne').modal('hide');
+			interaction.postNewIssueDraft(json);
+		}
 	}
 }
 
