@@ -43,6 +43,7 @@
 									<goal>jmeter</goal>
 								</goals>
 								<configuration>
+									<ignoreResultFailures>true</ignoreResultFailures>
 									<propertiesUser>
 										<host.protocol>${server.test.protocol}</host.protocol>
 										<host.name>${server.test.host}</host.name>
@@ -256,6 +257,7 @@
 									<goal>jmeter</goal>
 								</goals>
 								<configuration>
+									<ignoreResultFailures>true</ignoreResultFailures>
 									<propertiesUser>
 										<host.protocol>${server.test.protocol}</host.protocol>
 										<host.name>${server.test.host}</host.name>
