@@ -10,11 +10,11 @@ function getToEditIssue(value) {
  **/
 function buildEditIssue(data) {	
 	// Build the Header and Footer
-	var button1 = createButton("btn btn-default", "", "stopeditIssueButton", "Abbrechen", "", "", "", "")
+	var button1 = createButton("btn btn-default", "", "stopeditIssueButton", language.cancel, "", "", "", "")
 	button1.setAttribute("data-dismiss", "modal");
-	var button2 = createButton("btn btn-primary", "", "saveEditedIssue", "Speichern", "", "saveEditedIssue("+data.ID+", "+data.embedded.issueDraft.ID+");", "", "")
+	var button2 = createButton("btn btn-primary", "", "saveEditedIssue", language.save, "", "saveEditedIssue("+data.ID+", "+data.embedded.issueDraft.ID+");", "", "")
 	buildModalOneFooter(button1, button2);
-	buildModalOneHeader("Issue bearbeiten");
+	buildModalOneHeader(language.editIssue);
 	// Build the Modal Body
 	var modal = document.getElementById("modalOneBody");	
 	for(var i = modal.childNodes.length; i > 0; i--) {
@@ -34,13 +34,13 @@ function buildEditIssue(data) {
 	table.firstChild.childNodes[3].childNodes[1].setAttribute("id", "modalEditIssueColumn8");
 	table.firstChild.childNodes[4].childNodes[1].setAttribute("id", "modalEditIssueColumn10");
 	
-	table.firstChild.childNodes[0].childNodes[0].appendChild(document.createTextNode("Name:"));
+	table.firstChild.childNodes[0].childNodes[0].appendChild(document.createTextNode(language.name));
 	table.firstChild.childNodes[0].childNodes[1].appendChild(createTextField("editIssueModalName", "taskeingabe", "", "editIssueModalName", data.embedded.issueDraft.issueName));
-	table.firstChild.childNodes[1].childNodes[0].appendChild(document.createTextNode("Beschreibung:"));
+	table.firstChild.childNodes[1].childNodes[0].appendChild(document.createTextNode(language.description));
 	var issueDesTextField = createTextarea("editIssueModalDes", "", "editIssueModalDes", "textarea", "4");
 	issueDesTextField.appendChild(document.createTextNode(data.embedded.issueDraft.issueDescription));
 	table.firstChild.childNodes[1].childNodes[1].appendChild(issueDesTextField);
-	table.firstChild.childNodes[2].childNodes[0].appendChild(document.createTextNode("Status:"));
+	table.firstChild.childNodes[2].childNodes[0].appendChild(document.createTextNode(language.status));
 	var actualStatus = data.issueStatus;
 	statussArray.forEach(
 		function(value, index) {
@@ -52,7 +52,7 @@ function buildEditIssue(data) {
 		}
 	);
 	
-	table.firstChild.childNodes[3].childNodes[0].appendChild(document.createTextNode("Resolution:"));
+	table.firstChild.childNodes[3].childNodes[0].appendChild(document.createTextNode(language.resolution));
 	var select = createSelect("1", "editTaskStatusResolution");
 	select.setAttribute("id", "editTaskStatusResolution");
 	var actualResolution = data.issueResolution;
@@ -64,7 +64,7 @@ function buildEditIssue(data) {
 		}
 	);
 	table.firstChild.childNodes[3].childNodes[1].appendChild(select);
-	table.firstChild.childNodes[4].childNodes[0].appendChild(document.createTextNode("Typ:"));
+	table.firstChild.childNodes[4].childNodes[0].appendChild(document.createTextNode(language.type));
 	var actualType = data.embedded.issueDraft.issueType;
 	typesArray.forEach(
 		function(value, index) {

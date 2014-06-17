@@ -84,10 +84,10 @@ function buildEditTimeTask(data) {
 	table.childNodes[0].childNodes[0].childNodes[0].appendChild(document.createTextNode("ID:"));
 	table.childNodes[0].childNodes[0].childNodes[1].appendChild(document.createTextNode(data.ID));
 	table.childNodes[0].childNodes[0].childNodes[1].setAttribute("id", "editTaskTableCell1");
-	table.childNodes[0].childNodes[1].childNodes[0].appendChild(document.createTextNode("Name:"));
+	table.childNodes[0].childNodes[1].childNodes[0].appendChild(document.createTextNode(language.name));
 	table.childNodes[0].childNodes[1].childNodes[1].appendChild(createTextField("editTaskName", "", "", "editTaskName", data.name));
 	table.childNodes[0].childNodes[1].childNodes[1].setAttribute("id", "editTaskTableCell2");
-	table.childNodes[0].childNodes[2].childNodes[0].appendChild(document.createTextNode("aktiviert:"));
+	table.childNodes[0].childNodes[2].childNodes[0].appendChild(document.createTextNode(language.activated));
 	var activatedCheck = createCheckbox("", "", "editTaskActivated", "");
 	activatedCheck.setAttribute("id", "editTaskActivated");
 	if(data.activated == true) activatedCheck.setAttribute("checked", "true");
@@ -105,11 +105,11 @@ function buildEditTimeTask(data) {
 	var date = new Date();
 	date.setTime(data.firstFireTime);
 	
-	table.childNodes[0].childNodes[0].childNodes[0].appendChild(document.createTextNode("Erstes Fire:"));
+	table.childNodes[0].childNodes[0].childNodes[0].appendChild(document.createTextNode(language.firstFire));
 	table.childNodes[0].childNodes[0].childNodes[1].appendChild(document.createTextNode(date.toLocaleString()));
 	table.childNodes[0].childNodes[0].childNodes[1].setAttribute("id", "editTaskTableCellFirstFire");
 	table.childNodes[0].childNodes[0].childNodes[1].setAttribute("value", data.firstFireTime);
-	table.childNodes[0].childNodes[1].childNodes[0].appendChild(document.createTextNode("Intervall:"));
+	table.childNodes[0].childNodes[1].childNodes[0].appendChild(document.createTextNode(language.intervall));
 	var select = createSelect("1", "editTaskIntervall");
 	select.setAttribute("id", "editTaskIntervall");
 	language.intervall.forEach(
@@ -124,7 +124,7 @@ function buildEditTimeTask(data) {
 	else if(data.intervall == intervallToSeconds[3]) {select.childNodes[3].setAttribute("selected", "true")}
 	table.childNodes[0].childNodes[1].childNodes[1].appendChild(select);
 	table.childNodes[0].childNodes[1].childNodes[1].setAttribute("id", "editTaskTableCellIntervall");
-	table.childNodes[0].childNodes[2].childNodes[0].appendChild(document.createTextNode("N\u00e4chstes Fire:"));
+	table.childNodes[0].childNodes[2].childNodes[0].appendChild(document.createTextNode(language.nextFire));
 	date.setTime(data.nextFireTime);
 	table.childNodes[0].childNodes[2].childNodes[1].appendChild(document.createTextNode(date.toLocaleString()));
 
@@ -150,11 +150,11 @@ function buildEditEventTask(data) {
 	table.childNodes[0].childNodes[0].childNodes[0].appendChild(document.createTextNode("ID:"));
 	table.childNodes[0].childNodes[0].childNodes[1].appendChild(document.createTextNode(data.ID));
 	table.childNodes[0].childNodes[0].childNodes[1].setAttribute("id", "editTaskTableCell1");
-	table.childNodes[0].childNodes[1].childNodes[0].appendChild(document.createTextNode("Name:"));
+	table.childNodes[0].childNodes[1].childNodes[0].appendChild(document.createTextNode(language.name));
 	var nameInput = createTextField("editTaskName", "", "", "editTaskName", data.name);
 	table.childNodes[0].childNodes[1].childNodes[1].appendChild(nameInput);
 	table.childNodes[0].childNodes[1].childNodes[1].setAttribute("id", "editTaskTableCell2");
-	table.childNodes[0].childNodes[2].childNodes[0].appendChild(document.createTextNode("Event:"));
+	table.childNodes[0].childNodes[2].childNodes[0].appendChild(document.createTextNode(language.name));
 	table.childNodes[0].childNodes[2].childNodes[1].appendChild(document.createTextNode(data.embedded.event.name));
 	table.childNodes[0].childNodes[2].childNodes[1].setAttribute("id", "editTaskTableCell3");
 
@@ -289,6 +289,11 @@ function saveSelectedIssuesForExistingTimeTask() {
  **/
 function showIssuesOfEventTask(data, id) {
 	var body = document.getElementById("modalTwoBody");
+	buildModalTwoHeader(language.issuesOfTask);
+	var body = document.getElementById("modalTwoBody");
+	var button1 = createButton("btn btn-primary", "", "", "OK", "", "", "", "");
+	button1.setAttribute("data-dismiss", "modal");
+	buildModalTwoFooter(button1);
 	for(var i = body.childNodes.length; i > 0; i--) {
 		body.removeChild(body.lastChild);
 	}
@@ -297,9 +302,9 @@ function showIssuesOfEventTask(data, id) {
 	var table = createTableWithTableHeaders(1, 4);
 	table.childNodes[1].setAttribute("id", "issuesOfExistingTaskTableBody");
 	table.childNodes[0].childNodes[0].childNodes[0].appendChild(document.createTextNode("#"));
-	table.childNodes[0].childNodes[0].childNodes[1].appendChild(document.createTextNode("Name"));
-	table.childNodes[0].childNodes[0].childNodes[2].appendChild(document.createTextNode("Beschreibung"));
-	table.childNodes[0].childNodes[0].childNodes[3].appendChild(document.createTextNode("Verbindung entfernen"));
+	table.childNodes[0].childNodes[0].childNodes[1].appendChild(document.createTextNode(language.name));
+	table.childNodes[0].childNodes[0].childNodes[2].appendChild(document.createTextNode(language.description));
+	table.childNodes[0].childNodes[0].childNodes[3].appendChild(document.createTextNode(language.removeConnection));
 	table.childNodes[0].childNodes[0].childNodes[3].setAttribute("width", "22%");
 	for(var i = 0; i < data.content.length; i++) {
 		var tr = document.createElement("tr");
@@ -321,9 +326,9 @@ function showIssuesOfEventTask(data, id) {
 	div.appendChild(table);
 	body.appendChild(div);
 	
-	var button3 = createButton("btn btn-default", "newIssue", "selectNewIssue", "Neues Issue", "margin-right:6%; width:21%;", "createNewIssue('saveNewIssueForExistingEventTask()', true);", "modal", "#modalThree");
+	var button3 = createButton("btn btn-default", "newIssue", "selectNewIssue", language.newIssue, "margin-right:6%; width:21%;", "createNewIssue('saveNewIssueForExistingEventTask()', true);", "modal", "#modalThree");
 	button3.setAttribute("value", id);
-	var button4 = createButton("btn btn-default", "selectIssue", "selectSelectIssue", "Issue ausw\u00e4hlen", "width:21%;", "interaction.getAllIssueDraft(true, false);", "modal", "#modalThree");
+	var button4 = createButton("btn btn-default", "selectIssue", "selectSelectIssue", language.selectIssue, "width:21%;", "interaction.getAllIssueDraft(true, false);", "modal", "#modalThree");
 	body.appendChild(button3);
 	body.appendChild(button4);
 	$('#modalTwo').modal('show');

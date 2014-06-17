@@ -529,7 +529,7 @@ server.postExistentIssueDraftForEventTask = function(id, json, existTask) {
 		url: this.url + "eventtask/"+id+"/issuedraft",
 		data: json,
 		complete: function(data) {
-			if(existTask == "false") {
+			if(existTask == true) {
 				if(data.status == 200) {
 					display.showResponse("Das Issue wurde an den Event Task geh\u00e4ngt", true);
 					server.getIssuesOfEventTask(id);
@@ -553,7 +553,7 @@ server.postExistentIssueDraftForTimeTask = function(id, json, existTask) {
 		url: this.url + "timetask/"+id+"/issuedraft",
 		data: json,
 		complete: function(data) {
-			if(existTask == "false") {
+			if(existTask == true) {
 				if(data.status == 200) {
 					display.showResponse("Das Issue wurde an den Time Task geh\u00e4ngt", true);
 					server.getIssuesOfTimeTask(id);

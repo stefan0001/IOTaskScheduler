@@ -16,7 +16,9 @@ german.selectEvent = "Event auswählen";
 german.timeTaskView = "Zeit Task Übersicht";
 german.eventTaskView = "Event Task Übersicht";
 german.editTask = "Task bearbeiten";
+german.editIssue = "Issue bearbeiten";
 german.issuesOfTask = "Issues des Task";
+german.event = "Event";
 
 german.save = "Speichern";
 german.cancel = "Abbrechen";
@@ -31,6 +33,13 @@ german.trigger = "auslösen";
 german.edit = "bearbeiten";
 german.deleteString = "löschen";
 german.remove = "entfernen";
+german.activated = "aktiviert";
+german.status = "Status";
+german.resolution = "Resolution";
+german.intervall = "Intervall";
+german.firstFire = "erste Fire-Time";
+german.nextFire = "nächste Fire-Time";
+german.removeConnection = "Verbindung entfernen";
 
 german.selectIssue = "Issue auswählen";
 german.timebased = "zeitbasiert";
@@ -67,7 +76,9 @@ english.selectEvent = "Select Event";
 english.timeTaskView = "Time Task Overview";
 english.eventTaskView = "Event Task Overview";
 english.editTask = "edit Task";
+english.editIssue = " edit Issue";
 english.issuesOfTask = "Issues of Task";
+english.event = "event";
 
 english.save = "Save";
 english.cancel = "Cancel";
@@ -82,6 +93,13 @@ english.trigger = "trigger";
 english.edit = "edit";
 english.deleteString = "delete";
 english.remove = "remove";
+english.activated = "activated";
+english.status = "status";
+english.resolution = "resolution";
+english.intervall = "intervall";
+english.firstFire = "first fire time";
+english.nextFire = "next fire time";
+english.removeConnection = "remove Connection";
 
 english.selectIssue = "Select Issue";
 english.timebased = "time-based";
