@@ -30,31 +30,31 @@ public abstract class WebDriver_overviewIT extends AbstractRequest {
 		filterResolution.selectByVisibleText("Cannot Reproduce");
 		//submit
 		driver.findElement(By.id(button_suchen));
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		filterResolution.selectByVisibleText("Done");
 		//submit
 		driver.findElement(By.id(button_suchen));
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		filterResolution.selectByVisibleText("Duplicate");
 		//submit
 		driver.findElement(By.id(button_suchen));
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		filterResolution.selectByVisibleText("Fixed");
 		//submit
 		driver.findElement(By.id(button_suchen));
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		filterResolution.selectByVisibleText("Wont Fix");
 		//submit
 		driver.findElement(By.id(button_suchen));
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		filterResolution.selectByVisibleText("Unresolved");
 		//submit
 		driver.findElement(By.id(button_suchen));
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		filterResolution.selectByVisibleText("Alle Resolutionen");
 		//submit
 		driver.findElement(By.id(button_suchen));
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 	}
 
 

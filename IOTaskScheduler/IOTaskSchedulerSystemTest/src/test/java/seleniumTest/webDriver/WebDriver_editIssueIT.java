@@ -21,23 +21,23 @@ public abstract class WebDriver_editIssueIT extends AbstractRequest {
 	@Test
 	public void editIssueStatus() throws Exception {
 		// select an issue
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.xpath("//*[@id=\"accordion1\"]/div[1]/a/div/h6"))
 				.click();
 		// click edit icon
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElements(By.className(className_editIssue)).get(0).click();
 		// close the issue
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(
 				By.xpath("//*[@id=\"editIssueRadioStatusIn Progress\"]"))
 				.click();
 		driver.findElement(By.xpath("//*[@id=\"editIssueRadioStatusClosed\"]"))
 				.click();
 		// save
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.xpath("//*[@id=\"saveEditedIssue\"]")).click();
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.navigate().refresh();
 	}
 
@@ -45,14 +45,14 @@ public abstract class WebDriver_editIssueIT extends AbstractRequest {
 	public void editResolutionOfClosedIssue() throws Exception {
 		// test case 17
 		// select an issue
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.xpath("//*[@id=\"accordion1\"]/div[1]/a/div/h6"))
 				.click();
 		// click edit icon
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElements(By.className(className_editIssue)).get(0).click();
 		// change the status to "closed"
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.xpath("//*[@id=\"editIssueRadioStatusClosed\"]"))
 				.click();
 		// change the solution
@@ -60,9 +60,9 @@ public abstract class WebDriver_editIssueIT extends AbstractRequest {
 				.id(dropdown_resolution)));
 		resolution.selectByVisibleText("Fixed");
 		// save
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.xpath("//*[@id=\"saveEditedIssue\"]")).click();
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.navigate().refresh();		
 	}
 
@@ -71,14 +71,14 @@ public abstract class WebDriver_editIssueIT extends AbstractRequest {
 	public void editResolutionOfNoClosedIssue() throws Exception {
 		// test case 17
 		// select an issue
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.xpath("//*[@id=\"accordion1\"]/div[1]/a/div/h6"))
 				.click();
 		// click edit icon
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElements(By.className(className_editIssue)).get(0).click();
 		// change the status to "in progress"
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(
 				By.xpath("//*[@id=\"editIssueRadioStatusIn Progress\"]"))
 				.click();
@@ -87,9 +87,9 @@ public abstract class WebDriver_editIssueIT extends AbstractRequest {
 				.id(dropdown_resolution)));
 		resolution.selectByVisibleText("Fixed");
 		// save
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.xpath("//*[@id=\"saveEditedIssue\"]")).click();
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.navigate().refresh();
 	}
 
@@ -98,17 +98,17 @@ public abstract class WebDriver_editIssueIT extends AbstractRequest {
 	@Before
 	public void beforeMethod() throws Exception {
 		// create an new issue
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id(button_issueErstellen)).click();
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id(radioButton_createIssueNewIssue)).click();
 		// fill name and description
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id(eingabefeld_createIssueName)).sendKeys(
 				"createAnIssueTest");
 		driver.findElement(By.id(eingabefeld_createIssueDescription)).sendKeys(
 				"RT");
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		// select every type
 		Select filterTyp = new Select(driver.findElement(By
 				.id(checkbox_filterIssueTyp)));
@@ -124,34 +124,34 @@ public abstract class WebDriver_editIssueIT extends AbstractRequest {
 	public void deleteNewIssues() throws Exception {
 	for (int i = 0; i < 1; i++) {
 		// select an new issue
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(
 				By.xpath("//*[@id=\"accordion1\"]/div[1]/a/div/h6"))
 				.click();
 		// click edit icon
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElements(By.className(className_editIssue)).get(0)
 				.click();
 		// close the issue
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(
 				By.xpath("//*[@id=\"editIssueRadioStatusClosed\"]"))
 				.click();
 		// save
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.xpath("//*[@id=\"saveEditedIssue\"]"))
 				.click();
-		Thread.sleep(10000);
+		Thread.sleep(15000);
 		driver.navigate().refresh();
 
 		// delete an issue
 		// select an issue
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(
 				By.xpath("//*[@id=\"accordion3\"]/div[1]/a/div/h6"))
 				.click();
 		// click remove icon
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElements(By.className(className_removeIssue)).get(0)
 				.click();
 	}
@@ -163,34 +163,34 @@ public abstract class WebDriver_editIssueIT extends AbstractRequest {
 //	int startIndex = 3;//must be manually wrote
 //	for (int i = 0; i < 1; i++) {
 //		// select an issue in progress
-//		Thread.sleep(1000);
+//		Thread.sleep(1500);
 //		driver.findElement(By.xpath("//*[@id=\"accordion2\"]/div[1]/a/div"))
 //				.click();
 //		// click edit icon
-//		Thread.sleep(1000);
+//		Thread.sleep(1500);
 //		driver.findElement(By.xpath("//*[@id="+(startIndex+t)+"]/div/button"))
 //				.click();
 //		t++;
 //		// close the issue
-//		Thread.sleep(1000);
+//		Thread.sleep(1500);
 //		driver.findElement(
 //				By.xpath("//*[@id=\"editIssueRadioStatusClosed\"]"))
 //				.click();
 //		// save
-//		Thread.sleep(1000);
+//		Thread.sleep(1500);
 //		driver.findElement(By.xpath("//*[@id=\"saveEditedIssue\"]"))
 //				.click();
-//		Thread.sleep(1000);
+//		Thread.sleep(1500);
 //		driver.navigate().refresh();
 //
 //		// delete an issue
 //		// select an issue
-//		Thread.sleep(1000);
+//		Thread.sleep(1500);
 //		driver.findElement(
 //				By.xpath("//*[@id=\"accordion3\"]/div[1]/a/div/h6"))
 //				.click();
 //		// click remove icon
-//		Thread.sleep(1000);
+//		Thread.sleep(1500);
 //		driver.findElements(By.className(className_removeIssue)).get(0)
 //				.click();
 //		driver.navigate().refresh();

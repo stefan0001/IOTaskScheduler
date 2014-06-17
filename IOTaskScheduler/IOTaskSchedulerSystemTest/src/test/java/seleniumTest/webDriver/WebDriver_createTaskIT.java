@@ -38,7 +38,7 @@ public abstract class WebDriver_createTaskIT extends AbstractRequest {
 		// test case 3
 		// create a new task
 		driver.findElement(By.id(button_neuerTask)).click();
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		// based on event
 		WebElement basedOnEvent = driver.findElement(By
 				.id(radioButton_eventbasiertTaskErstellen));
@@ -54,7 +54,7 @@ public abstract class WebDriver_createTaskIT extends AbstractRequest {
 		// create a new task
 		driver.findElement(By.id(button_neuerTask)).click();
 		// based on time
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		WebElement basedOnEvent = driver.findElement(By
 				.id(radioButton_zeitbasiertTaskErstellen));
 		if (!basedOnEvent.isSelected())
@@ -69,9 +69,9 @@ public abstract class WebDriver_createTaskIT extends AbstractRequest {
 		// create a new task
 		driver.findElement(By.id(button_neuerTask)).click();
 		// select a issue
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id(button_taskErstellenIssueAuswaehlen)).click();
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElements(By.name("selectIssuesForTask")).get(0).click();
 		driver.findElement(By.id(button_speichernTaskIssueAuswaehlen)).click();
 		// break
@@ -84,7 +84,7 @@ public abstract class WebDriver_createTaskIT extends AbstractRequest {
 		// create a new task
 		driver.findElement(By.id(button_neuerTask)).click();
 		// save the task
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id(button_speichernTask)).click();
 	}
 
@@ -94,20 +94,20 @@ public abstract class WebDriver_createTaskIT extends AbstractRequest {
 		// create a task based on time
 		driver.findElement(By.id(button_neuerTask)).click();
 		// based on time
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id(radioButton_zeitbasiertTaskErstellen)).click();
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		// choose a day
 		driver.findElement(By.id(eingabefeld_datum)).click();
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.xpath(date)).click();
 		// choose a time
 		driver.findElement(By.id(eingabefeld_uhrzeit)).click();
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(
 				By.xpath("/html/body/div[5]/div[2]/table/tbody/tr/td/span[8]"))
 				.click();
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(
 				By.xpath("/html/body/div[5]/div[1]/table/tbody/tr/td/span[3]"))
 				.click();
@@ -117,7 +117,7 @@ public abstract class WebDriver_createTaskIT extends AbstractRequest {
 				.click();
 		// create a new issue
 		driver.findElement(By.id(button_taskErstellenNeuesIssue)).click();
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id(eingabefeld_issueNameFuerTask)).sendKeys(
 				"Muster");
 		driver.findElement(By.id(eingabefeld_issueBeschreibungFuerTask))
@@ -131,14 +131,14 @@ public abstract class WebDriver_createTaskIT extends AbstractRequest {
 		// create a new task
 		driver.findElement(By.id(button_neuerTask)).click();
 		// fill name and description
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id(eingabefeld_taskName)).sendKeys("Muster");
 		// based on time
 		driver.findElement(By.id(radioButton_zeitbasiertTaskErstellen)).click();
 		// select a issue
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id(button_taskErstellenIssueAuswaehlen)).click();
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElements(By.name("selectIssuesForTask")).get(0).click();
 		driver.findElement(By.id(button_speichernTaskIssueAuswaehlen)).click();
 		// save the task
@@ -151,7 +151,7 @@ public abstract class WebDriver_createTaskIT extends AbstractRequest {
 		// create a new task
 		driver.findElement(By.id(button_neuerTask)).click();
 		// fill name and description
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id(eingabefeld_taskName)).sendKeys("Muster");
 		// based on event
 		driver.findElement(By.id(radioButton_eventbasiertTaskErstellen))
@@ -161,12 +161,12 @@ public abstract class WebDriver_createTaskIT extends AbstractRequest {
 		driver.findElement(By.xpath(eingabefeld_taskErstellenNeuesEventName))
 				.sendKeys("Beispielevent");
 		// select a issue
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id(button_taskErstellenIssueAuswaehlen)).click();
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElements(By.name("selectIssuesForTask")).get(0).click();
 		driver.findElement(By.id(button_speichernTaskIssueAuswaehlen)).click();
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		// save the task
 		driver.findElement(By.id(button_speichernTask)).click();
 	}
@@ -177,18 +177,18 @@ public abstract class WebDriver_createTaskIT extends AbstractRequest {
 		// create a new task
 		driver.findElement(By.id(button_neuerTask)).click();
 		// fill name and description
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id(eingabefeld_taskName)).sendKeys("Muster");
 		// based on event
 		driver.findElement(By.id(radioButton_eventbasiertTaskErstellen))
 				.click();
 		// select a issue
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id(button_taskErstellenIssueAuswaehlen)).click();
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElements(By.name("selectIssuesForTask")).get(0).click();
 		driver.findElement(By.id(button_speichernTaskIssueAuswaehlen)).click();
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		// save the task without event
 		driver.findElement(By.id(button_speichernTask)).click();
 	}
@@ -199,15 +199,15 @@ public abstract class WebDriver_createTaskIT extends AbstractRequest {
 		// create a new task
 		driver.findElement(By.id(button_neuerTask)).click();
 		// fill name and description
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id(eingabefeld_taskName)).sendKeys("Muster");
 		// select a issue
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id(button_taskErstellenIssueAuswaehlen)).click();
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElements(By.name("selectIssuesForTask")).get(0).click();
 		driver.findElement(By.id(button_speichernTaskIssueAuswaehlen)).click();
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		// save the task
 		driver.findElement(By.id(button_speichernTask)).click();
 	}
@@ -218,7 +218,7 @@ public abstract class WebDriver_createTaskIT extends AbstractRequest {
 		// create a new task
 		driver.findElement(By.id(button_neuerTask)).click();
 		// fill name and description
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id(eingabefeld_taskName)).sendKeys("Muster");
 		// based on event
 		driver.findElement(By.id(radioButton_eventbasiertTaskErstellen))
@@ -227,7 +227,7 @@ public abstract class WebDriver_createTaskIT extends AbstractRequest {
 		driver.findElement(By.id(button_taskErstellenNeuesEvent)).click();
 		driver.findElement(By.xpath(eingabefeld_taskErstellenNeuesEventName))
 				.sendKeys("Beispielevent");
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		// save the task without issue
 		driver.findElement(By.id(button_speichernTask)).click();
 	}

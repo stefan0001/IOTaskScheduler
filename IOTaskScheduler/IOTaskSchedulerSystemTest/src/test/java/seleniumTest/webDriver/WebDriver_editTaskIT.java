@@ -19,29 +19,29 @@ public abstract class WebDriver_editTaskIT extends AbstractRequest {
 
 	@Test
 	public void editTimeTaskName() throws Exception {
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id(button_editTimeTask)).click();
 		// select a day
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.xpath(day)).click();
 		// select task to edit
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElements(By.className("editIssue")).get(0).click();
 		// clear task name fill a new name
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id("editTaskName")).clear();
 		driver.findElement(By.id("editTaskName")).sendKeys(name.toString());
 		// save
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id("saveEditedTimeTaskButton")).click();
 		// compare
 		driver.navigate().refresh();
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id(button_editTimeTask)).click();
 		// select a day
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.xpath(day)).click();
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		assertEquals(
 				driver.findElement(
 						By.xpath("//*[@id=\"tasksOfDayDiv\"]/div/table/tbody/tr[2]/td[2]"))
@@ -51,13 +51,13 @@ public abstract class WebDriver_editTaskIT extends AbstractRequest {
 	@Test
 	public void activateAndDeactivateTimeTask() throws Exception {
 		// test case 8,9
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id(button_editTimeTask)).click();
 		// select a day
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.xpath(day)).click();
 		// select task to edit
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElements(By.className("editIssue")).get(0).click();
 		// activate/deactivate
 		boolean active = false;
@@ -65,20 +65,20 @@ public abstract class WebDriver_editTaskIT extends AbstractRequest {
 			active = true;
 		driver.findElement(By.id("editTaskActivated")).click();
 		// save
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id("saveEditedTimeTaskButton")).click();
 
 		// compare
 		driver.navigate().refresh();
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id(button_editTimeTask)).click();
 		// select a day
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.xpath(day)).click();
 		// select task to edit
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElements(By.className("editIssue")).get(0).click();
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		assertEquals(driver.findElement(By.id("editTaskActivated"))
 				.isSelected(), !active);
 	}
@@ -86,53 +86,53 @@ public abstract class WebDriver_editTaskIT extends AbstractRequest {
 	@Test
 	public void showFireTime() throws Exception {
 		// test case 12
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id(button_editTimeTask)).click();
 		// select a day
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.xpath(day)).click();
 		// select task to edit
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElements(By.className("editIssue")).get(0).click();
 		// clear task name fill a new name
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.xpath("//*[@id=\"editTaskTabs\"]/li[2]/a"))
 				.click();
 	}
 
 	@Test
 	public void deleteTimeTask() throws Exception {
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id(button_editTimeTask)).click();
 		// select a day
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.xpath(day)).click();
 		// delete the first task
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElements(By.className("delete")).get(0).click();
 	}
 
 	@Test
 	public void editEventTask() throws Exception {
 		// based on event
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id(button_editEventTask)).click();
 		// select a task
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElements(By.name("editTask")).get(0).click();
 		// clear task name fill a new name
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id("editTaskName")).clear();
 		driver.findElement(By.id("editTaskName")).sendKeys("EditedEventTask");
 		// save
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id("saveEditedEventTaskButton")).click();
 		// compare
 		driver.navigate().refresh();
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id(button_editEventTask)).click();
 		// select a issue
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		assertEquals(
 				driver.findElement(
 						By.xpath("//*[@id=\"modalOneBody\"]/div/table/tbody/tr[2]/td[2]"))
@@ -143,9 +143,9 @@ public abstract class WebDriver_editTaskIT extends AbstractRequest {
 	@Test
 	public void deleteEventTask() throws Exception {
 		// based on event
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id(button_editEventTask)).click();
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElements(By.name("deleteTask")).get(0).click();
 	}
 
@@ -157,25 +157,25 @@ public abstract class WebDriver_editTaskIT extends AbstractRequest {
 			// create a task based on time
 			driver.findElement(By.id(button_neuerTask)).click();
 			// fill name and description
-			Thread.sleep(1000);
+			Thread.sleep(1500);
 			driver.findElement(By.id(eingabefeld_taskName)).sendKeys(
 					"editIssueTest");
 			// based on time
-			Thread.sleep(1000);
+			Thread.sleep(1500);
 			driver.findElement(By.id(radioButton_zeitbasiertTaskErstellen))
 					.click();
-			Thread.sleep(1000);
+			Thread.sleep(1500);
 			// choose a day
 			driver.findElement(By.id(eingabefeld_datum)).click();
-			Thread.sleep(1000);
+			Thread.sleep(1500);
 			driver.findElement(By.xpath(date)).click();
 			// choose a time
 			driver.findElement(By.id(eingabefeld_uhrzeit)).click();
-			Thread.sleep(1000);
+			Thread.sleep(1500);
 			driver.findElement(
 					By.xpath("/html/body/div[5]/div[2]/table/tbody/tr/td/span[8]"))
 					.click();
-			Thread.sleep(1000);
+			Thread.sleep(1500);
 			driver.findElement(
 					By.xpath("/html/body/div[5]/div[1]/table/tbody/tr/td/span[3]"))
 					.click();
@@ -185,21 +185,21 @@ public abstract class WebDriver_editTaskIT extends AbstractRequest {
 					.click();
 			// create a new issue
 			driver.findElement(By.id(button_taskErstellenNeuesIssue)).click();
-			Thread.sleep(1000);
+			Thread.sleep(1500);
 			driver.findElement(By.id(eingabefeld_issueNameFuerTask)).sendKeys(
 					"Muster");
 			driver.findElement(By.id(eingabefeld_issueBeschreibungFuerTask))
 					.sendKeys("Beispiel");
 			driver.findElement(By.id(button_speichernTaskNeuesIssue)).click();
-			Thread.sleep(1000);
+			Thread.sleep(1500);
 			// save task
 			driver.findElement(By.id(button_speichernTask)).click();
 
 			// create a task based on event
-			Thread.sleep(1000);
+			Thread.sleep(1500);
 			driver.findElement(By.id(button_neuerTask)).click();
 			// fill name and description
-			Thread.sleep(1000);
+			Thread.sleep(1500);
 			driver.findElement(By.id(eingabefeld_taskName)).sendKeys("Event");
 			// based on event
 			driver.findElement(By.id(radioButton_eventbasiertTaskErstellen))
@@ -211,13 +211,13 @@ public abstract class WebDriver_editTaskIT extends AbstractRequest {
 					.sendKeys("Beispielevent");
 			// create a new issue
 			driver.findElement(By.id(button_taskErstellenNeuesIssue)).click();
-			Thread.sleep(1000);
+			Thread.sleep(1500);
 			driver.findElement(By.id(eingabefeld_issueNameFuerTask)).sendKeys(
 					"Muster");
 			driver.findElement(By.id(eingabefeld_issueBeschreibungFuerTask))
 					.sendKeys("Beispiel");
 			driver.findElement(By.id(button_speichernTaskNeuesIssue)).click();
-			Thread.sleep(1000);
+			Thread.sleep(1500);
 			// save the task
 			driver.findElement(By.id(button_speichernTask)).click();
 

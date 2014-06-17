@@ -15,10 +15,10 @@ abstract public class WebDriver_triggerEventIT extends AbstractRequest{
 
 	@Test
 	public void triggerEvent() throws Exception {
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElement(By.id(button_eventOverview)).click();
 		//trigger the first event
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		driver.findElements(By.className("trigger")).get(0).click();
 	}
 
