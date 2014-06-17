@@ -30,7 +30,7 @@ public abstract class WebDriver_editIssueIT extends AbstractRequest {
 		// close the issue
 		Thread.sleep(1000);
 		driver.findElement(
-				By.xpath("//*[@id=\"editIssueRadioStatusInProgress\"]"))
+				By.xpath("//*[@id=\"editIssueRadioStatusIn Progress\"]"))
 				.click();
 		driver.findElement(By.xpath("//*[@id=\"editIssueRadioStatusClosed\"]"))
 				.click();
@@ -80,7 +80,7 @@ public abstract class WebDriver_editIssueIT extends AbstractRequest {
 		// change the status to "in progress"
 		Thread.sleep(1000);
 		driver.findElement(
-				By.xpath("//*[@id=\"editIssueRadioStatusInProgress\"]"))
+				By.xpath("//*[@id=\"editIssueRadioStatusIn Progress\"]"))
 				.click();
 		// change the solution
 		Select resolution = new Select(driver.findElement(By
